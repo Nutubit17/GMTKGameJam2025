@@ -10,8 +10,8 @@ public abstract class HealthCompo : MonoBehaviour,IGetCompoable
 
     public UnityEvent OnDeadEvent;
 
-    private Agent _agent;
-    public void Init(Agent agent)
+    private Entity _agent;
+    public void Init(Entity agent)
     {
        _agent = agent;
     }

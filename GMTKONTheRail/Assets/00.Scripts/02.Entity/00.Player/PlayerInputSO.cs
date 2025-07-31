@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 [CreateAssetMenu(fileName = "InputSO", menuName = "SO/Input/InputSO")]
@@ -8,6 +9,12 @@ public class PlayerInputSO : ScriptableObject, Input2.IActionsActions,Input2.IUt
     public Vector2 movement;
 
     public bool isFire,isSliding;
+
+    public Action OnEscAction;
+    public Action OnClickAction;
+    public Action OnAltClickAction;
+    public Action OnAltAltClickAction;
+
     private void OnEnable()
     {
         if (_input == null)
@@ -31,12 +38,12 @@ public class PlayerInputSO : ScriptableObject, Input2.IActionsActions,Input2.IUt
     }
     public void OnChange(InputAction.CallbackContext context)
     {
-        
+
     }
 
     public void OnEsc(InputAction.CallbackContext context)
     {
-        
+        OnEscAction?.Invoke();
     }
 
     public void OnMouseButton(InputAction.CallbackContext context)
@@ -83,5 +90,20 @@ public class PlayerInputSO : ScriptableObject, Input2.IActionsActions,Input2.IUt
     {
         if(context.performed)
         PlayerBash.Instance.jumpInputAction?.Invoke();
+    }
+
+    public void OnClick(InputAction.CallbackContext context)
+    {
+        OnClickAction?.Invoke();
+    }
+
+    public void OnAltClick(InputAction.CallbackContext context)
+    {
+        OnAltClickAction?.Invoke();
+    }
+
+    public void OnAltAltClick(InputAction.CallbackContext context)
+    {
+        OnAltAltClickAction?.Invoke();
     }
 }

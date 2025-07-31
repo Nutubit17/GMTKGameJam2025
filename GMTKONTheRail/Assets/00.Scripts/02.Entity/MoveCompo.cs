@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class MoveCompo : MonoBehaviour, IGetCompoable
 {
-    protected Agent _agent;
+    protected Entity _agent;
 
     public Rigidbody rigidCompo;
-    public virtual void Init(Agent agent)
+    public virtual void Init(Entity agent)
     {
         _agent = agent;
     }

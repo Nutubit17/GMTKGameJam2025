@@ -42,7 +42,16 @@ public class RailManagement : MonoBehaviour
         return _position;
     }
 
-    public Vector3 GetCurrentDirection() => (_position - _previousPosition).normalized;
+    public Vector3 GetCurrentDirection()
+    {
+        Vector3 vector = (_position - _previousPosition).normalized;
+
+        if (vector == Vector3.zero)
+            return _splineContainer.Spline.EvaluateTangent(0);
+
+        return vector;
+        
+    } 
 
     public void GetPositionAndDirection(out Vector3 position, out Vector3 direction)
     {

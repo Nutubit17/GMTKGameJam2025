@@ -26,7 +26,7 @@ public class MartCart : MonoBehaviour
     // test
     void Start()
     {
-        AddForce(1);
+        AddForce(10);
     }
 
     public void AddForce(float force)

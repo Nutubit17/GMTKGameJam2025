@@ -55,10 +55,10 @@ public class AgentActionEventCompo : MonoBehaviour,IGetCompoable
 #endif
     public EventAndAfterAction[] actions = new EventAndAfterAction[(int)AgentPlayerActions.End];
 
-    protected Agent _agent;
+    protected Entity _agent;
 
 
-    public void Init(Agent agent)
+    public void Init(Entity agent)
     {
        _agent = agent;
         

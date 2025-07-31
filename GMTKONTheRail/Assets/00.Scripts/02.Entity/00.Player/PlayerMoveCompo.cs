@@ -29,7 +29,7 @@ public class PlayerMoveCompo : MoveCompo,IGetCompoable
 
     protected PlayerBash _player;
 
-    public override void Init(Agent agent)
+    public override void Init(Entity agent)
     {
         base.Init(agent);
         _player = agent as PlayerBash;

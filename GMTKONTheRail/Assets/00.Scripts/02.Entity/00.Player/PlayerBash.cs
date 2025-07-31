@@ -4,10 +4,10 @@ using UnityEngine.InputSystem;
 
 public enum InputType
 {
-    Movement,MouseX,MouseY
+    Movement,MouseX,MouseY,Click,AltClick
 }
 
-public class PlayerBash : Agent
+public class PlayerBash : Entity
 {
     public static PlayerBash Instance;
     public Dictionary<InputType, UnityAction<InputAction.CallbackContext>> Inputs;

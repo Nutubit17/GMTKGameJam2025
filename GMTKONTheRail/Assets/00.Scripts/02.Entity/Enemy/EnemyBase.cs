@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBase : Agent
+public class EnemyBase : Entity
 {
     [SerializeField] private PlayerBash _player; 
     [SerializeField] private float _playerDetectRange = 10f;

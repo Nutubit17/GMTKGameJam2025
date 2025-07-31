@@ -120,8 +120,9 @@ public class PlayerMoveCompo : MoveCompo,IGetCompoable
     private void MoveOnGorund(ref Vector3 input)
     {
         Vector3 horizontalSpeed = BashUtils.V3X0Z(rigidCompo.linearVelocity);
-        //rigidCompo.linearVelocity = Vector3.up * rigidCompo.linearVelocity.y
-        //   + Vector3.Lerp(horizontalSpeed, Vector3.zero, _damp * Time.fixedDeltaTime);
+        //
+        rigidCompo.linearVelocity = Vector3.up * rigidCompo.linearVelocity.y
+           + Vector3.Lerp(horizontalSpeed, Vector3.zero, _damp * Time.fixedDeltaTime);
         //����
 
         input = Vector3.ProjectOnPlane(input,_groundCheck.normal);

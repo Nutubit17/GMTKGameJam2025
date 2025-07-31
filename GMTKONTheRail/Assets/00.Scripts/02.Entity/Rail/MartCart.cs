@@ -1,15 +1,16 @@
 using System;
 using System.Collections;
-using Unity.Mathematics;
 using UnityEngine;
 
 public class MartCart : MonoBehaviour
 {
     [SerializeField] private RailManagement _railManagement;
+
     [Header("Physics")]
     [Range(0, 1), SerializeField] private float _friction = 0.5f;
-    private Transform _visual;
-    private IEnumerator _forceRoutine;
+    [SerializeField] private float _downHillMoveMultiplier = 1.5f;
+    [SerializeField] private float _maxForce = 50;
+    [SerializeField] private float _totalForce = 0;
 
     [Header("Shake Decoration")]
     [Range(0, 1), SerializeField] private float _positionShakeness = 0.1f;
@@ -17,6 +18,9 @@ public class MartCart : MonoBehaviour
     [Space]
     [Range(0, 20), SerializeField] private float _rotationShakeness = 5f;
     [Range(0.1f, 10), SerializeField] private float _rotationFrequency = 3f;
+
+    private Transform _visual;
+    private IEnumerator _forceRoutine;
 
     private void Awake()
     {
@@ -26,29 +30,28 @@ public class MartCart : MonoBehaviour
     // test
     void Start()
     {
-        AddForce(10);
+        AddForce(Vector3.right * 10);
     }
 
-    public void AddForce(float force)
-    {
-        if (_forceRoutine != null)
-            StopCoroutine(_forceRoutine);
-
-        _forceRoutine = ForceMoveRoutine(force);
-        StartCoroutine(_forceRoutine);
-    }
-
-    private IEnumerator ForceMoveRoutine(float force)
+    void FixedUpdate()
     {
         float frictionDelta = Mathf.Pow(1 - _friction, Time.fixedDeltaTime);
+        _totalForce -= Mathf.Sign(_totalForce) * _railManagement.GetCurrentDirection().y * _downHillMoveMultiplier;
 
-        while (Mathf.Abs(force) > 0.1f)
-        {
-            MoveUpdate(force * Time.fixedDeltaTime);
-            force *= frictionDelta;
+        MoveUpdate(_totalForce * Time.fixedDeltaTime);
+        _totalForce *= frictionDelta;
+    }
 
-            yield return new WaitForFixedUpdate();
-        }
+    public void AddForce(Vector3 direction)
+    {
+        Vector3 railDir = _railManagement.GetCurrentDirection();
+        float force = Vector3.Project(direction, railDir).magnitude;
+
+        _totalForce = Mathf.Clamp(
+            _totalForce + force,
+            -_maxForce,
+            _maxForce);
+
     }
 
     private void MoveUpdate(float step)
@@ -60,9 +63,10 @@ public class MartCart : MonoBehaviour
         ShakeDecoration(ref position, ref shakeRotation);
 
         transform.position = position;
+
         if (direction != Vector3.zero)
         {
-            transform.forward = direction;
+            transform.forward = direction * Mathf.Sign(step);
             transform.rotation *= Quaternion.AngleAxis(shakeRotation, transform.forward);
         }
     }

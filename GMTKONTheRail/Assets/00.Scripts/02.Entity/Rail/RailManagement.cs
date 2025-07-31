@@ -7,7 +7,7 @@ public class RailManagement : MonoBehaviour
 {
     /* Component */
     private SplineContainer _splineContainer;
-
+    
     /* Temp */
     private int _currentPoint = 0;
     private float _currentAmount = 0;
@@ -15,7 +15,6 @@ public class RailManagement : MonoBehaviour
     private bool _isNeedPositionUpdate = true;
     private Vector3 _previousPosition = Vector3.zero;
     private Vector3 _position = Vector3.zero;
-
 
     private void Awake()
     {
@@ -42,7 +41,16 @@ public class RailManagement : MonoBehaviour
         return _position;
     }
 
-    public Vector3 GetCurrentDirection() => (_position - _previousPosition).normalized;
+    public Vector3 GetCurrentDirection()
+    {
+        Vector3 vector = (_position - _previousPosition).normalized;
+
+        if (vector == Vector3.zero)
+            return _splineContainer.Spline.EvaluateTangent(0);
+
+        return vector;
+        
+    } 
 
     public void GetPositionAndDirection(out Vector3 position, out Vector3 direction)
     {

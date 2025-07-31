@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using Unity.Mathematics;
 using UnityEngine;
 
 public class MartCart : MonoBehaviour
@@ -9,6 +8,7 @@ public class MartCart : MonoBehaviour
 
     [Header("Physics")]
     [Range(0, 1), SerializeField] private float _friction = 0.5f;
+    [SerializeField] private float _downHillMoveMultiplier = 1.5f;
     [SerializeField] private float _maxForce = 50;
     [SerializeField] private float _totalForce = 0;
 
@@ -33,6 +33,15 @@ public class MartCart : MonoBehaviour
         AddForce(Vector3.right * 10);
     }
 
+    void FixedUpdate()
+    {
+        float frictionDelta = Mathf.Pow(1 - _friction, Time.fixedDeltaTime);
+        _totalForce -= Mathf.Sign(_totalForce) * _railManagement.GetCurrentDirection().y * _downHillMoveMultiplier;
+
+        MoveUpdate(_totalForce * Time.fixedDeltaTime);
+        _totalForce *= frictionDelta;
+    }
+
     public void AddForce(Vector3 direction)
     {
         Vector3 railDir = _railManagement.GetCurrentDirection();
@@ -43,26 +52,6 @@ public class MartCart : MonoBehaviour
             -_maxForce,
             _maxForce);
 
-        if (_forceRoutine != null)
-            StopCoroutine(_forceRoutine);
-
-
-        _forceRoutine = ForceMoveRoutine();
-
-        StartCoroutine(_forceRoutine);
-    }
-
-    private IEnumerator ForceMoveRoutine()
-    {
-        float frictionDelta = Mathf.Pow(1 - _friction, Time.fixedDeltaTime);
-
-        while (Mathf.Abs(_totalForce) > 0.1f)
-        {
-            MoveUpdate(_totalForce * Time.fixedDeltaTime);
-            _totalForce *= frictionDelta;
-
-            yield return new WaitForFixedUpdate();
-        }
     }
 
     private void MoveUpdate(float step)
@@ -74,9 +63,10 @@ public class MartCart : MonoBehaviour
         ShakeDecoration(ref position, ref shakeRotation);
 
         transform.position = position;
+
         if (direction != Vector3.zero)
         {
-            transform.forward = direction;
+            transform.forward = direction * Mathf.Sign(step);
             transform.rotation *= Quaternion.AngleAxis(shakeRotation, transform.forward);
         }
     }

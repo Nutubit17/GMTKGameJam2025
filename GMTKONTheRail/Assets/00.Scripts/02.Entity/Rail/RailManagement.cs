@@ -7,7 +7,7 @@ public class RailManagement : MonoBehaviour
 {
     /* Component */
     private SplineContainer _splineContainer;
-
+    
     /* Temp */
     private int _currentPoint = 0;
     private float _currentAmount = 0;
@@ -15,7 +15,6 @@ public class RailManagement : MonoBehaviour
     private bool _isNeedPositionUpdate = true;
     private Vector3 _previousPosition = Vector3.zero;
     private Vector3 _position = Vector3.zero;
-
 
     private void Awake()
     {

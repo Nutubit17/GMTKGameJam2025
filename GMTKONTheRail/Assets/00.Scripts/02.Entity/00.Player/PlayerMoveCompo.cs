@@ -53,7 +53,7 @@ public class PlayerMoveCompo : MoveCompo,IGetCompoable
 
         float accelModify = _accelationModify, maxSpeedModify = _maxSpeedModify;
 
-        Vector3 input = BashUtils.V2toV3(PlayerBash.Instance.playerInput.movement);
+        Vector3 input = BashUtils.V2toV3(PlayerBash.Instance.PlayerInput.movement);
         //_movDir = BashUtils.V3X0Z(cameraRoot.TransformVector(input)).normalized;
         input = (Quaternion.Euler(0, _mouseSum.x, 0) * input);
 
@@ -87,7 +87,7 @@ public class PlayerMoveCompo : MoveCompo,IGetCompoable
         }
 
         //rigidCompo.linearDamping = _deafaultDamping;
-        if (_player.playerInput.isSliding)
+        if (_player.PlayerInput.IsSliding)
         {
             accelModify *= _onSlidingAccel;
             maxSpeedModify *= _onSlidingSpeed;

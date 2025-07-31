@@ -113,7 +113,7 @@ public partial class @Input2: IInputActionCollection2, IDisposable
                     ""name"": ""MouseButton"",
                     ""type"": ""Button"",
                     ""id"": ""c252afac-b71a-4ca8-b461-8b6101dd70be"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false

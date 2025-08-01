@@ -33,6 +33,7 @@ public class ItemUseableObject : MonoBehaviour
         _animator.SetFloat("RunSpeed", Mathf.Lerp(0.5f,1.4f,_playerRi.linearVelocity.magnitude / _maxSpeed), 0.1f, 0.05f);
         _animator.SetBool("Attack",Mom.PlayerInput.IsFire);
         _animator.SetBool("AltAttack",Mom.PlayerInput.IsAltFire);
+        _animator.SetBool("Reload", Input.GetKeyDown(KeyCode.R));
     }
 
     public virtual void UseItem()

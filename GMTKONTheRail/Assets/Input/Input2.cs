@@ -149,7 +149,7 @@ public partial class @Input2: IInputActionCollection2, IDisposable
                     ""name"": ""Jump"",
                     ""type"": ""Button"",
                     ""id"": ""cdf25efa-e82f-4fb9-82e1-3ba4024a413c"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -395,18 +395,7 @@ public partial class @Input2: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""de04513e-9147-4428-be3f-a40c27ecedc4"",
-                    ""path"": ""<Keyboard>/ctrl"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Sliding"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""1c648cec-787c-48c0-9289-37c031ee1d4d"",
-                    ""path"": ""<Keyboard>/c"",
+                    ""path"": ""<Keyboard>/shift"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

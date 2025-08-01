@@ -78,7 +78,7 @@ public class PlayerInputSO : ScriptableObject, Input2.IActionsActions,Input2.IUt
         {
             IsSliding = false;
         }
-        PlayerBash.Instance.onSlidingAction(IsSliding);
+        PlayerBash.Instance.onSlidingAction?.Invoke(IsSliding);
     }
 
     public void OnSwap(InputAction.CallbackContext context)

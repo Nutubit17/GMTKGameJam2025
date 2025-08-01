@@ -29,6 +29,8 @@ public class PlayerMoveCompo : MoveCompo,IGetCompoable
 
     protected PlayerBash _player;
 
+    protected PlayerSatus _playerStatus;
+
     public override void Init(Entity agent)
     {
         base.Init(agent);
@@ -38,7 +40,7 @@ public class PlayerMoveCompo : MoveCompo,IGetCompoable
     void Start()
     {
         PlayerBash.Instance.jumpInputAction += Jump;
-
+        _playerStatus = _player.GetCompo<PlayerSatus>();
     }
 
     // Update is called once per frame
@@ -87,11 +89,17 @@ public class PlayerMoveCompo : MoveCompo,IGetCompoable
         }
 
         //rigidCompo.linearDamping = _deafaultDamping;
-        if (_player.PlayerInput.IsSliding)
+        if (_player.PlayerInput.IsSliding && _playerStatus.CurrentStemina >0)
         {
             accelModify *= _onSlidingAccel;
             maxSpeedModify *= _onSlidingSpeed;
+            _playerStatus.AddStemina(-Time.deltaTime);
+            _playerStatus.SetSteminaRegen(false);
             //rigidCompo.linearDamping = _onSlideDamping;
+        }
+        else
+        {
+            _playerStatus.SetSteminaRegen(true);
         }
 
         //    _movDir = input * (Mathf.Lerp(1, 0, (Vector3.Project(input, rigidbody.velocity) + rigidbody.velocity).magnitude / _maxSpeed)

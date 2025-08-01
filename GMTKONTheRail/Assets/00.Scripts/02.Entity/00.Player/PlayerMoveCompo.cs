@@ -29,6 +29,8 @@ public class PlayerMoveCompo : MoveCompo,IGetCompoable
 
     protected PlayerBash _player;
 
+    protected PlayerSatus _playerStatus;
+
     public override void Init(Entity agent)
     {
         base.Init(agent);
@@ -38,7 +40,7 @@ public class PlayerMoveCompo : MoveCompo,IGetCompoable
     void Start()
     {
         PlayerBash.Instance.jumpInputAction += Jump;
-
+        _playerStatus = _player.GetCompo<PlayerSatus>();
     }
 
     // Update is called once per frame
@@ -53,7 +55,7 @@ public class PlayerMoveCompo : MoveCompo,IGetCompoable
 
         float accelModify = _accelationModify, maxSpeedModify = _maxSpeedModify;
 
-        Vector3 input = BashUtils.V2toV3(PlayerBash.Instance.playerInput.movement);
+        Vector3 input = BashUtils.V2toV3(PlayerBash.Instance.PlayerInput.movement);
         //_movDir = BashUtils.V3X0Z(cameraRoot.TransformVector(input)).normalized;
         input = (Quaternion.Euler(0, _mouseSum.x, 0) * input);
 
@@ -87,11 +89,17 @@ public class PlayerMoveCompo : MoveCompo,IGetCompoable
         }
 
         //rigidCompo.linearDamping = _deafaultDamping;
-        if (_player.playerInput.isSliding)
+        if (_player.PlayerInput.IsSliding && _playerStatus.CurrentStemina >0)
         {
             accelModify *= _onSlidingAccel;
             maxSpeedModify *= _onSlidingSpeed;
+            _playerStatus.AddStemina(-Time.deltaTime);
+            _playerStatus.SetSteminaRegen(false);
             //rigidCompo.linearDamping = _onSlideDamping;
+        }
+        else
+        {
+            _playerStatus.SetSteminaRegen(true);
         }
 
         //    _movDir = input * (Mathf.Lerp(1, 0, (Vector3.Project(input, rigidbody.velocity) + rigidbody.velocity).magnitude / _maxSpeed)

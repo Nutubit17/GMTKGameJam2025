@@ -12,7 +12,7 @@ public class PlayerBash : Entity
     public static PlayerBash Instance;
     public Dictionary<InputType, UnityAction<InputAction.CallbackContext>> Inputs;
 
-    public PlayerInputSO playerInput;
+    public PlayerInputSO PlayerInput;
     public PlayerMoveCompo playerMovement;
     public UnityAction jumpInputAction;
     public UnityAction<bool> onSlidingAction;

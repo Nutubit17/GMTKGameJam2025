@@ -8,7 +8,7 @@ public class PlayerInputSO : ScriptableObject, Input2.IActionsActions,Input2.IUt
     public Vector2 mouseMov;
     public Vector2 movement;
 
-    public bool isFire,isSliding;
+    public bool IsFire,IsAltFire,IsSliding;
 
     public Action OnEscAction;
     public Action OnClickAction;
@@ -50,11 +50,11 @@ public class PlayerInputSO : ScriptableObject, Input2.IActionsActions,Input2.IUt
     {
         if (context.started)
         {
-            isFire = true;
+            IsFire = true;
         }
         if (context.canceled) 
         {
-            isFire = false;
+            IsFire = false;
         }
     }
 
@@ -72,13 +72,13 @@ public class PlayerInputSO : ScriptableObject, Input2.IActionsActions,Input2.IUt
     {
         if (context.started)
         {
-            isSliding = true;
+            IsSliding = true;
         }
         if (context.canceled)
         {
-            isSliding = false;
+            IsSliding = false;
         }
-        PlayerBash.Instance.onSlidingAction(isSliding);
+        PlayerBash.Instance.onSlidingAction?.Invoke(IsSliding);
     }
 
     public void OnSwap(InputAction.CallbackContext context)
@@ -99,11 +99,22 @@ public class PlayerInputSO : ScriptableObject, Input2.IActionsActions,Input2.IUt
 
     public void OnAltClick(InputAction.CallbackContext context)
     {
+
+        if (context.started)
+        {
+            IsAltFire = true;
+        }
+        if (context.canceled)
+        {
+            IsAltFire = false;
+        }
         OnAltClickAction?.Invoke();
     }
 
     public void OnAltAltClick(InputAction.CallbackContext context)
     {
-        OnAltAltClickAction?.Invoke();
-    }
+        if (context.started)
+        {
+            OnAltAltClickAction?.Invoke();
+        }    }
 }

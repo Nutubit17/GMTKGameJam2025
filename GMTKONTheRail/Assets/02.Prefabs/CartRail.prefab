@@ -68,7 +68,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _railManagement: {fileID: 3028618420174001203}
-  _friction: 0.5
+  _friction: 0.321
+  _downHillMoveMultiplier: 1.5
+  _maxForce: 50
+  _totalForce: 0
   _positionShakeness: 0.032
   _positionFrequency: 7.08
   _rotationShakeness: 2.6
@@ -231,38 +234,38 @@ MonoBehaviour:
       TangentIn:
         x: -0
         y: -0
-        z: -1
+        z: -1.1011454
       TangentOut:
         x: 0
         y: 0
-        z: 1
+        z: 1.1011454
       Rotation:
         value:
-          x: 0.0000000011055583
-          y: 0.70710677
-          z: 0.0000000011055583
-          w: 0.70710677
+          x: 0.1515377
+          y: 0.69067824
+          z: -0.15153767
+          w: 0.69067824
     - Position:
         x: 10
-        y: 0
+        y: -4.61
         z: 0
       TangentIn:
         x: -0
         y: -0
-        z: -2.3570225
+        z: -2.3304622
       TangentOut:
         x: 0
         y: 0
-        z: 2.3570225
+        z: 2.4041567
       Rotation:
         value:
-          x: 0
-          y: 0.38268346
-          z: 0
-          w: 0.92387956
+          x: -0.03811188
+          y: 0.39663684
+          z: 0.015448248
+          w: 0.917054
     - Position:
         x: 10
-        y: 0
+        y: 1.5
         z: 10
       TangentIn:
         x: 0

@@ -8,6 +8,7 @@ public class ItemSO : ScriptableObject,ICloneable
     public int Ammo = 0;
     public int Durability = 10;
     public ItemObject Prefab;
+    public Texture2D ItemIcon;
 
     public object Clone()
     {

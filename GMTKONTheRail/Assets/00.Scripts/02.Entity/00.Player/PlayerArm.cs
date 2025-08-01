@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -21,6 +22,8 @@ public class PlayerArm : MonoBehaviour,IGetCompoable,IAfterInitable
     public ItemUseableObject CurrentItem;
 
     public PlayerInputSO PlayerInput;
+
+    public Action ItemSet;
 
     public void Init(Entity agent)
     {
@@ -58,6 +61,7 @@ public class PlayerArm : MonoBehaviour,IGetCompoable,IAfterInitable
         {
             Debug.LogAssertion("ItemSO Is Not Vailid!! Fuck Dick Shit!");
         }
+        ItemSet?.Invoke();
     }
 
     private void Interative()
@@ -136,5 +140,10 @@ public class PlayerArm : MonoBehaviour,IGetCompoable,IAfterInitable
         }
     }
 
+    public void EraseItem()
+    {
+        Inventory[CurrentIdx] = _nullItem;
+        SetHoldingItem();
+    }
 
 }

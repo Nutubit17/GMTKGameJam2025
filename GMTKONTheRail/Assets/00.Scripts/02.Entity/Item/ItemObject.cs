@@ -2,5 +2,10 @@ using UnityEngine;
 
 public class ItemObject : MonoBehaviour
 {
-    public ItemSO itemSO;
+    public ItemSO ItemSO;
+
+    public void Init(ItemSO itemSO)
+    {
+        ItemSO = itemSO;
+    }
 }

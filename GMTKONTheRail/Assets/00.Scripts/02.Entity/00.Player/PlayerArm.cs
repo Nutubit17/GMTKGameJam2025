@@ -76,22 +76,22 @@ public class PlayerArm : MonoBehaviour,IGetCompoable,IAfterInitable
             {
                 if (Inventory[CurrentIdx] == _nullItem)
                 {
-                    Inventory[CurrentIdx] = item.itemSO;
+                    Inventory[CurrentIdx] = item.ItemSO;
                     Destroy(hit.transform.gameObject);
                 }
                 else if (Inventory[0] == _nullItem)
                 {
-                    Inventory[0] = item.itemSO;
+                    Inventory[0] = item.ItemSO;
                     Destroy(hit.transform.gameObject);
                 }
                 else if (Inventory[1] == _nullItem)
                 {
-                    Inventory[1] = item.itemSO;
+                    Inventory[1] = item.ItemSO;
                     Destroy(hit.transform.gameObject);
                 }
                 else if (Inventory[2] == _nullItem)
                 {
-                    Inventory[2] = item.itemSO;
+                    Inventory[2] = item.ItemSO;
                     Destroy(hit.transform.gameObject);
                 }
                 SetHoldingItem();
@@ -119,6 +119,22 @@ public class PlayerArm : MonoBehaviour,IGetCompoable,IAfterInitable
             CurrentIdx = 2;
             SetHoldingItem();
         }
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            if(CurrentItem.GetItemType().Prefab is not null)
+            {
+                ItemObject itemObj = Instantiate(CurrentItem.GetItemType().Prefab,transform.position + transform.forward*1.5f,Quaternion.identity);
+
+                itemObj.Init(CurrentItem.GetItemType());
+
+                Inventory[CurrentIdx] = _nullItem;
+                SetHoldingItem();
+
+            }
+
+        }
     }
+
 
 }

@@ -7,7 +7,7 @@ public class ItemSO : ScriptableObject,ICloneable
     
     public int Ammo = 0;
     public int Durability = 10;
-    public ItemUseableObject _prefab;
+    public ItemObject Prefab;
 
     public object Clone()
     {

@@ -49,21 +49,21 @@ public class EnemyBase : Entity
     [Space]
 
     [Header("Animator")]
-    [SerializeField] private Animator _animator;
-    [SerializeField] private Transform _visual;
+    [SerializeField] protected Animator _animator;
+    [SerializeField] protected Transform _visual;
     [SerializeField] private EnemyAnimationTrigger _enemyAnimationTrigger;
-    [SerializeField] private EnemyState _previousState;
-    [SerializeField] private EnemyState _currentState;
+    [SerializeField] protected EnemyState _previousState;
+    [SerializeField] protected EnemyState _currentState;
 
-    private readonly int _blendHash = Animator.StringToHash("blend");
-    private readonly int _IdleHash = Animator.StringToHash("Idle");
-    private readonly int _attackHash = Animator.StringToHash("Attack");
-    private readonly int _walkHash = Animator.StringToHash("Walk");
-    private readonly int _runHash = Animator.StringToHash("Run");
-    private readonly int _helloHash = Animator.StringToHash("Hello");
+    protected readonly int _blendHash = Animator.StringToHash("blend");
+    protected readonly int _IdleHash = Animator.StringToHash("Idle");
+    protected readonly int _attackHash = Animator.StringToHash("Attack");
+    protected readonly int _walkHash = Animator.StringToHash("Walk");
+    protected readonly int _runHash = Animator.StringToHash("Run");
+
     private bool _previousEnemyUpdateState = false;
     [SerializeField] private float _freezeTime = 5f;
-    private float _startFreezeTime = float.MaxValue;
+    private float _startFreezeTime = 0;
 
 
     [Header("Range")]
@@ -80,6 +80,12 @@ public class EnemyBase : Entity
 
     private Collider[] _lightColliderCheckArr = new Collider[10];
 
+    private float _waitTime = 0.1f;
+
+    private bool isTimerActive = false;
+    private float _stateChangeDelayTime = 0.1f;
+    private float _stateChangecurrent = 0;
+
     protected override void Awake()
     {
         base.Awake();
@@ -89,15 +95,35 @@ public class EnemyBase : Entity
         _enemyAnimationTrigger.OnAnimationEnd += HandleAnimationEnd;
     }
 
-    public void UpdateState()
+    public bool StateWaiter()
     {
-        _previousState = _currentState;
+        if (_previousState != _currentState && !isTimerActive)
+        {
+            isTimerActive = true;
+        }
+
+        if (isTimerActive && _stateChangecurrent < _stateChangeDelayTime)
+        {
+            _stateChangecurrent += Time.fixedDeltaTime;
+            return false;
+        }
+        else
+        {
+            isTimerActive = false;
+            _previousState = _currentState;
+
+            return true;
+        }
+
     }
 
     public bool IsFrozen() => _startFreezeTime + _freezeTime > Time.time;
 
     public void FixedUpdate()
     {
+        if (Time.time < _waitTime) return;
+        if (!StateWaiter()) return;
+
         // root motion problem solving code
         var temp = _visual.transform.position;
         temp.y = 0;
@@ -139,8 +165,6 @@ public class EnemyBase : Entity
 
             NormalUpdate();
         }
-
-        UpdateState();
     }
 
     private void EnemyUpdate(float distance)
@@ -154,13 +178,11 @@ public class EnemyBase : Entity
 
         //if (IsFrozen()) return;
 
-        float lastSpeed = 0;
+        float lastSpeed;
 
         if (distance < _attackRange)
         {
             _animator.applyRootMotion = true;
-            _animator.SetTrigger(_attackHash);
-
             _currentState = EnemyState.Attack;
             OnAttack();
             return;
@@ -168,20 +190,25 @@ public class EnemyBase : Entity
         else if (distance < _runRange)
         {
             _animator.applyRootMotion = false;
-            _animator.SetTrigger(_runHash);
             _currentState = EnemyState.Run;
+            OnRun();
             lastSpeed = _enemyInfo.runSpeed;
         }
         else
         {
             _animator.applyRootMotion = false;
-            _animator.SetTrigger(_walkHash);
             _currentState = EnemyState.Walk;
+            _animator.SetTrigger(_walkHash);
             OnWalk();
             lastSpeed = _enemyInfo.speed;
         }
 
         transform.position += dir * lastSpeed * Time.fixedDeltaTime;
+    }
+
+    protected virtual void OnRun()
+    {
+        _animator.SetTrigger(_runHash);
     }
 
     private void NormalUpdate()
@@ -193,8 +220,6 @@ public class EnemyBase : Entity
         else
         {
             _animator.speed = 0.75f;
-            _animator.SetTrigger(_IdleHash);
-            _currentState = EnemyState.Idle;
             OnIdle();
         }
     }
@@ -205,19 +230,20 @@ public class EnemyBase : Entity
             _animator.SetFloat(_blendHash, Random.Range(AnimationBlend.Idle._1, AnimationBlend.Idle._7));
     }
 
-    public virtual void OnWalk()
+    protected virtual void OnWalk()
     {
         _animator.SetFloat(_blendHash, AnimationBlend.Walk._1);
     }
 
 
-    private void OnAttack()
+    protected virtual void OnAttack()
     {
+        _animator.SetTrigger(_attackHash);
         _animator.SetFloat(_blendHash, Random.Range(AnimationBlend.Attack._1, AnimationBlend.Attack._2));
     }
 
 
-    private void HandleAnimationEnd()
+    protected virtual void HandleAnimationEnd()
     {
         _animator.SetTrigger(_IdleHash);
         _animator.SetFloat(_blendHash, AnimationBlend.Idle._1);

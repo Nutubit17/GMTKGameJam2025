@@ -1,90 +1,52 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
-
-public enum EnemyState
-{
-    Attack,
-    Idle,
-    Walk,
-    Run,
-}
-
-public static class AnimationBlend
-{
-
-    public static class Attack
-    {
-        public const int _1 = 0;
-        public const int _2 = 1;
-        public const int Snake = 2;
-        public const int Spider = 3;
-    }
-
-    public static class Idle
-    {
-        public const int _1 = 0;
-        public const int _2 = 1;
-        public const int _3 = 2;
-        public const int _4 = 3;
-        public const int _5 = 4;
-        public const int _6 = 5;
-        public const int _7 = 6;
-        public const int Snake = 7;
-        public const int Spider = 8;
-    }
-
-    public static class Walk
-    {
-        public const int _1 = 0;
-        public const int Snake = 1;
-        public const int Spider = 2;
-    }
-}
 
 public class EnemyBase : Entity
 {
     [SerializeField] private EnemyInfoSO _enemyInfo;
     [SerializeField] private PlayerBash _player;
+
     [Space]
 
     [Header("Animator")]
     [SerializeField] protected Animator _animator;
+    [SerializeField] protected Rigidbody _rigidbody;
     [SerializeField] protected Transform _visual;
+    [SerializeField] protected Rigidbody _ragdoll;
     [SerializeField] private EnemyAnimationTrigger _enemyAnimationTrigger;
-    [SerializeField] protected EnemyState _previousState;
-    [SerializeField] protected EnemyState _currentState;
+    [Space]
+    [SerializeField] private Timer _freezeTimer;
+    [SerializeField] private Timer _attackTimer;
+    [SerializeField] private Timer _hitCheckTimer;
+    [SerializeField] private bool _useRunAnim;
 
     protected readonly int _blendHash = Animator.StringToHash("blend");
+    protected readonly int _NoneHash = Animator.StringToHash("None");
     protected readonly int _IdleHash = Animator.StringToHash("Idle");
     protected readonly int _attackHash = Animator.StringToHash("Attack");
     protected readonly int _walkHash = Animator.StringToHash("Walk");
     protected readonly int _runHash = Animator.StringToHash("Run");
-
-    private bool _previousEnemyUpdateState = false;
-    [SerializeField] private float _freezeTime = 5f;
-    private float _startFreezeTime = 0;
-
-
-    [Header("Range")]
-    [SerializeField] private float _playerDetectRange = 10f;
-    [SerializeField] private float _lightDetectRange = 5f;
-    [Space]
-    [SerializeField] private float _runRange = 2f;
-    [SerializeField] private float _attackRange = 1.5f;
-    [Space]
-
+    protected readonly int _hitHash = Animator.StringToHash("Hit");
+    private int _previousHash = 0;
+    
     [Header("Light")]
     [SerializeField] private LayerMask _lightLayer;
     [SerializeField, Range(0.5f, 1f)] private float _rotateTransition = 0.75f;
-
     private Collider[] _lightColliderCheckArr = new Collider[10];
 
-    private float _waitTime = 0.1f;
+    protected virtual int _defaultIdleBlend => AnimationBlend.Idle._1;
+    protected virtual int _idleBlendStart => AnimationBlend.Idle._1;
+    protected virtual int _idleBlendEnd => AnimationBlend.Idle._7;
 
-    private bool isTimerActive = false;
-    private float _stateChangeDelayTime = 0.1f;
-    private float _stateChangecurrent = 0;
+    protected virtual int _attackBlendStart => AnimationBlend.Attack._1;
+    protected virtual int _attackBlendEnd => AnimationBlend.Attack._2;
+
+    protected virtual int _walkBlend => AnimationBlend.Walk._1;
+    protected virtual int _hitBlend => AnimationBlend.Hit._1;
+
+    private bool _isDie = false;
 
     protected override void Awake()
     {
@@ -93,48 +55,290 @@ public class EnemyBase : Entity
         _player = FindAnyObjectByType<PlayerBash>();
 
         _enemyAnimationTrigger.OnAnimationEnd += HandleAnimationEnd;
+        StartCoroutine(StateOuterRoutine());
     }
 
-    public bool StateWaiter()
+    private void HandleAnimationEnd()
     {
-        if (_previousState != _currentState && !isTimerActive)
-        {
-            isTimerActive = true;
-        }
+        PlayAnimation(_IdleHash, _defaultIdleBlend);
+    }
 
-        if (isTimerActive && _stateChangecurrent < _stateChangeDelayTime)
-        {
-            _stateChangecurrent += Time.fixedDeltaTime;
-            return false;
-        }
-        else
-        {
-            isTimerActive = false;
-            _previousState = _currentState;
 
-            return true;
+    public void OnHit(float damage)
+    {
+        _enemyInfo.hp -= damage;
+
+        if (_enemyInfo.hp <= 0)
+        {
+            Die();
+        }
+        
+
+        // hit 동안 statemachine 정지
+        _hitCheckTimer.Start();
+    }
+
+    private void Die()
+    {
+        _isDie = true;
+        _visual.gameObject.SetActive(false);
+        _ragdoll.gameObject.SetActive(true);
+        _ragdoll.AddForce(transform.forward * -20);
+
+        Destroy(gameObject, 100f);
+    }
+
+    public IEnumerator StateOuterRoutine()
+    {
+        bool isActive = true;
+        var routine = StateRoutine();
+        StartCoroutine(routine);
+
+        while (true)
+        {
+            if (!_hitCheckTimer.Check() && isActive) // 지금 막 hit 이라면
+            {
+                StopCoroutine(routine);
+                isActive = false;
+
+                PlayAnimation(_hitHash, _hitBlend);
+                _rigidbody.AddForce(-transform.forward * 50);
+            }
+            else if (_hitCheckTimer.Check() && !isActive)
+            {
+                StartCoroutine(routine);
+                isActive = true;
+            }
+
+            if (_isDie)
+            {
+                StopCoroutine(routine);
+                break;
+            }
+
+            yield return new WaitForFixedUpdate();
+        }
+        
+    }
+
+    public IEnumerator ChaseStateRoutine()
+    {
+        var state = new StateInfo<EnemyState>(EnemyState.Chase_Walk);
+
+        while (true)
+        {
+            float speed = 0;
+
+            Vector3 dir = _player.transform.position - transform.position;
+            float distance = dir.magnitude;
+            dir.Normalize();
+            dir.y = 0;
+
+
+            switch (state.CurrentState)
+            {
+
+                case EnemyState.Chase_Walk:
+
+                    {
+                        _animator.speed = 1;
+                        if (distance <= _enemyInfo.RunRange)
+                        {
+                            state.ChangeState(EnemyState.Chase_Run);
+                            break;
+                        }
+
+                        if (state.IsEnter())
+                        {
+                            PlayAnimation(_walkHash, _walkBlend);
+                        }
+                        speed = _enemyInfo.speed;
+                    }
+                    state.Welldone();
+                    break;
+
+
+                case EnemyState.Chase_Run:
+
+                    {
+                        if (distance <= _enemyInfo.AttackRange)
+                        {
+                            state.ChangeState(EnemyState.Chase_Attack);
+                            break;
+                        }
+
+                        if (distance >= _enemyInfo.RunRange)
+                        {
+                            state.ChangeState(EnemyState.Chase_Walk);
+                            break;
+                        }
+
+                        if (state.IsEnter())
+                        {
+                            if (_useRunAnim)
+                            {
+                                PlayAnimation(_runHash);
+                                _animator.speed = 1;
+                            }
+                            else
+                            {
+                                PlayAnimation(_walkHash, _walkBlend);
+                                _animator.speed = 1.5f;
+                            }
+                        }
+
+                        speed = _enemyInfo.runSpeed;
+                    }
+
+                    state.Welldone();
+                    break;
+
+
+                case EnemyState.Chase_Attack:
+
+                    {
+                        _animator.speed = 1;
+                        if (distance >= _enemyInfo.AttackRange)
+                        {
+                            state.ChangeState(EnemyState.Chase_Run);
+                            break;
+                        }
+
+                        if (state.IsEnter() || _attackTimer.Check())
+                        {
+                            _attackTimer.Start();
+                            PlayAnimation(_attackHash, Random.Range(_attackBlendStart, _attackBlendEnd));
+                        }
+
+
+                    }
+
+                    state.Welldone();
+                    break;
+
+            }
+
+            _rigidbody.linearVelocity = dir * speed;
+            _visual.transform.forward = dir;
+
+            yield return new WaitForFixedUpdate();
+        }
+    }
+
+    public IEnumerator StateRoutine()
+    {
+        yield return null;
+        yield return null;
+        yield return null;
+        
+        var state = new StateInfo<EnemyState>(EnemyState.Wait);
+        IEnumerator chaseStateMachine = ChaseStateRoutine();
+
+        while (true)
+        {
+            switch (state.CurrentState)
+            {
+                case EnemyState.Wait:
+
+                    if (TryFindTarget())
+                    {
+                        state.ChangeState(EnemyState.Chase);
+                        break;
+                    }
+                    else
+                    {
+                        if (state.IsEnter())
+                        {
+                            _animator.speed = 1;
+                            PlayAnimation(_IdleHash, Random.Range(_idleBlendStart, _idleBlendEnd));
+                        }
+                        
+                    }
+
+                    state.Welldone();
+                    break;
+
+
+                case EnemyState.Chase:
+
+                    if (state.IsEnter())
+                    {
+                        StartCoroutine(chaseStateMachine);
+                        _animator.speed = 1;
+                    }
+
+                    if (TryFindTarget() == false)
+                    {
+                        StopCoroutine(chaseStateMachine);
+                        state.ChangeState(EnemyState.Freeze);
+                        break;
+                    }
+
+                    if (Vector3.Distance(transform.position, _player.transform.position) > _enemyInfo.PlayerDetectRange)
+                    {
+                        StopCoroutine(chaseStateMachine);
+                        state.ChangeState(EnemyState.Wait);
+                        break;
+                    }
+
+                    state.Welldone();
+                    break;
+
+
+                case EnemyState.Freeze:
+
+                    if (state.IsEnter())
+                    {
+                        _freezeTimer.Start();
+                        _animator.speed = 0;
+                    }
+
+                    if (TryFindTarget())
+                    {
+                        state.ChangeState(EnemyState.Chase);
+                        break;
+                    }
+                    else if (_freezeTimer.Check())
+                    {
+                        state.ChangeState(EnemyState.Wait);
+                        break;
+                    }
+                    state.Welldone();
+                    break;
+
+            }
+
+            yield return new WaitForFixedUpdate();
         }
 
     }
 
-    public bool IsFrozen() => _startFreezeTime + _freezeTime > Time.time;
-
-    public void FixedUpdate()
+    public void PlayAnimation(int hash, int blend)
     {
-        if (Time.time < _waitTime) return;
-        if (!StateWaiter()) return;
+        _animator.SetInteger(_blendHash, blend);
+        PlayAnimation(hash);
+    }
 
-        // root motion problem solving code
+    public void PlayAnimation(int hash)
+    {
+        _animator.SetBool(_previousHash, false);
+        _animator.SetBool(hash, true);
+        
+        _previousHash = hash;
+    }
+
+    public bool TryFindTarget()
+    {
         var temp = _visual.transform.position;
         temp.y = 0;
         _visual.transform.position = temp;
 
 
-        float distanceToPlayer = (_player.transform.position - transform.position).magnitude;
-        bool isPlayerInRange = distanceToPlayer < _playerDetectRange * _playerDetectRange;
+        float distanceToPlayer = (_player.transform.position - transform.position).sqrMagnitude;
+        bool isPlayerInRange = distanceToPlayer < _enemyInfo.PlayerDetectRange * _enemyInfo.PlayerDetectRange;
 
         int LightCount = Physics.OverlapSphereNonAlloc
-            (transform.position, _lightDetectRange, _lightColliderCheckArr, _lightLayer);
+            (transform.position, _enemyInfo.LightDetectRange, _lightColliderCheckArr, _lightLayer);
 
         bool isLightExists = false;
 
@@ -150,120 +354,25 @@ public class EnemyBase : Entity
             }
         }
 
-        if (isPlayerInRange && !isLightExists)
-        {
-            _previousEnemyUpdateState = true;
-            EnemyUpdate(distanceToPlayer);
-        }
-        else
-        {
-            if (_previousEnemyUpdateState)
-            {
-                _previousEnemyUpdateState = false;
-                _startFreezeTime = Time.time;
-            }
-
-            NormalUpdate();
-        }
+        return isPlayerInRange && !isLightExists;
     }
-
-    private void EnemyUpdate(float distance)
-    {
-        _animator.speed = 1;
-
-        Vector3 position = _player.transform.position;
-        Vector3 dir = (position - transform.position).normalized;
-        dir.y = 0;
-        transform.forward = Vector3.Lerp(transform.forward, dir, _rotateTransition);
-
-        //if (IsFrozen()) return;
-
-        float lastSpeed;
-
-        if (distance < _attackRange)
-        {
-            _animator.applyRootMotion = true;
-            _currentState = EnemyState.Attack;
-            OnAttack();
-            return;
-        }
-        else if (distance < _runRange)
-        {
-            _animator.applyRootMotion = false;
-            _currentState = EnemyState.Run;
-            OnRun();
-            lastSpeed = _enemyInfo.runSpeed;
-        }
-        else
-        {
-            _animator.applyRootMotion = false;
-            _currentState = EnemyState.Walk;
-            _animator.SetTrigger(_walkHash);
-            OnWalk();
-            lastSpeed = _enemyInfo.speed;
-        }
-
-        transform.position += dir * lastSpeed * Time.fixedDeltaTime;
-    }
-
-    protected virtual void OnRun()
-    {
-        _animator.SetTrigger(_runHash);
-    }
-
-    private void NormalUpdate()
-    {
-        if (IsFrozen())
-        {
-            _animator.speed = 0f;
-        }
-        else
-        {
-            _animator.speed = 0.75f;
-            OnIdle();
-        }
-    }
-
-    protected virtual void OnIdle()
-    {
-        if(_currentState != _previousState) // 지금 막 idle이 된 것이라면
-            _animator.SetFloat(_blendHash, Random.Range(AnimationBlend.Idle._1, AnimationBlend.Idle._7));
-    }
-
-    protected virtual void OnWalk()
-    {
-        _animator.SetFloat(_blendHash, AnimationBlend.Walk._1);
-    }
-
-
-    protected virtual void OnAttack()
-    {
-        _animator.SetTrigger(_attackHash);
-        _animator.SetFloat(_blendHash, Random.Range(AnimationBlend.Attack._1, AnimationBlend.Attack._2));
-    }
-
-
-    protected virtual void HandleAnimationEnd()
-    {
-        _animator.SetTrigger(_IdleHash);
-        _animator.SetFloat(_blendHash, AnimationBlend.Idle._1);
-    }
-
 
 #if UNITY_EDITOR
     private void OnDrawGizmos()
     {
+        if (_enemyInfo == null) return;
+
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, _attackRange);
+        Gizmos.DrawWireSphere(transform.position, _enemyInfo.AttackRange);
 
         Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, _runRange);
+        Gizmos.DrawWireSphere(transform.position, _enemyInfo.RunRange);
 
         Gizmos.color = Color.pink;
-        Gizmos.DrawWireSphere(transform.position, _playerDetectRange);
+        Gizmos.DrawWireSphere(transform.position, _enemyInfo.PlayerDetectRange);
 
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, _lightDetectRange);
+        Gizmos.DrawWireSphere(transform.position, _enemyInfo.LightDetectRange);
     }
 #endif
 }

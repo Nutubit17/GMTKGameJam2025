@@ -3,7 +3,7 @@ public class PlayerMoveCompo : MoveCompo,IGetCompoable
 {
     public Transform cameraRoot;
 
-
+    
 
     [SerializeField]
     float _maxSpeed = 10, _accelation = 25, _jumpPower = 5, _damp=3,_gravity = -11,_plHeight=2,_plRaius=0.26f; //PlayerState�� �� ������
@@ -19,6 +19,9 @@ public class PlayerMoveCompo : MoveCompo,IGetCompoable
 
     [SerializeField]
     private LayerMask _whatIsGround;
+
+    [SerializeField]
+    private CapsuleCollider _capsuleCollider;
 
     private Vector2 _mouseSum;
     private Vector3 _movDir;
@@ -41,6 +44,9 @@ public class PlayerMoveCompo : MoveCompo,IGetCompoable
     {
         PlayerBash.Instance.jumpInputAction += Jump;
         _playerStatus = _player.GetCompo<PlayerSatus>();
+
+        _plHeight = _capsuleCollider.height+ 0.01f;
+        _plRaius = _capsuleCollider.radius;
     }
 
     // Update is called once per frame

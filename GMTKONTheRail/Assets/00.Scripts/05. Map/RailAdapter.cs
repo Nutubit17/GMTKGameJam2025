@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class RailAdapter
@@ -9,5 +10,24 @@ public class RailAdapter
     {
         _leftRail = leftRail;
         _rightRail = rightRail;
+
+        _leftRail.OnCartReachedEnd += HandleLeftReachedEnd;
+        _rightRail.OnCartReachedStart += HandleRightReachedStart;
+    }
+
+    private void HandleLeftReachedEnd(float amount)
+    {
+        _rightRail.WakeUp(amount);
+    }
+
+    private void HandleRightReachedStart(float amount)
+    {
+        _leftRail.WakeUp(amount);
+    }
+
+    public void Dispose()
+    {
+        _leftRail.OnCartReachedEnd -= HandleLeftReachedEnd;
+        _rightRail.OnCartReachedStart -= HandleRightReachedStart;
     }
 }

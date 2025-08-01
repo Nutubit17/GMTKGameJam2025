@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 [CreateAssetMenu(fileName = "InputSO", menuName = "SO/Input/InputSO")]
 public class PlayerInputSO : ScriptableObject, Input2.IActionsActions,Input2.IUtilsActions
@@ -14,6 +15,8 @@ public class PlayerInputSO : ScriptableObject, Input2.IActionsActions,Input2.IUt
     public Action OnClickAction;
     public Action OnAltClickAction;
     public Action OnAltAltClickAction;
+    public UnityAction jumpInputAction;
+    public UnityAction<bool> onSlidingAction;
 
     private void OnEnable()
     {
@@ -78,7 +81,7 @@ public class PlayerInputSO : ScriptableObject, Input2.IActionsActions,Input2.IUt
         {
             IsSliding = false;
         }
-        PlayerBash.Instance.onSlidingAction?.Invoke(IsSliding);
+        onSlidingAction?.Invoke(IsSliding);
     }
 
     public void OnSwap(InputAction.CallbackContext context)
@@ -89,7 +92,7 @@ public class PlayerInputSO : ScriptableObject, Input2.IActionsActions,Input2.IUt
     public void OnJump(InputAction.CallbackContext context)
     {
         if(context.performed)
-        PlayerBash.Instance.jumpInputAction?.Invoke();
+       jumpInputAction?.Invoke();
     }
 
     public void OnClick(InputAction.CallbackContext context)

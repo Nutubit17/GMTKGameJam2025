@@ -20,6 +20,8 @@ public class LightObject : MonoBehaviour
     [SerializeField, Range(0f, 0.5f)] private float _transitionSmoothness = 0.1f;
     [SerializeField, Range(0f, 10f)] private float _frequency = 2f;
 
+    private bool _hasUpdate = true;
+
     private bool _isLightOn = false;
     public bool IsLightOn => _isLightOn;
 
@@ -36,8 +38,21 @@ public class LightObject : MonoBehaviour
         _fuel = Mathf.Clamp(_fuel + value, 0, _maxFuel);
     }
 
+    public void SetActive(bool isactiveself)
+    {
+        _hasUpdate = isactiveself;
+
+        if (!isactiveself)
+        {
+            _meshRenderer.material.SetColor(_emissionColorHash, Color.gray);
+            _lightComponent.intensity = 0;
+        }
+    }
+
     private void Update()
     {
+        if (!_hasUpdate) return;
+
         float lightness = Mathf.PerlinNoise1D((Time.time + _randomValue) * _frequency) + _lightActivePercentage;
         _isLightOn = lightness > 0.5f;
 

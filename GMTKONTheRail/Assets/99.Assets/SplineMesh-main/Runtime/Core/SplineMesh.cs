@@ -80,7 +80,10 @@ namespace SplineMeshTools.Core
 
         public virtual void GenerateMeshAlongSpline()
         {
-            if(CheckForErrors()) return;
+            splineContainer = GetComponent<SplineContainer>();
+            meshFilter = GetComponent<MeshFilter>();
+            
+            if (CheckForErrors()) return;
 
             var combinedVertices = new List<Vector3>();
             var combinedNormals = new List<Vector3>();

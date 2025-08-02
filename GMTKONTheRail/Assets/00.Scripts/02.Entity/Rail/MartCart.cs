@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class MartCart : MonoBehaviour
 {
-    [SerializeField] private RailManagement _railManagement;
+    private RailManagement _railManagement;
 
     [Header("Physics")]
     [Range(0, 1), SerializeField] private float _friction = 0.5f;
     [SerializeField] private float _downHillMoveMultiplier = 1.5f;
     [SerializeField] private float _maxForce = 50;
     [SerializeField] private float _totalForce = 0;
+    public float TotalForce => _totalForce;
 
     [Header("Shake Decoration")]
     [Range(0, 1), SerializeField] private float _positionShakeness = 0.1f;
@@ -20,26 +21,33 @@ public class MartCart : MonoBehaviour
     [Range(0.1f, 10), SerializeField] private float _rotationFrequency = 3f;
 
     private Transform _visual;
-    private IEnumerator _forceRoutine;
 
-    private void Awake()
+
+    public void Init(RailManagement management)
     {
+        _railManagement = management;
         _visual = transform.Find("Visual");
     }
 
     // test
     void Start()
     {
-        AddForce(Vector3.right * 10);
+        if(gameObject.activeSelf)
+            AddForce(Vector3.right * 20);
     }
 
-    void FixedUpdate()
+    public void FixedUpdate()
     {
         float frictionDelta = Mathf.Pow(1 - _friction, Time.fixedDeltaTime);
         _totalForce -= Mathf.Sign(_totalForce) * _railManagement.GetCurrentDirection().y * _downHillMoveMultiplier;
 
         MoveUpdate(_totalForce * Time.fixedDeltaTime);
         _totalForce *= frictionDelta;
+    }
+
+    public void ResetForce()
+    {
+        _totalForce = 0;
     }
 
     public void AddForce(Vector3 direction)
@@ -51,7 +59,14 @@ public class MartCart : MonoBehaviour
             _totalForce + force,
             -_maxForce,
             _maxForce);
+    }
 
+    public void AddForce(float force)
+    {
+        _totalForce = Mathf.Clamp(
+            _totalForce + force,
+            -_maxForce,
+            _maxForce);
     }
 
     private void MoveUpdate(float step)

@@ -3451,6 +3451,14 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3155888093822798386, guid: a0552ce5ffebab544b77439b7b65b480, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 2a922fd79f3cece4d840d24346ee360a, type: 2}
+    - target: {fileID: 3155888093822798386, guid: a0552ce5ffebab544b77439b7b65b480, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 59ce9c4db9d6b6b4fbe2918d02de24b1, type: 2}
     - target: {fileID: 8411694812976451161, guid: a0552ce5ffebab544b77439b7b65b480, type: 3}
       propertyPath: m_Name
       value: BoxTower_1 (11)
@@ -3551,6 +3559,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8549537874703907002}
     m_Modifications:
+    - target: {fileID: 607492182322512872, guid: 2d8a4b3b85da2b148b302e8e84460ee7, type: 3}
+      propertyPath: _totalForce
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 4152166032500004912, guid: 2d8a4b3b85da2b148b302e8e84460ee7, type: 3}
       propertyPath: m_Splines.Array.data[0].m_Knots.Array.size
       value: 7
@@ -3822,6 +3834,10 @@ PrefabInstance:
     - target: {fileID: 4824727564158467495, guid: 2d8a4b3b85da2b148b302e8e84460ee7, type: 3}
       propertyPath: 'meshResolution.Array.data[0]'
       value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4881133911755671291, guid: 2d8a4b3b85da2b148b302e8e84460ee7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5768972819561398324, guid: 2d8a4b3b85da2b148b302e8e84460ee7, type: 3}
       propertyPath: m_LocalPosition.x

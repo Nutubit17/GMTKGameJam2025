@@ -7,8 +7,8 @@ using UnityEngine.Splines;
 public class RailManagement : MonoBehaviour
 {
     /* Component */
-    private SplineContainer _splineContainer;
-    private MartCart _martCart;
+    [SerializeField] private SplineContainer _splineContainer;
+    [SerializeField] private MartCart _martCart;
     
     /* Temp */
     private int _currentPoint = 0;

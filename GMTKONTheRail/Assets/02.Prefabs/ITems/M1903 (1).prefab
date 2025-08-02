@@ -10,27 +10,27 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: f437f4e5d90bb0b488f3102737488dc4, type: 3}
       propertyPath: m_LocalScale.x
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f437f4e5d90bb0b488f3102737488dc4, type: 3}
       propertyPath: m_LocalScale.y
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f437f4e5d90bb0b488f3102737488dc4, type: 3}
       propertyPath: m_LocalScale.z
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f437f4e5d90bb0b488f3102737488dc4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.4165338
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f437f4e5d90bb0b488f3102737488dc4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.619
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f437f4e5d90bb0b488f3102737488dc4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.341
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f437f4e5d90bb0b488f3102737488dc4, type: 3}
       propertyPath: m_LocalRotation.w
@@ -141,8 +141,8 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
+  m_Constraints: 0
+  m_CollisionDetection: 1
 --- !u!136 &7746304850944668702
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -150,7 +150,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1467154749359841100}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 8b4430dfb11059e4ca7b961d3a9d0bbe, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

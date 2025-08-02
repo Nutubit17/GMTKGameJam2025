@@ -19,9 +19,13 @@ public class ItemUseableObject : MonoBehaviour
     public virtual void Init(PlayerArm arm)
     {
         Mom = arm;
-        _playerRi = Mom.Mom.GetComponent<Rigidbody>();
+
     }
 
+    public virtual void Start()
+    {
+        _playerRi = Mom.Mom.GetComponent<Rigidbody>();
+    }
     public ItemSO GetItemType()
     {
         return _itemType;

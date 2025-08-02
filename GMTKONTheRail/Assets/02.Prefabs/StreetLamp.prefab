@@ -94,6 +94,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6105629348382898209, guid: c66f8c6c2f322124ea644eb0cab6e061, type: 3}
+    - {fileID: 6629181155889409634, guid: c66f8c6c2f322124ea644eb0cab6e061, type: 3}
     m_RemovedGameObjects:
     - {fileID: 4895629831047339599, guid: c66f8c6c2f322124ea644eb0cab6e061, type: 3}
     m_AddedGameObjects:
@@ -136,7 +137,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _lightData: {fileID: 11400000, guid: 1afd3453a773ccb478a41642be9f14b9, type: 2}
-  _fuel: 3.9
+  _fuel: 0
   _maxFuel: 5
   _fuelUseSpeed: 0.05
   _lightComponent: {fileID: 3475431974610904047}

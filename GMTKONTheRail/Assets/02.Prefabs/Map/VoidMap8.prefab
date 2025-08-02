@@ -3300,6 +3300,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1495479822809376293}
+  - component: {fileID: -1801453800304722452}
   m_Layer: 0
   m_Name: VoidMap8
   m_TagString: Untagged
@@ -3338,6 +3339,19 @@ Transform:
   - {fileID: 2466262993384903288}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-1801453800304722452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6372118316870642711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f669930e7c91d9e45b4a16bd5d6e4444, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _railManagement: {fileID: 0}
 --- !u!1 &6384089587463145007
 GameObject:
   m_ObjectHideFlags: 0

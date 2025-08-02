@@ -9,12 +9,12 @@ public class ItemUseableObject : MonoBehaviour
     public PlayerArm Mom;
 
     [SerializeField]
-    private Animator _animator;
+    protected Animator _animator;
 
-    private Rigidbody _playerRi;
+    protected Rigidbody _playerRi;
 
     [SerializeField]
-    private float _maxSpeed = 15;
+    protected float _maxSpeed = 15;
 
     public virtual void Init(PlayerArm arm)
     {

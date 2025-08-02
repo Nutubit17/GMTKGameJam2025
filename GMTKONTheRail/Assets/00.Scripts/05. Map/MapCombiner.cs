@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -93,20 +94,26 @@ public class MapCombiner
             collider.sharedMesh = result;
 
             obj.transform.SetParent(bundle.transform);
+            obj.transform.rotation = Quaternion.AngleAxis(90, Vector3.up);
         }
 
         GameObject exceptListGameObj = new GameObject($"except_list");
-        exceptListGameObj.transform.SetParent(bundle.transform);
 
         foreach (var exceptobj in _exceptedList)
         {
             var newObj = GameObject.Instantiate(exceptobj);
             newObj.transform.SetParent(exceptListGameObj.transform);
+
             if (exceptobj.TryGetComponent<RailManagement>(out var rail))
                 mapObj.SetRail(rail);
         }
 
+        exceptListGameObj.transform.SetParent(bundle.transform);
+        exceptListGameObj.transform.rotation = Quaternion.AngleAxis(90, Vector3.up);
+
+
         bundle.gameObject.SetActive(false);
+
         return mapObj;
     }
 

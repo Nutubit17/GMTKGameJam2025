@@ -36,6 +36,7 @@ public class MapGenerateInfoSO : ScriptableObject
         var list = levelList[Mathf.Clamp(Mathf.Abs(position.x), 0, levelList.Count - 1)].mapList;
         var map = Instantiate(list[Random.Range(0, list.Count)]);
         map.Init(position, _mapSize);
+        
         map.gameObject.SetActive(true);
         return map;
     }

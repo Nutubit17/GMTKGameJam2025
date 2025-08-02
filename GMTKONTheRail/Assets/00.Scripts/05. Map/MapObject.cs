@@ -7,6 +7,7 @@ public class MapObject : MonoBehaviour
 {
     [SerializeField] private RailManagement _railManagement;
     public RailManagement Rail => _railManagement;
+    public void SetRail(RailManagement value) => _railManagement = value;
     public RailAdapter RailAdapter { get; private set; }
 
     private PlayerBash _player;
@@ -23,7 +24,8 @@ public class MapObject : MonoBehaviour
     {
         var resolution = Rail?.GetComponent<SplineMeshResolution>();
         resolution.GenerateMeshAlongSpline();
-        
+
+
     }
 
     public void Init(Vector2Int position, Vector2 levelBound)

@@ -1,16 +1,18 @@
 using System.Collections;
 using UnityEngine;
 
-public class Door : MonoBehaviour, IAltInteractiveable
+public class Door : MonoBehaviour, IAltInteractiveable,IKeyInteractiveable
 {
     private bool isOpen = false;
     [SerializeField] private bool _isLocked = false;
     [SerializeField] private Transform _pivot;
     [SerializeField] private float _moveSpeed = 0.5f;
-    
+
+    [SerializeField] private string _code = "a";
 
     private bool _isDoorMoving = false;
     private IEnumerator _doorMoveRoutine;
+
 
 
     public void Unlock()
@@ -54,5 +56,15 @@ public class Door : MonoBehaviour, IAltInteractiveable
             }
 
         _isDoorMoving = false;
+    }
+
+    public bool UseKeyInteractive(PlayerArm plarm, string code)
+    {
+        if(_code == code && _isLocked)
+        {
+            _isLocked = false;
+            return true;
+        }
+        return false;
     }
 }

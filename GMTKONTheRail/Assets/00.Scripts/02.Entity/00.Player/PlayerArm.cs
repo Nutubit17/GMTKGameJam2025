@@ -51,6 +51,31 @@ public class PlayerArm : MonoBehaviour,IGetCompoable,IAfterInitable
         SetHoldingItem();
     }
 
+    public bool RemoveAmmo(ItemSO needAmmo)
+    {
+        for (int i = 0; i < Inventory.Length; i++)
+        {
+            if (Inventory[i] == needAmmo)
+            {
+                Inventory[i] = _nullItem;
+                SetHoldingItem();
+                return true;
+            }
+        }
+        return false;
+    }
+    public bool ScanAmmo(ItemSO needAmmo)
+    {
+        for (int i = 0; i < Inventory.Length; i++)
+        {
+            if (Inventory[i] == needAmmo)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     private void SetHoldingItem()
     {
 

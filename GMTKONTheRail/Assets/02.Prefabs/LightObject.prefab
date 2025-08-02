@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5453043341808123890}
-  - component: {fileID: 6105629348382898209}
+  - component: {fileID: 6629181155889409634}
   m_Layer: 0
   m_Name: LightObject
   m_TagString: Untagged
@@ -34,7 +34,7 @@ Transform:
   - {fileID: 1806397684508326766}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6105629348382898209
+--- !u!114 &6629181155889409634
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -43,18 +43,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 6423563414118979386}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88c5579afdaf9c64dbfa1da9f9178b9c, type: 3}
+  m_Script: {fileID: 11500000, guid: e370da78f1bd3a04c8871a41b97993db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _lightData: {fileID: 11400000, guid: 1afd3453a773ccb478a41642be9f14b9, type: 2}
   _fuel: 3.9
   _maxFuel: 5
-  _fuelUseSpeed: 0.1
+  _fuelUseSpeed: 0.05
   _lightComponent: {fileID: 1667895953160128346}
   _meshRenderer: {fileID: 3017396400268070670}
   _lightActivePercentage: 0
   _transitionSmoothness: 0
   _frequency: 0
+  _fuelPerClick: 0.01
 --- !u!1 &8178076867925438582
 GameObject:
   m_ObjectHideFlags: 0

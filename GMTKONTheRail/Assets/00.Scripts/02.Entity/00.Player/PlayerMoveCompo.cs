@@ -46,8 +46,8 @@ public class PlayerMoveCompo : MoveCompo,IGetCompoable
         _player.PlayerInput.jumpInputAction += Jump;
         _playerStatus = _player.GetCompo<PlayerSatus>();
 
-        _plHeight = _capsuleCollider.height+ 0.01f;
-        _plRaius = _capsuleCollider.radius;
+        _plHeight = _capsuleCollider.height * _capsuleCollider.transform.lossyScale.y+0.01f;
+        _plRaius = _capsuleCollider.radius* _capsuleCollider.transform.lossyScale.z - 0.02f;
     }
 
     // Update is called once per frame
@@ -67,14 +67,14 @@ public class PlayerMoveCompo : MoveCompo,IGetCompoable
         input = (Quaternion.Euler(0, _mouseSum.x, 0) * input);
 
         //���� ��� ���� ������ �����ϱ� ���� ��� ����(Overlap)�� ������ ���� ����(SphereCast)�� ��������.
-        if (Physics.OverlapSphereNonAlloc(transform.position-Vector3.up*_plHeight/2,_plRaius+0.1f,_groundCheckCols,_whatIsGround) > 0) //������ üũ(�γ��� ����)
+        //if (Physics.OverlapSphereNonAlloc(transform.position-Vector3.up*_plHeight/2,_plRaius+0.1f,_groundCheckCols,_whatIsGround) > 0) //������ üũ(�γ��� ����)
         {
-            _isCanJump = true;
+            //_isCanJump = true;
 
             if (Physics.SphereCast(transform.position, _plRaius, -transform.up, out _groundCheck, _plHeight / 2, _whatIsGround))//������ üũ(������ ����)
             {
                 _isGround = true;
-
+                _isCanJump = true;
                 //OnGorund(
                 //����O ����O
                 MoveOnGorund(ref input);
@@ -83,15 +83,16 @@ public class PlayerMoveCompo : MoveCompo,IGetCompoable
             {
                 //OnAirAndGround?
                 //����x ����O
-                
+                accelModify = _onAirAccel;
+                maxSpeedModify = _onAirSpeed;
             }
         }
-        else
+        //else
         {
             //OnAir
 
-            accelModify = _onAirAccel;
-            maxSpeedModify = _onAirSpeed;
+            //accelModify = _onAirAccel;
+            //maxSpeedModify = _onAirSpeed;
             //����X ����X
         }
 

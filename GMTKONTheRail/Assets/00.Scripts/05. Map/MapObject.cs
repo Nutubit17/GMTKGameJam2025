@@ -22,8 +22,7 @@ public class MapObject : MonoBehaviour
     public void CookMesh()
     {
         var resolution = Rail?.GetComponent<SplineMeshResolution>();
-        resolution.GenerateMeshAlongSpline();
-        
+        resolution?.GenerateMeshAlongSpline();
     }
 
     public void Init(Vector2Int position, Vector2 levelBound)

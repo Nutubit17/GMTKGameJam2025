@@ -5,6 +5,7 @@ using Random = UnityEngine.Random;
 [CreateAssetMenu(menuName = "Scriptable Object/MapGenerateInfo")]
 public class MapGenerateInfoSO : ScriptableObject
 {
+    [SerializeField]
     private Vector2 _mapSize = new Vector2(16, 16);
 
     [System.Serializable]

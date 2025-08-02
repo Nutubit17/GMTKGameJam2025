@@ -32,8 +32,8 @@ public class MartCart : MonoBehaviour
     // test
     void Start()
     {
-        if(gameObject.activeSelf)
-            AddForce(Vector3.right * 20);
+        //if(gameObject.activeSelf)
+        //    AddForce(Vector3.right * 20);
     }
 
     public void FixedUpdate()
@@ -52,8 +52,10 @@ public class MartCart : MonoBehaviour
 
     public void AddForce(Vector3 direction)
     {
-        Vector3 railDir = _railManagement.GetCurrentDirection();
-        float force = Vector3.Project(direction, railDir).magnitude;
+        Vector3 railDir = _railManagement.GetCurrentDirection();// * (Math.Abs(Vector3.SignedAngle(_railManagement.GetCurrentDirection(), direction, Vector3.Cross(_railManagement.GetCurrentDirection(), direction))) > 90 ? -1 : 1);
+        float force = Vector3.Project(direction, railDir).magnitude * Mathf.Sign(transform.InverseTransformDirection(direction).z);
+
+
 
         _totalForce = Mathf.Clamp(
             _totalForce + force,

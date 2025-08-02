@@ -18,3 +18,7 @@ public interface IAltInteractiveable
 {
     void UseAltInteractive(PlayerArm plarm);
 }
+public interface IKeyInteractiveable
+{
+    bool UseKeyInteractive(PlayerArm plarm, string code);
+}

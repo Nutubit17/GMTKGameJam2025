@@ -35,6 +35,9 @@ public class PlayerMoveCompo : MoveCompo,IGetCompoable
 
     protected PlayerSatus _playerStatus;
 
+
+    private int _jumptmp = 0;
+
     public override void Init(Entity agent)
     {
         base.Init(agent);
@@ -46,8 +49,9 @@ public class PlayerMoveCompo : MoveCompo,IGetCompoable
         _player.PlayerInput.jumpInputAction += Jump;
         _playerStatus = _player.GetCompo<PlayerSatus>();
 
-        _plHeight = _capsuleCollider.height * _capsuleCollider.transform.lossyScale.y+0.01f;
-        _plRaius = _capsuleCollider.radius* _capsuleCollider.transform.lossyScale.z - 0.02f;
+ 
+        _plRaius = _capsuleCollider.radius* _capsuleCollider.transform.lossyScale.z - 0.01f;
+        _plHeight = _capsuleCollider.height * _capsuleCollider.transform.lossyScale.y - _plRaius;
     }
 
     // Update is called once per frame
@@ -67,7 +71,7 @@ public class PlayerMoveCompo : MoveCompo,IGetCompoable
         input = (Quaternion.Euler(0, _mouseSum.x, 0) * input);
 
         //���� ��� ���� ������ �����ϱ� ���� ��� ����(Overlap)�� ������ ���� ����(SphereCast)�� ��������.
-        //if (Physics.OverlapSphereNonAlloc(transform.position-Vector3.up*_plHeight/2,_plRaius+0.1f,_groundCheckCols,_whatIsGround) > 0) //������ üũ(�γ��� ����)
+        if (Physics.OverlapSphereNonAlloc(transform.position-Vector3.up*_plHeight/2,_plRaius+0.1f,_groundCheckCols,_whatIsGround) > 0) //������ üũ(�γ��� ����)
         {
             //_isCanJump = true;
 
@@ -85,14 +89,16 @@ public class PlayerMoveCompo : MoveCompo,IGetCompoable
                 //����x ����O
                 accelModify = _onAirAccel;
                 maxSpeedModify = _onAirSpeed;
+
+                rigidCompo.AddForce(Vector3.up*_gravity,ForceMode.Impulse);
             }
         }
-        //else
+        else
         {
             //OnAir
 
-            //accelModify = _onAirAccel;
-            //maxSpeedModify = _onAirSpeed;
+            accelModify = _onAirAccel;
+            maxSpeedModify = _onAirSpeed;
             //����X ����X
         }
 
@@ -125,12 +131,20 @@ public class PlayerMoveCompo : MoveCompo,IGetCompoable
         //rigidCompo.linearVelocity += _movDir;
         rigidCompo.AddForce(_movDir,ForceMode.Impulse);
 
+
+
     }
 
     private void Jump()
     {
-        if(_isCanJump) 
-        rigidCompo.AddForce(transform.up*_jumpPower,ForceMode.Impulse);
+        //if(_isCanJump) 
+        //rigidCompo.AddForce(transform.up*_jumpPower,ForceMode.Impulse);
+        if (_isCanJump)
+        {
+            transform.position = transform.position + Vector3.up * 0.01f;
+            rigidCompo.AddForce(transform.up * (_jumpPower + _gravity), ForceMode.Impulse);
+        }
+
     }
 
     private void MoveOnGorund(ref Vector3 input)
@@ -140,6 +154,8 @@ public class PlayerMoveCompo : MoveCompo,IGetCompoable
         rigidCompo.linearVelocity = Vector3.up * rigidCompo.linearVelocity.y
            + Vector3.Lerp(horizontalSpeed, Vector3.zero, _damp * Time.fixedDeltaTime);
         //����
+        //rigidCompo.AddForce(Vector3.Lerp(Vector3.zero,-horizontalSpeed, _damp * Time.fixedDeltaTime),ForceMode.Impulse);
+
 
         input = Vector3.ProjectOnPlane(input,_groundCheck.normal);
         //�������� ��� ���� �� �ְ��ϴ� �ڵ�;

@@ -54,6 +54,8 @@ public class MapCombiner
                 for(int i = 0; i<meshRender.sharedMaterials.Length; ++i)
                 {
                     combineInstance.subMeshIndex = i;
+                    if (meshRender.sharedMaterials[i] == null) return;
+
                     if (!_combineDictionary.TryGetValue(meshRender.sharedMaterials[i], out var list))
                     {
                         list = _combineDictionary[meshRender.sharedMaterials[i]]

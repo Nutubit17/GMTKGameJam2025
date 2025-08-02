@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8889929651118260286
 Transform:
   m_ObjectHideFlags: 0
@@ -67,7 +67,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd48ccf5ac5c0e74ca76fd27f92cb569, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _railManagement: {fileID: 3028618420174001203}
   _friction: 0.321
   _downHillMoveMultiplier: 1.5
   _maxForce: 50

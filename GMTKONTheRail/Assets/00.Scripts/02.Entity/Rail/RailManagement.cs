@@ -1,5 +1,6 @@
+using System;
+using SplineMeshTools.Core;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.Splines;
 
 [RequireComponent(typeof(SplineContainer))]
@@ -7,20 +8,26 @@ public class RailManagement : MonoBehaviour
 {
     /* Component */
     private SplineContainer _splineContainer;
+    private MartCart _martCart;
     
     /* Temp */
     private int _currentPoint = 0;
     private float _currentAmount = 0;
     private float _totalAmount = 0;
     private bool _isNeedPositionUpdate = true;
+    private Vector3 _lastDirection = Vector3.zero;
     private Vector3 _previousPosition = Vector3.zero;
     private Vector3 _position = Vector3.zero;
+
+    public Action<float> OnCartReachedStart;
+    public Action<float> OnCartReachedEnd;
 
     private void Awake()
     {
         _splineContainer = GetComponent<SplineContainer>();
+        _martCart = transform.Find("MartCart").GetComponent<MartCart>();
+        _martCart.Init(this);
     }
-
 
     public float GetFullDistance() => _splineContainer.CalculateLength(0);
     public float GetCurrentDistance() => _totalAmount;
@@ -32,7 +39,7 @@ public class RailManagement : MonoBehaviour
 
         if (_isNeedPositionUpdate)
         {
-            _splineContainer.Evaluate(0, GetCurrentPercent(), out var position, out var tangent, out var upvector);
+            var position = _splineContainer.EvaluatePosition(0, GetCurrentPercent());
 
             _position = position;
             _isNeedPositionUpdate = false;
@@ -43,20 +50,29 @@ public class RailManagement : MonoBehaviour
 
     public Vector3 GetCurrentDirection()
     {
-        Vector3 vector = (_position - _previousPosition).normalized;
+        _lastDirection = (_position - _previousPosition).normalized;
 
-        if (vector == Vector3.zero)
-            return _splineContainer.Spline.EvaluateTangent(0);
+        if (_lastDirection == Vector3.zero)
+        {
+            _lastDirection = _splineContainer.EvaluateTangent(0, GetCurrentPercent());
+        }
 
-        return vector;
+        return _lastDirection;
         
-    } 
-
+    }
+    
     public void GetPositionAndDirection(out Vector3 position, out Vector3 direction)
     {
         position = GetCurrentPosition();
         direction = GetCurrentDirection();
     }
+
+    public void WakeUp(float amount)
+    {
+        _martCart.AddForce(amount);
+        _martCart.gameObject.SetActive(true);
+    }
+
 
 
     public void AddDistance(float amount)
@@ -76,7 +92,14 @@ public class RailManagement : MonoBehaviour
 
             if (_currentAmount < 0)
             {
-                if (_currentPoint == 0 && _currentAmount <= 0) break;
+                if (_currentPoint == 0 && _currentAmount <= 0)
+                {
+                    OnCartReachedStart?.Invoke(_martCart.TotalForce);
+                    
+                    _martCart.ResetForce();
+                    _martCart.gameObject.SetActive(false);
+                    break;
+                }
 
                 _currentPoint = Mathf.Max(0, _currentPoint - 1);
                 float previousIdxDistance = Vector3.Distance(
@@ -92,7 +115,14 @@ public class RailManagement : MonoBehaviour
             }
             else
             {
-                if (_currentPoint == splineCount - 2 && _currentAmount >= currentIdxDistance) break;
+                if (_currentPoint == splineCount - 2 && _currentAmount >= currentIdxDistance)
+                {
+                    OnCartReachedEnd?.Invoke(_martCart.TotalForce);
+
+                    _martCart.ResetForce();
+                    _martCart.gameObject.SetActive(false);
+                    break;
+                }
 
                 _currentPoint = Mathf.Min(splineCount - 2, _currentPoint + 1);
                 amount = _currentAmount - currentIdxDistance;
@@ -100,4 +130,5 @@ public class RailManagement : MonoBehaviour
             }
         }
     }
+
 }

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 public class PlayerMoveCompo : MoveCompo,IGetCompoable
 {
     public Transform cameraRoot;
@@ -20,6 +21,9 @@ public class PlayerMoveCompo : MoveCompo,IGetCompoable
     [SerializeField]
     private LayerMask _whatIsGround;
 
+    [SerializeField]
+    private CapsuleCollider _capsuleCollider;
+
     private Vector2 _mouseSum;
     private Vector3 _movDir;
 
@@ -39,8 +43,11 @@ public class PlayerMoveCompo : MoveCompo,IGetCompoable
 
     void Start()
     {
-        PlayerBash.Instance.jumpInputAction += Jump;
+        _player.PlayerInput.jumpInputAction += Jump;
         _playerStatus = _player.GetCompo<PlayerSatus>();
+
+        _plHeight = _capsuleCollider.height+ 0.01f;
+        _plRaius = _capsuleCollider.radius;
     }
 
     // Update is called once per frame
@@ -55,7 +62,7 @@ public class PlayerMoveCompo : MoveCompo,IGetCompoable
 
         float accelModify = _accelationModify, maxSpeedModify = _maxSpeedModify;
 
-        Vector3 input = BashUtils.V2toV3(PlayerBash.Instance.PlayerInput.movement);
+        Vector3 input = BashUtils.V2toV3(_player.PlayerInput.movement);
         //_movDir = BashUtils.V3X0Z(cameraRoot.TransformVector(input)).normalized;
         input = (Quaternion.Euler(0, _mouseSum.x, 0) * input);
 

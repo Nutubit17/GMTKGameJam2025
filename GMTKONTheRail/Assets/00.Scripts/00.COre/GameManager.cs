@@ -6,6 +6,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private float _height =500;
 
+    public PlayerBash PlayerInstance;
+
     public static GameManager Instance;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()

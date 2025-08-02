@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using static AnimationBlend;
 
 public class PlayerArm : MonoBehaviour,IGetCompoable,IAfterInitable
 {
@@ -24,6 +25,8 @@ public class PlayerArm : MonoBehaviour,IGetCompoable,IAfterInitable
     public PlayerInputSO PlayerInput;
 
     public Action ItemSet;
+
+    public GameObject InteractiveableUI;
 
     public void Init(Entity agent)
     {
@@ -100,10 +103,18 @@ public class PlayerArm : MonoBehaviour,IGetCompoable,IAfterInitable
                 }
                 SetHoldingItem();
             }
+
+            if (hit.transform.gameObject.TryGetComponent<IAltInteractiveable>(out IAltInteractiveable a))
+            {
+                a.UseAltInteractive(this);
+            }
+        }
+        //if (Physics.Raycast(transform.position, transform.forward, out var hit2, 2.2f, _whatIsInteractive))
+        {
             
 
-        }
 
+        }
     }
 
     private void Update()
@@ -138,6 +149,19 @@ public class PlayerArm : MonoBehaviour,IGetCompoable,IAfterInitable
             }
 
         }
+
+        if (Physics.Raycast(transform.position, transform.forward, out var hit2, 2.2f, _whatIsInteractive))
+        {
+            //if ()
+            {
+                InteractiveableUI?.SetActive(hit2.transform.gameObject.CompareTag("Interactive"));
+            }
+        }
+        else
+        {
+            InteractiveableUI?.SetActive(false);
+        }
+
     }
 
     public void EraseItem()

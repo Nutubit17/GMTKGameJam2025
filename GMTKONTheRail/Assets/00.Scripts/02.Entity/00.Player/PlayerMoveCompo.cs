@@ -1,9 +1,10 @@
 using UnityEngine;
+using UnityEngine.Events;
 public class PlayerMoveCompo : MoveCompo,IGetCompoable
 {
     public Transform cameraRoot;
 
-    
+
 
     [SerializeField]
     float _maxSpeed = 10, _accelation = 25, _jumpPower = 5, _damp=3,_gravity = -11,_plHeight=2,_plRaius=0.26f; //PlayerState�� �� ������
@@ -42,7 +43,7 @@ public class PlayerMoveCompo : MoveCompo,IGetCompoable
 
     void Start()
     {
-        PlayerBash.Instance.jumpInputAction += Jump;
+        _player.PlayerInput.jumpInputAction += Jump;
         _playerStatus = _player.GetCompo<PlayerSatus>();
 
         _plHeight = _capsuleCollider.height+ 0.01f;
@@ -61,7 +62,7 @@ public class PlayerMoveCompo : MoveCompo,IGetCompoable
 
         float accelModify = _accelationModify, maxSpeedModify = _maxSpeedModify;
 
-        Vector3 input = BashUtils.V2toV3(PlayerBash.Instance.PlayerInput.movement);
+        Vector3 input = BashUtils.V2toV3(_player.PlayerInput.movement);
         //_movDir = BashUtils.V3X0Z(cameraRoot.TransformVector(input)).normalized;
         input = (Quaternion.Euler(0, _mouseSum.x, 0) * input);
 

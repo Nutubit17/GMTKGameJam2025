@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class LightObject : MonoBehaviour, ICoinUseable
+public class LightObject : MonoBehaviour
 {
     [SerializeField] private LightDataSO _lightData;
     [SerializeField] private float _fuel = 3.9f;
@@ -86,10 +86,5 @@ public class LightObject : MonoBehaviour, ICoinUseable
         _lightActivePercentage = data.lightActivePercentage;
         _transitionSmoothness = data.transitionSmoothness;
         _frequency = data.frequency;
-    }
-
-    public void UseCoin()
-    {
-        AddFuel(1.5f);
     }
 }

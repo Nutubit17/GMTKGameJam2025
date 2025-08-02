@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public abstract class HealthCompo : MonoBehaviour,IGetCompoable
+public abstract class HealthCompo : MonoBehaviour,IGetCompoable,IGetDamageable
 {
     [SerializeField]
     protected float _maxHp, _hp;
@@ -45,5 +45,10 @@ public abstract class HealthCompo : MonoBehaviour,IGetCompoable
     void ToggleDamageAble()
     {
         _isGetDamageAble = true;
+    }
+
+    public HealthCompo GetParentHealth()
+    {
+        return this;
     }
 }

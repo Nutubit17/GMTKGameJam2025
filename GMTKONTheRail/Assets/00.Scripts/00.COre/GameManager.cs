@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Entity
 {
     static readonly int ID_MyGlobalFloat = Shader.PropertyToID("_Height");
     [SerializeField]
@@ -9,9 +9,12 @@ public class GameManager : MonoBehaviour
     public PlayerBash PlayerInstance;
 
     public static GameManager Instance;
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         Instance = this;
         SetHightPower();
     }

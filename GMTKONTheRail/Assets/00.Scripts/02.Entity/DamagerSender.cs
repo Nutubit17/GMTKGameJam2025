@@ -22,6 +22,11 @@ public class DamagerSender : MonoBehaviour, IGetCompoable, IGetDamageable,IAfter
         MomHealth.Damage( damage);
     }
 
+    public HealthCompo GetParentHealth()
+    {
+        return MomHealth;
+    }
+
     public void Init(Entity agent)
     {
         Mom = agent;

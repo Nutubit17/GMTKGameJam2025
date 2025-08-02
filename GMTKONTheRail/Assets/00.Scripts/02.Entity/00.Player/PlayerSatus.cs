@@ -1,13 +1,13 @@
 using System.Collections;
 using UnityEngine;
 
-public class PlayerSatus : MonoBehaviour, IGetCompoable,IAfterInitable,IGetDamageable
+public class PlayerSatus : MonoBehaviour, IGetCompoable,IAfterInitable
 {
     public PlayerBash Mom;
 
     public float MaxMaxStemina = 10f, MaxStemina = 10f, CurrentStemina = 10;
 
-    public float MaxHp = 10f, CurrentHP = 10;
+    
 
     private bool _steminaRegen = true;
 
@@ -62,14 +62,5 @@ public class PlayerSatus : MonoBehaviour, IGetCompoable,IAfterInitable,IGetDamag
     public void SetSteminaRegen(bool enable)
     {
         _steminaRegen = enable;
-    }
-    public void Damage(float damage, float cooldown)
-    {
-        
-    }
-
-    public void Damage(float damage)
-    {
-        
     }
 }

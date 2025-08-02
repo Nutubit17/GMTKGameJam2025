@@ -58,9 +58,9 @@ public class MapGenerator : MonoBehaviour
         for (int i = 0; i < EightDirection.Length; ++i)
         {
             var sample = CreateMap(currentPosition + EightDirection[i]);
-            if (i == 3)
+            if (i == 2)
                 downMap = sample;
-            else if (i == 4)
+            else if (i == 3)
                 upMap = sample;
         }
         

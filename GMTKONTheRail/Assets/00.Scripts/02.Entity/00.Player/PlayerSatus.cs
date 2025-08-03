@@ -7,7 +7,7 @@ public class PlayerSatus : MonoBehaviour, IGetCompoable,IAfterInitable
 
     public float MaxMaxStemina = 10f, MaxStemina = 10f, CurrentStemina = 10;
 
-    
+    public PlayerHEalth PlHeatlhCOmpo;
 
     private bool _steminaRegen = true;
 
@@ -51,11 +51,14 @@ public class PlayerSatus : MonoBehaviour, IGetCompoable,IAfterInitable
     }
     public void AddStemina(float stemina)
     {
+        if(Random.Range(0,10) > 6)
+        PlHeatlhCOmpo?.Damage(-0.5f);
         CurrentStemina = Mathf.Clamp(CurrentStemina + stemina,0,MaxStemina);
     }
 
     public void AddMaxStemina(float stemina)
     {
+        PlHeatlhCOmpo?.Damage(-0.8f);
         MaxStemina = Mathf.Clamp(MaxStemina + stemina, 0, MaxMaxStemina);
         AddStemina(0);
     }

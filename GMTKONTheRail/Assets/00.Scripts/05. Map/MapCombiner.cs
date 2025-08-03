@@ -94,7 +94,6 @@ public class MapCombiner
             collider.sharedMesh = result;
 
             obj.transform.SetParent(bundle.transform);
-            obj.transform.rotation = Quaternion.AngleAxis(90, Vector3.up);
         }
 
         GameObject exceptListGameObj = new GameObject($"except_list");
@@ -109,8 +108,6 @@ public class MapCombiner
         }
 
         exceptListGameObj.transform.SetParent(bundle.transform);
-        exceptListGameObj.transform.rotation = Quaternion.AngleAxis(90, Vector3.up);
-
 
         bundle.gameObject.SetActive(false);
 

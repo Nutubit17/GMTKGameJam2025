@@ -427,6 +427,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2038450403808471537}
     m_Modifications:
+    - target: {fileID: 607492182322512872, guid: 2d8a4b3b85da2b148b302e8e84460ee7, type: 3}
+      propertyPath: _totalForce
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 4152166032500004912, guid: 2d8a4b3b85da2b148b302e8e84460ee7, type: 3}
       propertyPath: m_Splines.Array.data[0].m_Knots.Array.size
       value: 9
@@ -813,7 +817,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4881133911755671291, guid: 2d8a4b3b85da2b148b302e8e84460ee7, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5768972819561398324, guid: 2d8a4b3b85da2b148b302e8e84460ee7, type: 3}
       propertyPath: m_LocalPosition.x

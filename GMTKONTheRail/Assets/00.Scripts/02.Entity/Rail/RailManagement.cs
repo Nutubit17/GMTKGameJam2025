@@ -69,8 +69,13 @@ public class RailManagement : MonoBehaviour
 
     public void WakeUp(float amount)
     {
-        _martCart.AddForce(amount);
         _martCart.gameObject.SetActive(true);
+        _martCart.AddForce(amount);
+    }
+
+    public void Sleep()
+    {
+        _martCart.gameObject.SetActive(false);
     }
 
 
@@ -95,7 +100,7 @@ public class RailManagement : MonoBehaviour
                 if (_currentPoint == 0 && _currentAmount <= 0)
                 {
                     OnCartReachedStart?.Invoke(_martCart.TotalForce);
-                    
+
                     _martCart.ResetForce();
                     _martCart.gameObject.SetActive(false);
                     break;

@@ -33,10 +33,10 @@ public class MapGenerateInfoSO : ScriptableObject
 
     public MapObject InstantiateRandomMap(Vector2Int position)
     {
-        var list = levelList[Mathf.Clamp(Mathf.Abs(position.x), 0, levelList.Count - 1)].mapList;
+        var list = levelList[Mathf.Clamp(Mathf.Abs(position.y), 0, levelList.Count - 1)].mapList;
         var map = Instantiate(list[Random.Range(0, list.Count)]);
         map.Init(position, _mapSize);
-        
+
         map.gameObject.SetActive(true);
         return map;
     }

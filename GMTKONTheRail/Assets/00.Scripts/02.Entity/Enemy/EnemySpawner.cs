@@ -51,11 +51,10 @@ public class EnemySpawner : MonoBehaviour
     private bool TrySpawnEnemy(EnemyBase ebase)
     {
         Vector3 point = Random.insideUnitCircle.normalized * _generateDistance;
-        point = _playerBash.transform.position + new Vector3(point.x, 3, point.y);
+        point = _playerBash.transform.position + new Vector3(point.x, 0, point.y);
 
         float checkingRange = 1f;
 
-        _colliderArr = new Collider[10];
         var hit = Physics.OverlapSphereNonAlloc
         (transform.position, checkingRange, _colliderArr, _layer);
 

@@ -18,6 +18,5 @@ public class CartAfosingForece : MonoBehaviour
             return;
         _martCart.AddForce(-collision.impulse * _forceMultipier);
         //_martCart.AddForce((transform.position - collision.collider.transform.position).normalized *_forceMultipier);
-
     }
 }

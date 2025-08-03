@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9048091782060443720}
   - component: {fileID: 8378752887068846378}
   - component: {fileID: 2719110313662021778}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FlareStick
   m_TagString: Interactive
   m_Icon: {fileID: 0}
@@ -145,9 +145,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -283447281495678814, guid: 50a6091558b31b944a68148a9089a304, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 50a6091558b31b944a68148a9089a304, type: 3}
       propertyPath: m_Name
       value: FireStick
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 50a6091558b31b944a68148a9089a304, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 4027228791024609348, guid: 50a6091558b31b944a68148a9089a304, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -6,7 +6,7 @@ using static AnimationBlend;
 public class PlayerArm : MonoBehaviour,IGetCompoable,IAfterInitable
 {
     [SerializeField]
-    private LayerMask _whatIsInteractive;
+    private LayerMask _whatIsInteractive,_whatIsObstacle;
     [SerializeField]
     private float _interactiveDistance = 2.2f;
 
@@ -164,7 +164,11 @@ public class PlayerArm : MonoBehaviour,IGetCompoable,IAfterInitable
         {
             if(CurrentItem.GetItemType().Prefab is not null)
             {
-                ItemObject itemObj = Instantiate(CurrentItem.GetItemType().Prefab,transform.position + transform.forward*1.5f,Quaternion.identity);
+                float distance = 1.6f;
+                if (Physics.Raycast(transform.position, transform.forward, out var hit, 1.6f, _whatIsInteractive))
+                    distance = hit.distance;
+
+                    ItemObject itemObj = Instantiate(CurrentItem.GetItemType().Prefab,transform.position + transform.forward*(distance-0.1f),Quaternion.identity);
 
                 itemObj.Init(CurrentItem.GetItemType());
 

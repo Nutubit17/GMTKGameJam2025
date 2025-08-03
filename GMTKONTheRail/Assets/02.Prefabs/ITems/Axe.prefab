@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4133612797463234848}
   - component: {fileID: 1916994819409571889}
   - component: {fileID: 8823929558705927241}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FIREAXE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 7483958917026141560}
   - component: {fileID: 5214814430539982287}
   - component: {fileID: 6977225969750659450}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Axe
   m_TagString: Interactive
   m_Icon: {fileID: 0}
@@ -134,6 +134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemSO: {fileID: 11400000, guid: 4b2614e95fbfd584986ac14108368646, type: 2}
+  _collidewithTag: Cart
 --- !u!65 &5214814430539982287
 BoxCollider:
   m_ObjectHideFlags: 0

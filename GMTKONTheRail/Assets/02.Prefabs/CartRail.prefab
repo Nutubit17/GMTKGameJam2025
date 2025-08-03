@@ -180,7 +180,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _martCart: {fileID: 607492182322512872}
-  _forceMultipier: 0.2
+  _forceMultipier: 0.3
 --- !u!82 &3047372225860227805
 AudioSource:
   m_ObjectHideFlags: 0
@@ -621,6 +621,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1508319300014007438, guid: 0ec1a21c0e469fc48b9c30418c6e951a, type: 3}
+      propertyPath: _fuelUseSpeed
+      value: 0.02
+      objectReference: {fileID: 0}
     - target: {fileID: 1758812212213994383, guid: 0ec1a21c0e469fc48b9c30418c6e951a, type: 3}
       propertyPath: m_Layer
       value: 1
@@ -697,6 +701,26 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6294372391036800420, guid: 0ec1a21c0e469fc48b9c30418c6e951a, type: 3}
+      propertyPath: m_Range
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6294372391036800420, guid: 0ec1a21c0e469fc48b9c30418c6e951a, type: 3}
+      propertyPath: m_Intensity
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6444098841172603280, guid: 0ec1a21c0e469fc48b9c30418c6e951a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6444098841172603280, guid: 0ec1a21c0e469fc48b9c30418c6e951a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.495
+      objectReference: {fileID: 0}
+    - target: {fileID: 6444098841172603280, guid: 0ec1a21c0e469fc48b9c30418c6e951a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.105
+      objectReference: {fileID: 0}
     - target: {fileID: 6567763340648789598, guid: 0ec1a21c0e469fc48b9c30418c6e951a, type: 3}
       propertyPath: m_Layer
       value: 1
@@ -721,10 +745,179 @@ PrefabInstance:
     - {fileID: 1981586018107516060, guid: 0ec1a21c0e469fc48b9c30418c6e951a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1826913590337887684, guid: 0ec1a21c0e469fc48b9c30418c6e951a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7895229555099213910}
+    - targetCorrespondingSourceObject: {fileID: 3531324904163342984, guid: 0ec1a21c0e469fc48b9c30418c6e951a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1512141526373542486}
   m_SourcePrefab: {fileID: 100100000, guid: 0ec1a21c0e469fc48b9c30418c6e951a, type: 3}
+--- !u!1 &5245156243213348431 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1826913590337887684, guid: 0ec1a21c0e469fc48b9c30418c6e951a, type: 3}
+  m_PrefabInstance: {fileID: 5877208418897048459}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &7895229555099213910
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5245156243213348431}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2.05
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.44, z: 0}
 --- !u!4 &6503909466259228295 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 851900339046429964, guid: 0ec1a21c0e469fc48b9c30418c6e951a, type: 3}
   m_PrefabInstance: {fileID: 5877208418897048459}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &6958554698805561603 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3531324904163342984, guid: 0ec1a21c0e469fc48b9c30418c6e951a, type: 3}
+  m_PrefabInstance: {fileID: 5877208418897048459}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1512141526373542486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6958554698805561603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc4d76f733087744991913c9d19d5274, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_LensFlareData: {fileID: 11400000, guid: bd7eaf3bd49c39f4cb77bd809459aa72, type: 2}
+  version: 0
+  intensity: 1
+  maxAttenuationDistance: 100
+  maxAttenuationScale: 100
+  distanceAttenuationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  scaleByDistanceCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  attenuationByLightShape: 1
+  radialScreenAttenuationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  useOcclusion: 0
+  useBackgroundCloudOcclusion: 0
+  environmentOcclusion: 0
+  useWaterOcclusion: 0
+  occlusionRadius: 0.1
+  sampleCount: 32
+  occlusionOffset: 0.05
+  scale: 1
+  allowOffScreen: 0
+  volumetricCloudOcclusion: 0
+  occlusionRemapCurve:
+    <length>k__BackingField: 2
+    m_Loop: 0
+    m_ZeroValue: 1
+    m_Range: 1
+    m_Curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 1
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  lightOverride: {fileID: 0}

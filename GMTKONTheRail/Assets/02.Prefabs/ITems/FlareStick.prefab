@@ -112,6 +112,7 @@ GameObject:
   - component: {fileID: 9048091782060443720}
   - component: {fileID: 8378752887068846378}
   - component: {fileID: 2719110313662021778}
+  - component: {fileID: 142066585191946001}
   m_Layer: 11
   m_Name: FlareStick
   m_TagString: Interactive
@@ -201,6 +202,18 @@ MonoBehaviour:
     Ammo: 0
     Durability: 0
   _collidewithTag: Cart
+--- !u!114 &142066585191946001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9098491996997475853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d3cbd8738e25864cbd54c25592c5ea6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &977790892113556572
 PrefabInstance:
   m_ObjectHideFlags: 0

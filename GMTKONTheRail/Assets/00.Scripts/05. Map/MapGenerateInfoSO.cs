@@ -40,4 +40,13 @@ public class MapGenerateInfoSO : ScriptableObject
         map.gameObject.SetActive(true);
         return map;
     }
+    public MapObject InstantiateFirstRandomMap(Vector2Int position)
+    {
+        var list = levelList[0].mapList;
+        var map = Instantiate(list[Random.Range(0, list.Count)]);
+        map.Init(position, _mapSize);
+
+        map.gameObject.SetActive(true);
+        return map;
+    }
 }

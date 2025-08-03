@@ -45,7 +45,8 @@ public class MapCombiner
                     (point.transform.position,
                     point.transform.rotation,
                     point.transform.lossyScale);
-
+                if (!meshFilter.sharedMesh)
+                    continue;
                 Mesh meshSample = Mesh.Instantiate(meshFilter.sharedMesh);
 
                 var combineInstance = new CombineInstance();

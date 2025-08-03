@@ -200,6 +200,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e135ac5feb19fb245a651532da3ec888, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1678873546783468227}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e135ac5feb19fb245a651532da3ec888, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -4365487374914249891}
   m_SourcePrefab: {fileID: 100100000, guid: e135ac5feb19fb245a651532da3ec888, type: 3}
 --- !u!4 &1722803553372165611 stripped
 Transform:
@@ -276,3 +279,15 @@ MonoBehaviour:
     Ammo: 0
     Durability: 0
   _collidewithTag: Cart
+--- !u!114 &-4365487374914249891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063616305368862545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d3cbd8738e25864cbd54c25592c5ea6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

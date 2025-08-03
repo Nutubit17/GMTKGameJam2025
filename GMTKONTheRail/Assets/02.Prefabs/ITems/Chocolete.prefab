@@ -112,6 +112,7 @@ GameObject:
   - component: {fileID: 4823850156499391583}
   - component: {fileID: 80103077933491049}
   - component: {fileID: 3221878538200043119}
+  - component: {fileID: -2024996265236483025}
   m_Layer: 11
   m_Name: Chocolete
   m_TagString: Interactive
@@ -201,6 +202,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.3, y: 0.2, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-2024996265236483025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4316933665310225751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d3cbd8738e25864cbd54c25592c5ea6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8430502680736983449
 PrefabInstance:
   m_ObjectHideFlags: 0

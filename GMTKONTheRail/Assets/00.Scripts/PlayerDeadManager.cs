@@ -31,7 +31,7 @@ public class PlayerDeadManager : MonoBehaviour
       {
          if (Input.GetKeyDown(KeyCode.Space))
          {
-            _loadingObj.SetActive(true);
+            _loadingObj?.SetActive(true);
             SceneManager.LoadScene(_introSceneName);
          }
       }

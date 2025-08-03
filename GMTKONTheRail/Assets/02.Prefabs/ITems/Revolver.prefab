@@ -134,15 +134,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -3124914424127336872, guid: 50daaa7ffa3e3bc488802116c6dabf8f, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.5999999
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: -3124914424127336872, guid: 50daaa7ffa3e3bc488802116c6dabf8f, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.5999999
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: -3124914424127336872, guid: 50daaa7ffa3e3bc488802116c6dabf8f, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.5999999
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: -3124914424127336872, guid: 50daaa7ffa3e3bc488802116c6dabf8f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -221,6 +221,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -7949136978043226412, guid: 50daaa7ffa3e3bc488802116c6dabf8f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6712191725241933827}
+    - targetCorrespondingSourceObject: {fileID: -7949136978043226412, guid: 50daaa7ffa3e3bc488802116c6dabf8f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -1860967257308636908}
   m_SourcePrefab: {fileID: 9199261849990390558, guid: 50daaa7ffa3e3bc488802116c6dabf8f, type: 3}
 --- !u!4 &157691531211259989 stripped
 Transform:
@@ -246,7 +249,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemSO:
     ItemSO1: {fileID: 11400000, guid: 5e05494e7abf06f4db300afe4c892c04, type: 2}
-    Ammo: 0
+    Ammo: 6
     Durability: 0
   _collidewithTag: Cart
 --- !u!136 &7383591720151878560
@@ -299,3 +302,15 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!114 &-1860967257308636908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5133214581820602585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d3cbd8738e25864cbd54c25592c5ea6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

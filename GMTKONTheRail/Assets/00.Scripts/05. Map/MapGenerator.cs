@@ -21,6 +21,7 @@ public class MapGenerator : MonoBehaviour
     //[SerializeField] private MapObject mapObject1, mapObject2;
     private Dictionary<Vector2Int, MapObject> _mapDictionary = new Dictionary<Vector2Int, MapObject>();
 
+
     private MapObject _currentMap = null;
     private Vector2Int _currentPosition = Vector2Int.zero;
 
@@ -41,6 +42,13 @@ public class MapGenerator : MonoBehaviour
     {
         if (!_mapDictionary.TryGetValue(position, out var result))
             result = _mapDictionary[position] = _mapGenerateInfo.InstantiateRandomMap(position);
+
+        return result;
+    }
+    public MapObject FirstCreateMap(Vector2Int position)
+    {
+        if (!_mapDictionary.TryGetValue(position, out var result))
+            result = _mapDictionary[position] = _mapGenerateInfo.InstantiateFirstRandomMap(position);
 
         return result;
     }

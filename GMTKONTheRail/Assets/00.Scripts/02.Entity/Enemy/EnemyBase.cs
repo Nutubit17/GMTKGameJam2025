@@ -309,7 +309,6 @@ public class EnemyBase : HealthCompo
                     {
                         _freezeTimer.Start();
                         _animator.speed = 0;
-                        _rigidbody.linearVelocity = Vector3.zero;
                     }
 
                     if (TryFindTarget())

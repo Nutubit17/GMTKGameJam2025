@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5295017293887073767}
   - component: {fileID: 6270346341599300957}
   - component: {fileID: 3579408468035043726}
+  - component: {fileID: 8980036846673677474}
   m_Layer: 11
   m_Name: ShotGun
   m_TagString: Interactive
@@ -49,7 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemSO:
     ItemSO1: {fileID: 11400000, guid: e8e4a661a9cb1a64faa11b3b0aa819a6, type: 2}
-    Ammo: 0
+    Ammo: 2
     Durability: 0
   _collidewithTag: Cart
 --- !u!65 &6270346341599300957
@@ -100,6 +101,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!114 &8980036846673677474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6266540244040876429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d3cbd8738e25864cbd54c25592c5ea6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5088714011913173340
 PrefabInstance:
   m_ObjectHideFlags: 0

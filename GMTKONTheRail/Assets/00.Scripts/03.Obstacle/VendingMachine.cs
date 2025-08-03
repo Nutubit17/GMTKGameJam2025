@@ -23,6 +23,9 @@ public class VendingMachine : MonoBehaviour,ICoinUseable
 
     public Action InsertCoinAction;
 
+    public ItemSO[] aaa;
+
+
     public int GetInsertedCoin()
     {
         return _insertedCoin;

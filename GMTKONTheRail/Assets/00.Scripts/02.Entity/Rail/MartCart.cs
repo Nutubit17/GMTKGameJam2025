@@ -20,6 +20,8 @@ public class MartCart : MonoBehaviour
     [Range(0, 20), SerializeField] private float _rotationShakeness = 5f;
     [Range(0.1f, 10), SerializeField] private float _rotationFrequency = 3f;
 
+    [SerializeField] private AudioSource _railSound;
+    private float volume = 1;
     private Transform _visual;
 
 
@@ -27,6 +29,9 @@ public class MartCart : MonoBehaviour
     {
         _railManagement = management;
         _visual = transform.Find("Visual");
+
+        _railSound = GetComponent<AudioSource>();
+        volume = _railSound.volume;
     }
 
     // test
@@ -43,6 +48,8 @@ public class MartCart : MonoBehaviour
 
         MoveUpdate(_totalForce * Time.fixedDeltaTime);
         _totalForce *= frictionDelta;
+
+        _railSound.volume = _totalForce > 0.1f ? volume : 0;
     }
 
     public void ResetForce()

@@ -232,7 +232,7 @@ public class EnemyBase : HealthCompo
             }
 
             _rigidbody.linearVelocity = dir * speed;
-            _visual.transform.forward = dir;
+            _visual.transform.forward = -dir;
 
             yield return new WaitForFixedUpdate();
         }

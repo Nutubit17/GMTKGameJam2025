@@ -43,7 +43,7 @@ public class HpCheckWithLight : MonoBehaviour
                 {
                     if (light.IsLightOn)
                     {
-                        _playerHealth.Damage(_delay * _damageApplyMultiplier);
+                        _playerHealth.Damage(_delay * _damageApplyMultiplier * -1);
                         return;
                     }
                 }

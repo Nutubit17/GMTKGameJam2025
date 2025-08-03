@@ -39,7 +39,7 @@ public class EnemySpawner : MonoBehaviour
 
         for (int i = 0; i < generateCount; ++i)
         {
-            EnemyBase ebase = _enemyPrefabs[Random.Range(0, _enemyPrefabs.Length - 1)];
+            EnemyBase ebase = _enemyPrefabs[Random.Range(0, _enemyPrefabs.Length)];
             int trycount = 0;
             while (!TrySpawnEnemy(ebase) && trycount < 20)
             {

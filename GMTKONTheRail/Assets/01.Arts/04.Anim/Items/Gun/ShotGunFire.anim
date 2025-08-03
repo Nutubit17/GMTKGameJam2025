@@ -3723,10 +3723,24 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0
+  - time: 0.016666668
     functionName: ShootBullet
     data: 
     objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.016666668
+    functionName: PlaySound
+    data: 
+    objectReferenceParameter: {fileID: 8300000, guid: e18c28ec7fed5c444ac2104f603a5957, type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.53333336
+    functionName: PlaySound
+    data: 
+    objectReferenceParameter: {fileID: 8300000, guid: af29a0ebfcb7a364cba55ae86ecb71e9, type: 3}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0

@@ -53,7 +53,14 @@ public class ItemUseableObject : MonoBehaviour
         _animator.SetBool("AltAttack",Mom.PlayerInput.IsAltFire);
         _animator.SetBool("Reload", Input.GetKeyDown(KeyCode.R));
     }
-    void OnDisable()
+
+    void OnEnable()
+    {
+        if (!_animator) return;
+        _animator.Rebind();
+        _animator.Update(0f);
+    }
+        void OnDisable()
     {
         if (!_animator) return;
         _animator.Rebind();

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public abstract class HealthCompo : MonoBehaviour,IGetCompoable,IGetDamageable
+public class HealthCompo : MonoBehaviour,IGetCompoable,IGetDamageable
 {
     [SerializeField]
     protected float _maxHp, _hp;

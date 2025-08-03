@@ -15,6 +15,7 @@ public class GameManager : Entity
     protected override void Awake()
     {
         Screen.SetResolution(640 * 2, 480 * 2, false);
+        Screen.fullScreen = true;
         
         base.Awake();
         Instance = this;

@@ -10,6 +10,7 @@ public class Projectile : MonoBehaviour
 
     private void FixedUpdate()
     {
+        Debug.Log("Shit");
         if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, _speed * Time.fixedDeltaTime, _whatIsTarget))
         {
             if (hit.transform.gameObject.TryGetComponent<IGetDamageable>(out IGetDamageable damgeable))
@@ -18,10 +19,13 @@ public class Projectile : MonoBehaviour
                 
             }
 
+            if(_particleSystem != null)
             Instantiate(_particleSystem, hit.point, Quaternion.LookRotation(hit.normal)).Play();
 
             Destroy(gameObject);
         }
+
+        transform.position = transform.position + transform.forward * _speed * Time.fixedDeltaTime;
 
         _time -= Time.fixedDeltaTime;
 

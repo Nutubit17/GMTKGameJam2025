@@ -65,6 +65,10 @@ PrefabInstance:
       value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 3759004479383422071, guid: 35cf916212b89e7408e85dfbf1a70259, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3759004479383422071, guid: 35cf916212b89e7408e85dfbf1a70259, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.29716
       objectReference: {fileID: 0}
@@ -172,6 +176,14 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 116
       objectReference: {fileID: 0}
+    - target: {fileID: 7354825607795606664, guid: 35cf916212b89e7408e85dfbf1a70259, type: 3}
+      propertyPath: BashEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 5980459282071931073}
+    - target: {fileID: 7354825607795606664, guid: 35cf916212b89e7408e85dfbf1a70259, type: 3}
+      propertyPath: BashEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: DamageCast
+      objectReference: {fileID: 0}
     - target: {fileID: 7456570547946079162, guid: 35cf916212b89e7408e85dfbf1a70259, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: -14.166668
@@ -273,16 +285,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f56c9b6610bdd574ea865643547e3965, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &2855812424307091979 stripped
+--- !u!4 &2471636363787020501 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 5350726934509306386, guid: 35cf916212b89e7408e85dfbf1a70259, type: 3}
+  m_CorrespondingSourceObject: {fileID: 5741385449818341580, guid: 35cf916212b89e7408e85dfbf1a70259, type: 3}
   m_PrefabInstance: {fileID: 7917463972359596057}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &3655421441077444798 stripped
+--- !u!95 &5756224619093544519 stripped
 Animator:
-  m_CorrespondingSourceObject: {fileID: 6871034968248084647, guid: 35cf916212b89e7408e85dfbf1a70259, type: 3}
+  m_CorrespondingSourceObject: {fileID: 2450605001616107102, guid: 35cf916212b89e7408e85dfbf1a70259, type: 3}
   m_PrefabInstance: {fileID: 7917463972359596057}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5980459282071931073 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4548256907250868440, guid: 35cf916212b89e7408e85dfbf1a70259, type: 3}
+  m_PrefabInstance: {fileID: 7917463972359596057}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b6869a00678b1647a4a286dce25e025, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8820588064553634731 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1696024812305474482, guid: 35cf916212b89e7408e85dfbf1a70259, type: 3}
@@ -300,16 +323,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0b72cb3c621a244ab541d258d1eebd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _maxHp: 0
+  _hp: 0
+  OnDeadEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _enemyInfo: {fileID: 11400000, guid: c1bd784176b4df54394c8334573c790e, type: 2}
   _player: {fileID: 0}
-  _animator: {fileID: 3655421441077444798}
+  _animator: {fileID: 5756224619093544519}
   _rigidbody: {fileID: 708754443072928442}
-  _visual: {fileID: 2855812424307091979}
+  _visual: {fileID: 2471636363787020501}
+  _ragdoll: {fileID: 0}
   _enemyAnimationTrigger: {fileID: 1306011096882882050}
   _freezeTimer:
     waitTime: 5
   _attackTimer:
     waitTime: 3.5
+  _hitCheckTimer:
+    waitTime: 0
   _useRunAnim: 0
   _lightLayer:
     serializedVersion: 2

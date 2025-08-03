@@ -343,7 +343,7 @@ public class EnemyBase : HealthCompo
     public bool TryFindTarget()
     {
         var temp = _visual.transform.position;
-        temp.y = 0;
+        //temp.y = 0;
         _visual.transform.position = temp;
 
 

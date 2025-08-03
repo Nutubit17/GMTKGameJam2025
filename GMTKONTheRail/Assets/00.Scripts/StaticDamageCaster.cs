@@ -20,7 +20,8 @@ public class StaticDamageCaster : MonoBehaviour , IGetCompoable
             foreach (Collider col in result)
             {
                 if (col == null)
-                    break;
+                    continue;
+                    //break;
 
                 //if(col.gameObject.CompareTag("Hitable"))
                 {

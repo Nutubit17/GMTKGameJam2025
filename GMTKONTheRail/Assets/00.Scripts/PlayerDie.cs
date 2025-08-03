@@ -1,16 +1,22 @@
 using UnityEngine;
 
-public class PlayerDie : MonoBehaviour
+public class PlayerDie : MonoBehaviour, IGetCompoable
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public Entity Mom;
+
+
+    public void Init(Entity agent)
     {
-        
+        Mom = agent;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void DieEvent()
     {
-        
+
+    }
+
+    public void TestDIeEvent()
+    {
+        Debug.Log("U DIe");
     }
 }

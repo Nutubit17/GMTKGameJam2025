@@ -31,4 +31,9 @@ public class NextScene : MonoBehaviour
     {
         StartCoroutine(routine());
     }
+
+    public void Exit()
+    {
+        Application.Quit();
+    }
 }

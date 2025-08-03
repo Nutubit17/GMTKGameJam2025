@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class EnemyBase : Entity
+public class EnemyBase : HealthCompo
 {
     [SerializeField] private EnemyInfoSO _enemyInfo;
     [SerializeField] private PlayerBash _player;
@@ -48,7 +48,16 @@ public class EnemyBase : Entity
 
     private bool _isDie = false;
 
-    protected override void Awake()
+    //protected override void Awake()
+    //{
+    //    base.Awake();
+    //    _enemyInfo = Instantiate(_enemyInfo);
+    //    _player = FindAnyObjectByType<PlayerBash>();
+
+    //    _enemyAnimationTrigger.OnAnimationEnd += HandleAnimationEnd;
+    //    StartCoroutine(StateOuterRoutine());
+    //}
+    public override void Awake()
     {
         base.Awake();
         _enemyInfo = Instantiate(_enemyInfo);
@@ -63,7 +72,10 @@ public class EnemyBase : Entity
         PlayAnimation(_IdleHash, _defaultIdleBlend);
     }
 
-
+    public override void Damage(float damage)
+    {
+        OnHit(damage);
+    }
     public void OnHit(float damage)
     {
         _enemyInfo.hp -= damage;
@@ -81,11 +93,12 @@ public class EnemyBase : Entity
     private void Die()
     {
         _isDie = true;
-        _visual.gameObject.SetActive(false);
-        _ragdoll.gameObject.SetActive(true);
+        //_visual.gameObject.SetActive(false);
+        //_ragdoll.gameObject.SetActive(true);
+        _animator.enabled = false;
         _ragdoll.AddForce(transform.forward * -20);
 
-        Destroy(gameObject, 100f);
+        //Destroy(gameObject, 100f);
     }
 
     public IEnumerator StateOuterRoutine()

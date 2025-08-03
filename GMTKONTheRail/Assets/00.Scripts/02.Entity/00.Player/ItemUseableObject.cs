@@ -31,6 +31,14 @@ public class ItemUseableObject : MonoBehaviour
 
     }
 
+    public void FuckDur()
+    {
+        _itemType.Durability--;
+        if (_itemType.Durability < 0)
+        {
+            Mom.EraseItem();
+        }
+    }
     public virtual void Start()
     {
         _playerRi = Mom.Mom.GetComponent<Rigidbody>();

@@ -7,6 +7,7 @@ public class PlayerDeadManager : MonoBehaviour
 {
    [SerializeField] private GameObject _image;
    [SerializeField] private String _introSceneName;
+   [SerializeField] private GameObject _loadingObj;
 
    private bool bCanPressSpace = false;
    
@@ -30,6 +31,7 @@ public class PlayerDeadManager : MonoBehaviour
       {
          if (Input.GetKeyDown(KeyCode.Space))
          {
+            _loadingObj.SetActive(true);
             SceneManager.LoadScene(_introSceneName);
          }
       }

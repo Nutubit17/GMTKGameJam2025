@@ -14,7 +14,7 @@ public class GameManager : Entity
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected override void Awake()
     {
-        Screen.SetResolution(640, 480, false);
+        Screen.SetResolution(640 * 2, 480 * 2, false);
         
         base.Awake();
         Instance = this;

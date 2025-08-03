@@ -67,6 +67,11 @@ public class EnemyBase : HealthCompo
         StartCoroutine(StateOuterRoutine());
     }
 
+    public void Init()
+    {
+        Awake();
+    }
+
     private void HandleAnimationEnd()
     {
         PlayAnimation(_IdleHash, _defaultIdleBlend);

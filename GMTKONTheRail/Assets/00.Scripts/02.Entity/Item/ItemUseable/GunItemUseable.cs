@@ -43,9 +43,13 @@ public class GunItemUseable : ItemUseableObject
         if (_projectile == null)
             return;
 
-        Instantiate(_projectile.transform, _muzzlePivot.position,_muzzlePivot.rotation);
+        for(int i =0; i<_seaGrapes;i++)
+        {
+            Instantiate(_projectile.transform, _muzzlePivot.position, _muzzlePivot.rotation* Quaternion.Euler(Random.Range(-_seaGrapes,_seaGrapes), Random.Range(-_seaGrapes, _seaGrapes), Random.Range(-_seaGrapes, _seaGrapes)));
+
+        }
         _itemType.Ammo--;
-        Debug.Log(_itemType.Ammo);
+        // Debug.Log(_itemType.Ammo);
 
     }
 }

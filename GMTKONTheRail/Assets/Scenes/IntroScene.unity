@@ -631,7 +631,6 @@ GameObject:
   m_Component:
   - component: {fileID: 448352540}
   - component: {fileID: 448352542}
-  - component: {fileID: 448352541}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -658,36 +657,6 @@ RectTransform:
   m_AnchoredPosition: {x: -858.5, y: -453.5}
   m_SizeDelta: {x: 1715, y: 907}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &448352541
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 448352539}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.09803922}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &448352542
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -754,7 +723,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 7af9ebac915e74c4981004cdb60c8041, type: 3}
     m_FontSize: 65
     m_FontStyle: 0
     m_BestFit: 0
@@ -1302,9 +1271,9 @@ Canvas:
   m_GameObject: {fileID: 680468325}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 611154546}
-  m_PlaneDistance: 0.01
+  m_PlaneDistance: 0.04
   m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -1330,12 +1299,12 @@ RectTransform:
   m_Children:
   - {fileID: 448352540}
   - {fileID: 1183970916}
-  - {fileID: 145626348}
-  - {fileID: 1994215643}
-  - {fileID: 2130696548}
   - {fileID: 966229385}
   - {fileID: 1457238328}
   - {fileID: 1029416710}
+  - {fileID: 145626348}
+  - {fileID: 1994215643}
+  - {fileID: 2130696548}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2596,7 +2565,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 7af9ebac915e74c4981004cdb60c8041, type: 3}
     m_FontSize: 65
     m_FontStyle: 0
     m_BestFit: 0

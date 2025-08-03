@@ -54,13 +54,13 @@ public class ItemUseableObject : MonoBehaviour
         //_animator.SetBool("Reload", Input.GetKeyDown(KeyCode.R));
     }
 
-    void OnEnable()
+    protected virtual void OnEnable()
     {
         if (!_animator) return;
         _animator.Rebind();
         _animator.Update(0f);
     }
-        void OnDisable()
+   protected virtual void OnDisable()
     {
         if (!_animator) return;
         _animator.Rebind();

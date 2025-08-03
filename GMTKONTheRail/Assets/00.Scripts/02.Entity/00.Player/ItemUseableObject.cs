@@ -1,10 +1,19 @@
 
+using System;
 using UnityEngine;
+
+[Serializable]
+public struct ItemDataAndSO
+{
+    public ItemSO ItemSO1;
+    public int Ammo;
+    public int Durability;
+}
 
 public class ItemUseableObject : MonoBehaviour
 {
     [SerializeField]
-    protected ItemSO _itemType;
+    protected ItemDataAndSO _itemType;
 
     public PlayerArm Mom;
 
@@ -14,7 +23,7 @@ public class ItemUseableObject : MonoBehaviour
     protected Rigidbody _playerRi;
 
     [SerializeField]
-    protected float _maxSpeed = 15;
+    protected float _maxSpeed =4.5f;
 
     public virtual void Init(PlayerArm arm)
     {
@@ -27,6 +36,11 @@ public class ItemUseableObject : MonoBehaviour
         _playerRi = Mom.Mom.GetComponent<Rigidbody>();
     }
     public ItemSO GetItemType()
+    {
+        return _itemType.ItemSO1;
+    }
+
+    public ItemDataAndSO GetItemData()
     {
         return _itemType;
     }

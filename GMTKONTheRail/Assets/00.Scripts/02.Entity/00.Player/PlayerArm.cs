@@ -80,9 +80,10 @@ public class PlayerArm : MonoBehaviour,IGetCompoable,IAfterInitable
 
         if(_itemComponents.TryGetValue(Inventory[CurrentIdx].ItemSO1,out ItemUseableObject value))
         {
+
             CurrentItem?.gameObject.SetActive(false);
             CurrentItem = value;
-            CurrentItem.gameObject.SetActive(true);
+            CurrentItem?.gameObject.SetActive(true);
         }
         else
         {
@@ -105,22 +106,22 @@ public class PlayerArm : MonoBehaviour,IGetCompoable,IAfterInitable
         {
             if(hit.transform.gameObject.TryGetComponent<ItemObject>(out ItemObject item))
             {
-                if (Inventory[CurrentIdx] == _nullItem)
+                if (Inventory[CurrentIdx].ItemSO1 == _nullItem.ItemSO1)
                 {
                     Inventory[CurrentIdx] = item.ItemSO;
                     Destroy(hit.transform.gameObject);
                 }
-                else if (Inventory[0] == _nullItem)
+                else if (Inventory[0].ItemSO1 == _nullItem.ItemSO1)
                 {
                     Inventory[0] = item.ItemSO;
                     Destroy(hit.transform.gameObject);
                 }
-                else if (Inventory[1] == _nullItem)
+                else if (Inventory[1].ItemSO1 == _nullItem.ItemSO1)
                 {
                     Inventory[1] = item.ItemSO;
                     Destroy(hit.transform.gameObject);
                 }
-                else if (Inventory[2] == _nullItem)
+                else if (Inventory[2].ItemSO1 == _nullItem.ItemSO1)
                 {
                     Inventory[2] = item.ItemSO;
                     Destroy(hit.transform.gameObject);

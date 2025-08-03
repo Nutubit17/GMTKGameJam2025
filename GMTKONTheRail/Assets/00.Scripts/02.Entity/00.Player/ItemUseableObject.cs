@@ -52,8 +52,10 @@ public class ItemUseableObject : MonoBehaviour
         _animator.SetBool("Attack",Mom.PlayerInput.IsFire);
         _animator.SetBool("AltAttack",Mom.PlayerInput.IsAltFire);
         //_animator.SetBool("Reload", Input.GetKeyDown(KeyCode.R));
-        if(Input.GetKeyDown(KeyCode.Q))
-        _animator.SetTrigger("Drop");
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            _animator.SetTrigger("Drop");
+        }
     }
 
     protected virtual void OnEnable()
@@ -66,7 +68,7 @@ public class ItemUseableObject : MonoBehaviour
     {
         if (!_animator) return;
         _animator.Rebind();
-        _animator.Update(0f);
+        //_animator.Update(0f);
     }
     public virtual void UseItem()
     {

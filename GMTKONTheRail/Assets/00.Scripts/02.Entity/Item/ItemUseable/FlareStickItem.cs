@@ -10,24 +10,39 @@ public class FlareStickItem : ItemUseableObject
     private float _power = 10f;
     [SerializeField]
     private bool _isBurning = false;
-
+    [SerializeField]
+    private bool _isFirst = true;
     public void Burn()
     {
         _isBurning = true;
     }
+    public void OnEnable()
+    {
+        
+    }
     public void Throw()
     {
+        //if(_isFirst)
+        //{
 
-        GameObject instance = Instantiate(_isBurning?_summonObj:_itemType.ItemSO1.Prefab.gameObject, transform.position,transform.rotation);
+        //}
+        //GameObject instance = Instantiate(_isBurning?_summonObj:_itemType.ItemSO1.Prefab.gameObject, transform.position,transform.rotation);
 
-        instance.GetComponent<Rigidbody>()?.AddForce(transform.forward*_power,ForceMode.Impulse);
-        instance.GetComponent<Rigidbody>()?.AddTorque(transform.right*3,ForceMode.Impulse);
+        //instance.GetComponent<Rigidbody>()?.AddForce(transform.forward*_power,ForceMode.Impulse);
+        //instance.GetComponent<Rigidbody>()?.AddTorque(transform.right*3,ForceMode.Impulse);
 
-        Mom.EraseItem();
+       Mom.EraseItem();
+       
     }
     protected override void OnDisable()
     {
         base.OnDisable();
-        Throw();
+        GameObject instance = Instantiate(_isBurning ? _summonObj : _itemType.ItemSO1.Prefab.gameObject, transform.position, transform.rotation);
+
+        instance.GetComponent<Rigidbody>()?.AddForce(transform.forward * _power, ForceMode.Impulse);
+        instance.GetComponent<Rigidbody>()?.AddTorque(transform.right * 3, ForceMode.Impulse);
+
+        Mom.EraseItem();
+        //Throw();
     }
 }

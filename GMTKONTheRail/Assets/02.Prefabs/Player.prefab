@@ -1686,6 +1686,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2315623868343754149, guid: b8441bb636b44504f9fa6fcc125a8935, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2315623868343754149, guid: b8441bb636b44504f9fa6fcc125a8935, type: 3}
       propertyPath: m_DistortionLevel
       value: 0.6
       objectReference: {fileID: 0}
@@ -1693,6 +1697,38 @@ PrefabInstance:
       propertyPath: InteractiveableUI
       value: 
       objectReference: {fileID: 1975613766253440695}
+    - target: {fileID: 5637251461083217995, guid: b8441bb636b44504f9fa6fcc125a8935, type: 3}
+      propertyPath: m_RoomHF
+      value: -3300
+      objectReference: {fileID: 0}
+    - target: {fileID: 5637251461083217995, guid: b8441bb636b44504f9fa6fcc125a8935, type: 3}
+      propertyPath: m_Density
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5637251461083217995, guid: b8441bb636b44504f9fa6fcc125a8935, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5637251461083217995, guid: b8441bb636b44504f9fa6fcc125a8935, type: 3}
+      propertyPath: m_Diffusion
+      value: 79
+      objectReference: {fileID: 0}
+    - target: {fileID: 5637251461083217995, guid: b8441bb636b44504f9fa6fcc125a8935, type: 3}
+      propertyPath: m_ReverbDelay
+      value: 0.088
+      objectReference: {fileID: 0}
+    - target: {fileID: 5637251461083217995, guid: b8441bb636b44504f9fa6fcc125a8935, type: 3}
+      propertyPath: m_ReverbLevel
+      value: -229
+      objectReference: {fileID: 0}
+    - target: {fileID: 5637251461083217995, guid: b8441bb636b44504f9fa6fcc125a8935, type: 3}
+      propertyPath: m_ReverbPreset
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 5637251461083217995, guid: b8441bb636b44504f9fa6fcc125a8935, type: 3}
+      propertyPath: m_ReflectionsLevel
+      value: -2560
+      objectReference: {fileID: 0}
     - target: {fileID: 7520536877300706006, guid: b8441bb636b44504f9fa6fcc125a8935, type: 3}
       propertyPath: PlayerMoveComp
       value: 

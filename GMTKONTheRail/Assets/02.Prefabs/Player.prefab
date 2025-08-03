@@ -1685,6 +1685,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2315623868343754149, guid: b8441bb636b44504f9fa6fcc125a8935, type: 3}
+      propertyPath: m_DistortionLevel
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 4277234413142782046, guid: b8441bb636b44504f9fa6fcc125a8935, type: 3}
       propertyPath: InteractiveableUI
       value: 
@@ -1697,7 +1701,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: CameraRoot
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2914068140827688021, guid: b8441bb636b44504f9fa6fcc125a8935, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

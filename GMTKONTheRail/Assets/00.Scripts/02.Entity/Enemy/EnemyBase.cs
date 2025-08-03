@@ -98,7 +98,7 @@ public class EnemyBase : HealthCompo
         _animator.enabled = false;
         _ragdoll.AddForce(transform.forward * -20);
 
-        //Destroy(gameObject, 100f);
+        Destroy(gameObject, 100f);
     }
 
     public IEnumerator StateOuterRoutine()

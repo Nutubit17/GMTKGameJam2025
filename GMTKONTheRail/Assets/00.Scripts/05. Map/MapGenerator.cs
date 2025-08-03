@@ -58,13 +58,13 @@ public class MapGenerator : MonoBehaviour
         for (int i = 0; i < EightDirection.Length; ++i)
         {
             var sample = CreateMap(currentPosition + EightDirection[i]);
-            if (i == 2)
+            if (i == 1)
                 downMap = sample;
-            else if (i == 3)
+            else if (i == 0)
                 upMap = sample;
         }
         
-        if (currentPosition.x == 0)
+        if (currentPosition.y == 0)
         {
             downMap.ConnectCall(currentMap);
             currentMap.ConnectCall(upMap);

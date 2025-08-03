@@ -22,6 +22,7 @@ public class RailAdapter
 
     private void HandleRightReachedStart(float amount)
     {
+        _leftRail.SetToEnd();
         _leftRail.WakeUp(amount);
     }
 

@@ -19,7 +19,7 @@ public class PlayerHEalth : HealthCompo
 
     private void Update()
     {
-        _animator.SetFloat("Hp",_hp/_maxHp);
+        _animator.SetFloat("Hp",1-(_hp/_maxHp));
     }
 
     public void Hit()

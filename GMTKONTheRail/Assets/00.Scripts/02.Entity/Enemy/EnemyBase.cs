@@ -72,7 +72,10 @@ public class EnemyBase : HealthCompo
         PlayAnimation(_IdleHash, _defaultIdleBlend);
     }
 
-
+    public override void Damage(float damage)
+    {
+        OnHit(damage);
+    }
     public void OnHit(float damage)
     {
         _enemyInfo.hp -= damage;
@@ -90,11 +93,12 @@ public class EnemyBase : HealthCompo
     private void Die()
     {
         _isDie = true;
-        _visual.gameObject.SetActive(false);
-        _ragdoll.gameObject.SetActive(true);
+        //_visual.gameObject.SetActive(false);
+        //_ragdoll.gameObject.SetActive(true);
+        _animator.enabled = false;
         _ragdoll.AddForce(transform.forward * -20);
 
-        Destroy(gameObject, 100f);
+        //Destroy(gameObject, 100f);
     }
 
     public IEnumerator StateOuterRoutine()

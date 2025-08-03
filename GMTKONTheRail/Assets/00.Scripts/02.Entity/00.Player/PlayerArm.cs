@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using static AnimationBlend;
 
 public class PlayerArm : MonoBehaviour,IGetCompoable,IAfterInitable
 {
@@ -14,9 +13,9 @@ public class PlayerArm : MonoBehaviour,IGetCompoable,IAfterInitable
 
     private Dictionary<ItemSO, ItemUseableObject> _itemComponents = new();
 
-    [SerializeField] private ItemSO _nullItem;
+    [SerializeField] private ItemDataAndSO _nullItem;
 
-    public ItemSO[] Inventory = new ItemSO[3];
+    public ItemDataAndSO[] Inventory = new ItemDataAndSO[3];
 
     public int CurrentIdx = 0;
 
@@ -55,7 +54,7 @@ public class PlayerArm : MonoBehaviour,IGetCompoable,IAfterInitable
     {
         for (int i = 0; i < Inventory.Length; i++)
         {
-            if (Inventory[i] == needAmmo)
+            if (Inventory[i].ItemSO1 == needAmmo)
             {
                 Inventory[i] = _nullItem;
                 SetHoldingItem();
@@ -68,7 +67,7 @@ public class PlayerArm : MonoBehaviour,IGetCompoable,IAfterInitable
     {
         for (int i = 0; i < Inventory.Length; i++)
         {
-            if (Inventory[i] == needAmmo)
+            if (Inventory[i].ItemSO1 == needAmmo)
             {
                 return true;
             }
@@ -79,7 +78,7 @@ public class PlayerArm : MonoBehaviour,IGetCompoable,IAfterInitable
     private void SetHoldingItem()
     {
 
-        if(_itemComponents.TryGetValue(Inventory[CurrentIdx],out ItemUseableObject value))
+        if(_itemComponents.TryGetValue(Inventory[CurrentIdx].ItemSO1,out ItemUseableObject value))
         {
             CurrentItem?.gameObject.SetActive(false);
             CurrentItem = value;
@@ -170,7 +169,7 @@ public class PlayerArm : MonoBehaviour,IGetCompoable,IAfterInitable
 
                     ItemObject itemObj = Instantiate(CurrentItem.GetItemType().Prefab,transform.position + transform.forward*(distance-0.1f),Quaternion.identity);
 
-                itemObj.Init(CurrentItem.GetItemType());
+                itemObj.Init(CurrentItem.GetItemData());
 
                 Inventory[CurrentIdx] = _nullItem;
                 SetHoldingItem();

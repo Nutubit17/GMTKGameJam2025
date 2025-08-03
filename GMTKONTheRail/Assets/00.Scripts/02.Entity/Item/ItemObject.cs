@@ -2,13 +2,14 @@ using UnityEngine;
 
 public class ItemObject : MonoBehaviour
 {
-    public ItemSO ItemSO;
+    public ItemDataAndSO ItemSO;
+    //public  ItemDataAndSO;
 
     private Rigidbody _ri;
 
     [SerializeField]
     private string _collidewithTag = "Cart";
-    public void Init(ItemSO itemSO)
+    public void Init(ItemDataAndSO itemSO)
     {
         ItemSO = itemSO;
     }

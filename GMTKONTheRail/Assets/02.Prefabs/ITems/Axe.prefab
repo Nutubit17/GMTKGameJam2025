@@ -133,7 +133,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 039d7ba097da75442bd8cc67c75a288d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemSO: {fileID: 11400000, guid: 4b2614e95fbfd584986ac14108368646, type: 2}
+  ItemSO:
+    ItemSO1: {fileID: 11400000, guid: 4b2614e95fbfd584986ac14108368646, type: 2}
+    Ammo: 0
+    Durability: 0
   _collidewithTag: Cart
 --- !u!65 &5214814430539982287
 BoxCollider:

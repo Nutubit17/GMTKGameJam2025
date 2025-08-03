@@ -24,9 +24,15 @@ public class RailManagement : MonoBehaviour
 
     private void Awake()
     {
+        Init();
+    }
+
+    public void Init()
+    {
         _splineContainer = GetComponent<SplineContainer>();
         _martCart = transform.Find("MartCart").GetComponent<MartCart>();
         _martCart.Init(this);
+        _martCart.gameObject.SetActive(false);
     }
 
     public float GetFullDistance() => _splineContainer.CalculateLength(0);
@@ -71,6 +77,17 @@ public class RailManagement : MonoBehaviour
     {
         _martCart.gameObject.SetActive(true);
         _martCart.AddForce(amount);
+    }
+
+    public void SetToEnd()
+    {
+        _currentPoint = _splineContainer.Spline.Count - 2;
+
+        _currentAmount = Vector3.Distance(
+                    _splineContainer.Spline[_currentPoint].Position,
+                    _splineContainer.Spline[_currentPoint + 1].Position) - 0.01f;
+
+        _totalAmount = GetFullDistance() - 0.01f;
     }
 
     public void Sleep()

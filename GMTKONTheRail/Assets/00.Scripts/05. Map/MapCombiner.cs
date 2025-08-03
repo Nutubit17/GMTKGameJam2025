@@ -103,8 +103,11 @@ public class MapCombiner
             var newObj = GameObject.Instantiate(exceptobj);
             newObj.transform.SetParent(exceptListGameObj.transform);
 
-            if (exceptobj.TryGetComponent<RailManagement>(out var rail))
+            if (newObj.TryGetComponent<RailManagement>(out var rail))
+            {
+                rail.Init();
                 mapObj.SetRail(rail);
+            }
         }
 
         exceptListGameObj.transform.SetParent(bundle.transform);

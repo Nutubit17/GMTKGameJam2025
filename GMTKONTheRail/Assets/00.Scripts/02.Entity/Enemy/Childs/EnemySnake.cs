@@ -10,4 +10,5 @@ public class EnemySnake : EnemyBase
     protected override int _idleBlendEnd => AnimationBlend.Idle.Snake;
 
     protected override int _walkBlend => AnimationBlend.Walk.Snake;
+    protected override int _hitBlend => AnimationBlend.Hit.Snake;
 }

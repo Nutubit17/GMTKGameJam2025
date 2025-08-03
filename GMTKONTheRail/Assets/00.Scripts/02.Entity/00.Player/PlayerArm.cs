@@ -161,20 +161,20 @@ public class PlayerArm : MonoBehaviour,IGetCompoable,IAfterInitable
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            if(CurrentItem.GetItemType().Prefab is not null)
-            {
-                float distance = 1.6f;
-                if (Physics.Raycast(transform.position, transform.forward, out var hit, 1.6f, _whatIsInteractive))
-                    distance = hit.distance;
+            //if(CurrentItem.GetItemType().Prefab is not null)
+            //{
+            //    float distance = 1.6f;
+            //    if (Physics.Raycast(transform.position, transform.forward, out var hit, 1.6f, _whatIsInteractive))
+            //        distance = hit.distance;
 
-                    ItemObject itemObj = Instantiate(CurrentItem.GetItemType().Prefab,transform.position + transform.forward*(distance-0.1f),Quaternion.identity);
+            //        ItemObject itemObj = Instantiate(CurrentItem.GetItemType().Prefab,transform.position + transform.forward*(distance-0.1f),Quaternion.identity);
 
-                itemObj.Init(CurrentItem.GetItemData());
+            //    itemObj.Init(CurrentItem.GetItemData());
 
-                Inventory[CurrentIdx] = _nullItem;
-                SetHoldingItem();
+            //    Inventory[CurrentIdx] = _nullItem;
+            //    SetHoldingItem();
 
-            }
+            //}
 
         }
 
@@ -190,6 +190,24 @@ public class PlayerArm : MonoBehaviour,IGetCompoable,IAfterInitable
             InteractiveableUI?.SetActive(false);
         }
 
+    }
+
+    public void DropItem()
+    {
+        if (CurrentItem.GetItemType().Prefab is not null)
+        {
+            float distance = 1.6f;
+            if (Physics.Raycast(transform.position, transform.forward, out var hit, 1.6f, _whatIsInteractive))
+                distance = hit.distance;
+
+            ItemObject itemObj = Instantiate(CurrentItem.GetItemType().Prefab, transform.position + transform.forward * (distance - 0.1f), Quaternion.identity);
+
+            itemObj.Init(CurrentItem.GetItemData());
+
+            Inventory[CurrentIdx] = _nullItem;
+            SetHoldingItem();
+
+        }
     }
 
     public void EraseItem()

@@ -1072,6 +1072,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 4003607502371343751}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &854668138561048920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2218,6 +2230,18 @@ PrefabInstance:
       propertyPath: InteractiveableUI
       value: 
       objectReference: {fileID: 1975613766253440695}
+    - target: {fileID: 4277234413142782046, guid: b8441bb636b44504f9fa6fcc125a8935, type: 3}
+      propertyPath: Inventory.Array.data[0].ItemSO1
+      value: 
+      objectReference: {fileID: 11400000, guid: a5fb491a7429e5a4fa3f71c53521c63f, type: 2}
+    - target: {fileID: 4277234413142782046, guid: b8441bb636b44504f9fa6fcc125a8935, type: 3}
+      propertyPath: Inventory.Array.data[1].ItemSO1
+      value: 
+      objectReference: {fileID: 11400000, guid: a5fb491a7429e5a4fa3f71c53521c63f, type: 2}
+    - target: {fileID: 4277234413142782046, guid: b8441bb636b44504f9fa6fcc125a8935, type: 3}
+      propertyPath: Inventory.Array.data[2].ItemSO1
+      value: 
+      objectReference: {fileID: 11400000, guid: a5fb491a7429e5a4fa3f71c53521c63f, type: 2}
     - target: {fileID: 4719082688491578906, guid: b8441bb636b44504f9fa6fcc125a8935, type: 3}
       propertyPath: _maxSpeed
       value: 4.3
@@ -2294,7 +2318,8 @@ PrefabInstance:
       propertyPath: _itemType.ItemSO1
       value: 
       objectReference: {fileID: 11400000, guid: 0e1fea6c26503864da244ad4b6c4e70c, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6470720377330289623, guid: b8441bb636b44504f9fa6fcc125a8935, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 11187602772468279, guid: b8441bb636b44504f9fa6fcc125a8935, type: 3}
@@ -2306,7 +2331,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8621679057394406483, guid: b8441bb636b44504f9fa6fcc125a8935, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5643867157636948080}
+      addedObject: {fileID: 4003607502371343751}
     - targetCorrespondingSourceObject: {fileID: 6546694132835304492, guid: b8441bb636b44504f9fa6fcc125a8935, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1650587975436757464}
@@ -2314,6 +2339,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 7961511724868631499}
   m_SourcePrefab: {fileID: 100100000, guid: b8441bb636b44504f9fa6fcc125a8935, type: 3}
+--- !u!95 &2832602085910315672 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1768308569333992381, guid: b8441bb636b44504f9fa6fcc125a8935, type: 3}
+  m_PrefabInstance: {fileID: 4595122771269880101}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4603409720634354450 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 11187602772468279, guid: b8441bb636b44504f9fa6fcc125a8935, type: 3}
@@ -2324,7 +2354,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8621679057394406483, guid: b8441bb636b44504f9fa6fcc125a8935, type: 3}
   m_PrefabInstance: {fileID: 4595122771269880101}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &5643867157636948080
+--- !u!95 &4003607502371343751
 Animator:
   serializedVersion: 7
   m_ObjectHideFlags: 0
@@ -2332,7 +2362,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5216149943805451638}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 17a40692820cdf742920c6e3a6333a6f, type: 2}
   m_CullingMode: 0
@@ -2368,10 +2398,11 @@ MonoBehaviour:
     Ammo: 0
     Durability: 0
   Mom: {fileID: 0}
-  _animator: {fileID: 0}
+  _animator: {fileID: 2832602085910315672}
   _maxSpeed: 4.5
   _summonObj: {fileID: 5742499948105307134, guid: a3e5275ddc862ed42a5583c41083bae6, type: 3}
   _power: 10
+  _isBurning: 0
 --- !u!20 &7667390315746434438 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 6173640206048007331, guid: b8441bb636b44504f9fa6fcc125a8935, type: 3}

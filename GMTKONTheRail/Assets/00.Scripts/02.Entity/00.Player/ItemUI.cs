@@ -32,7 +32,7 @@ public class ItemUI : MonoBehaviour,IGetCompoable,IAfterInitable
     {
         for (int i = 0; i < _image.Length; i++)
         {
-            _image[i].texture = _pLInventory.Inventory[i].ItemIcon;
+            _image[i].texture = _pLInventory.Inventory[i].ItemSO1.ItemIcon;
             
         }
     }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 836835773926197287}
   - component: {fileID: 3492164642201476869}
   - component: {fileID: 47941270237136534}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cola
   m_TagString: Interactive
   m_Icon: {fileID: 0}
@@ -97,7 +97,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 039d7ba097da75442bd8cc67c75a288d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemSO: {fileID: 11400000, guid: 4c9a73a69ef702c4895a5541c098d32a, type: 2}
+  ItemSO:
+    ItemSO1: {fileID: 11400000, guid: 4c9a73a69ef702c4895a5541c098d32a, type: 2}
+    Ammo: 0
+    Durability: 0
+  _collidewithTag: Cart
 --- !u!1001 &1486695829630914653
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -165,6 +169,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: cd35078dbbb800241bcf58061bc8e75c, type: 3}
       propertyPath: m_Name
       value: CanDrink
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cd35078dbbb800241bcf58061bc8e75c, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

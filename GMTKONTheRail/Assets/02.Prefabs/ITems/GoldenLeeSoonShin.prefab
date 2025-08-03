@@ -69,6 +69,10 @@ PrefabInstance:
       value: GoldenLeeSoonShin
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 416e9920c785fc64b8cbf759955212a7, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 416e9920c785fc64b8cbf759955212a7, type: 3}
       propertyPath: m_TagString
       value: Interactive
       objectReference: {fileID: 0}
@@ -153,4 +157,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 039d7ba097da75442bd8cc67c75a288d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemSO: {fileID: 11400000, guid: a7431b725188252498e27f65fd89fcdc, type: 2}
+  ItemSO:
+    ItemSO1: {fileID: 11400000, guid: a7431b725188252498e27f65fd89fcdc, type: 2}
+    Ammo: 0
+    Durability: 0
+  _collidewithTag: Cart

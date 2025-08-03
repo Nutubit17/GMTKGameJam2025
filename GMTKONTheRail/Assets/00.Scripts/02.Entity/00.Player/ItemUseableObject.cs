@@ -3,7 +3,7 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public struct ItemDataAndSO
+public class ItemDataAndSO
 {
     public ItemSO ItemSO1;
     public int Ammo;
@@ -52,19 +52,23 @@ public class ItemUseableObject : MonoBehaviour
         _animator.SetBool("Attack",Mom.PlayerInput.IsFire);
         _animator.SetBool("AltAttack",Mom.PlayerInput.IsAltFire);
         //_animator.SetBool("Reload", Input.GetKeyDown(KeyCode.R));
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            _animator.SetTrigger("Drop");
+        }
     }
 
-    void OnEnable()
+    protected virtual void OnEnable()
     {
         if (!_animator) return;
         _animator.Rebind();
         _animator.Update(0f);
     }
-        void OnDisable()
+   protected virtual void OnDisable()
     {
         if (!_animator) return;
         _animator.Rebind();
-        _animator.Update(0f);
+        //_animator.Update(0f);
     }
     public virtual void UseItem()
     {
@@ -79,5 +83,10 @@ public class ItemUseableObject : MonoBehaviour
     public virtual void AltAltUseItem()
     {
 
+    }
+
+    public virtual void DropItem()
+    {
+        Mom.DropItem();
     }
 }

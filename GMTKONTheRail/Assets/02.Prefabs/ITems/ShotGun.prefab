@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5295017293887073767}
   - component: {fileID: 6270346341599300957}
   - component: {fileID: 3579408468035043726}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: ShotGun
   m_TagString: Interactive
   m_Icon: {fileID: 0}
@@ -47,7 +47,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 039d7ba097da75442bd8cc67c75a288d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemSO: {fileID: 11400000, guid: e8e4a661a9cb1a64faa11b3b0aa819a6, type: 2}
+  ItemSO:
+    ItemSO1: {fileID: 11400000, guid: e8e4a661a9cb1a64faa11b3b0aa819a6, type: 2}
+    Ammo: 0
+    Durability: 0
+  _collidewithTag: Cart
 --- !u!65 &6270346341599300957
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -160,9 +164,17 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -516098083770646512, guid: 7209baa75bfc1694ca7f6ea2f7eedff2, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 7209baa75bfc1694ca7f6ea2f7eedff2, type: 3}
       propertyPath: m_Name
       value: PumpShotgun2
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7209baa75bfc1694ca7f6ea2f7eedff2, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

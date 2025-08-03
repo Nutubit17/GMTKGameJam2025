@@ -13,6 +13,10 @@ PrefabInstance:
       value: Revolver
       objectReference: {fileID: 0}
     - target: {fileID: -7949136978043226412, guid: 50daaa7ffa3e3bc488802116c6dabf8f, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: -7949136978043226412, guid: 50daaa7ffa3e3bc488802116c6dabf8f, type: 3}
       propertyPath: m_TagString
       value: Interactive
       objectReference: {fileID: 0}
@@ -20,6 +24,14 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 82ab3d2a204a18942b2c8659ff677716, type: 2}
+    - target: {fileID: -4996844265513458670, guid: 50daaa7ffa3e3bc488802116c6dabf8f, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: -3629535292588003887, guid: 50daaa7ffa3e3bc488802116c6dabf8f, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: -3124914424127336872, guid: 50daaa7ffa3e3bc488802116c6dabf8f, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.15
@@ -76,6 +88,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -2471992015084790117, guid: 50daaa7ffa3e3bc488802116c6dabf8f, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 780984743773550932, guid: 50daaa7ffa3e3bc488802116c6dabf8f, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -120,7 +136,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 039d7ba097da75442bd8cc67c75a288d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemSO: {fileID: 11400000, guid: 5e05494e7abf06f4db300afe4c892c04, type: 2}
+  ItemSO:
+    ItemSO1: {fileID: 11400000, guid: 5e05494e7abf06f4db300afe4c892c04, type: 2}
+    Ammo: 0
+    Durability: 0
+  _collidewithTag: Cart
 --- !u!136 &7383591720151878560
 CapsuleCollider:
   m_ObjectHideFlags: 0

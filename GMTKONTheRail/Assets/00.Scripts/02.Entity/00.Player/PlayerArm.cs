@@ -1,12 +1,11 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using static AnimationBlend;
 
 public class PlayerArm : MonoBehaviour,IGetCompoable,IAfterInitable
 {
     [SerializeField]
-    private LayerMask _whatIsInteractive;
+    private LayerMask _whatIsInteractive,_whatIsObstacle;
     [SerializeField]
     private float _interactiveDistance = 2.2f;
 
@@ -14,9 +13,9 @@ public class PlayerArm : MonoBehaviour,IGetCompoable,IAfterInitable
 
     private Dictionary<ItemSO, ItemUseableObject> _itemComponents = new();
 
-    [SerializeField] private ItemSO _nullItem;
+    [SerializeField] private ItemDataAndSO _nullItem;
 
-    public ItemSO[] Inventory = new ItemSO[3];
+    public ItemDataAndSO[] Inventory = new ItemDataAndSO[3];
 
     public int CurrentIdx = 0;
 
@@ -55,7 +54,7 @@ public class PlayerArm : MonoBehaviour,IGetCompoable,IAfterInitable
     {
         for (int i = 0; i < Inventory.Length; i++)
         {
-            if (Inventory[i] == needAmmo)
+            if (Inventory[i].ItemSO1 == needAmmo)
             {
                 Inventory[i] = _nullItem;
                 SetHoldingItem();
@@ -68,7 +67,7 @@ public class PlayerArm : MonoBehaviour,IGetCompoable,IAfterInitable
     {
         for (int i = 0; i < Inventory.Length; i++)
         {
-            if (Inventory[i] == needAmmo)
+            if (Inventory[i].ItemSO1 == needAmmo)
             {
                 return true;
             }
@@ -79,11 +78,12 @@ public class PlayerArm : MonoBehaviour,IGetCompoable,IAfterInitable
     private void SetHoldingItem()
     {
 
-        if(_itemComponents.TryGetValue(Inventory[CurrentIdx],out ItemUseableObject value))
+        if(_itemComponents.TryGetValue(Inventory[CurrentIdx].ItemSO1,out ItemUseableObject value))
         {
+
             CurrentItem?.gameObject.SetActive(false);
             CurrentItem = value;
-            CurrentItem.gameObject.SetActive(true);
+            CurrentItem?.gameObject.SetActive(true);
         }
         else
         {
@@ -106,22 +106,22 @@ public class PlayerArm : MonoBehaviour,IGetCompoable,IAfterInitable
         {
             if(hit.transform.gameObject.TryGetComponent<ItemObject>(out ItemObject item))
             {
-                if (Inventory[CurrentIdx] == _nullItem)
+                if (Inventory[CurrentIdx].ItemSO1 == _nullItem.ItemSO1)
                 {
                     Inventory[CurrentIdx] = item.ItemSO;
                     Destroy(hit.transform.gameObject);
                 }
-                else if (Inventory[0] == _nullItem)
+                else if (Inventory[0].ItemSO1 == _nullItem.ItemSO1)
                 {
                     Inventory[0] = item.ItemSO;
                     Destroy(hit.transform.gameObject);
                 }
-                else if (Inventory[1] == _nullItem)
+                else if (Inventory[1].ItemSO1 == _nullItem.ItemSO1)
                 {
                     Inventory[1] = item.ItemSO;
                     Destroy(hit.transform.gameObject);
                 }
-                else if (Inventory[2] == _nullItem)
+                else if (Inventory[2].ItemSO1 == _nullItem.ItemSO1)
                 {
                     Inventory[2] = item.ItemSO;
                     Destroy(hit.transform.gameObject);
@@ -162,16 +162,20 @@ public class PlayerArm : MonoBehaviour,IGetCompoable,IAfterInitable
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            if(CurrentItem.GetItemType().Prefab is not null)
-            {
-                ItemObject itemObj = Instantiate(CurrentItem.GetItemType().Prefab,transform.position + transform.forward*1.5f,Quaternion.identity);
+            //if(CurrentItem.GetItemType().Prefab is not null)
+            //{
+            //    float distance = 1.6f;
+            //    if (Physics.Raycast(transform.position, transform.forward, out var hit, 1.6f, _whatIsInteractive))
+            //        distance = hit.distance;
 
-                itemObj.Init(CurrentItem.GetItemType());
+            //        ItemObject itemObj = Instantiate(CurrentItem.GetItemType().Prefab,transform.position + transform.forward*(distance-0.1f),Quaternion.identity);
 
-                Inventory[CurrentIdx] = _nullItem;
-                SetHoldingItem();
+            //    itemObj.Init(CurrentItem.GetItemData());
 
-            }
+            //    Inventory[CurrentIdx] = _nullItem;
+            //    SetHoldingItem();
+
+            //}
 
         }
 
@@ -187,6 +191,24 @@ public class PlayerArm : MonoBehaviour,IGetCompoable,IAfterInitable
             InteractiveableUI?.SetActive(false);
         }
 
+    }
+
+    public void DropItem()
+    {
+        if (CurrentItem.GetItemType().Prefab is not null)
+        {
+            float distance = 1.6f;
+            if (Physics.Raycast(transform.position, transform.forward, out var hit, 1.6f, _whatIsInteractive))
+                distance = hit.distance;
+
+            ItemObject itemObj = Instantiate(CurrentItem.GetItemType().Prefab, transform.position + transform.forward * (distance - 0.1f), Quaternion.identity);
+
+            itemObj.Init(CurrentItem.GetItemData());
+
+            Inventory[CurrentIdx] = _nullItem;
+            SetHoldingItem();
+
+        }
     }
 
     public void EraseItem()

@@ -64,6 +64,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShotgunPellet
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 13d6c803f43f3ab45a863f3b36baafcc, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -143,5 +147,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 039d7ba097da75442bd8cc67c75a288d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemSO: {fileID: 11400000, guid: 7a27a65f6673bd44ea5225f5748901bb, type: 2}
+  ItemSO:
+    ItemSO1: {fileID: 11400000, guid: 7a27a65f6673bd44ea5225f5748901bb, type: 2}
+    Ammo: 0
+    Durability: 0
   _collidewithTag: Cart

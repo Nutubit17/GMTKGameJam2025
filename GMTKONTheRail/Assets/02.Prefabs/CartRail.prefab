@@ -55,10 +55,10 @@ MonoBehaviour:
   _downHillMoveMultiplier: 1.5
   _maxForce: 50
   _totalForce: 0
-  _positionShakeness: 0.032
-  _positionFrequency: 7.08
-  _rotationShakeness: 2.6
-  _rotationFrequency: 7.2
+  _positionShakeness: 0
+  _positionFrequency: 0.1
+  _rotationShakeness: 0
+  _rotationFrequency: 0.1
 --- !u!65 &3299198365701406093
 BoxCollider:
   m_ObjectHideFlags: 0

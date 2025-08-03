@@ -11,6 +11,8 @@ public class HealthCompo : MonoBehaviour,IGetCompoable,IGetDamageable
     public UnityEvent OnDeadEvent;
 
     private Entity _agent;
+
+    private bool _isDead = false;
     public void Init(Entity agent)
     {
        _agent = agent;
@@ -27,7 +29,12 @@ public class HealthCompo : MonoBehaviour,IGetCompoable,IGetDamageable
             _hp = Mathf.Clamp(_hp, 0, _maxHp);
             if (_hp <= 0)
             {
-                OnDeadEvent?.Invoke();
+                if (!_isDead)
+                {
+                    OnDeadEvent?.Invoke();
+                    _isDead = true;
+                }
+
             }
         }
     }

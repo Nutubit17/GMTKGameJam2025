@@ -3,7 +3,7 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public struct ItemDataAndSO
+public class ItemDataAndSO
 {
     public ItemSO ItemSO1;
     public int Ammo;

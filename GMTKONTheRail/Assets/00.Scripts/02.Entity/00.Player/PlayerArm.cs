@@ -1,12 +1,11 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using static AnimationBlend;
 
 public class PlayerArm : MonoBehaviour,IGetCompoable,IAfterInitable
 {
     [SerializeField]
-    private LayerMask _whatIsInteractive;
+    private LayerMask _whatIsInteractive,_whatIsObstacle;
     [SerializeField]
     private float _interactiveDistance = 2.2f;
 
@@ -14,9 +13,9 @@ public class PlayerArm : MonoBehaviour,IGetCompoable,IAfterInitable
 
     private Dictionary<ItemSO, ItemUseableObject> _itemComponents = new();
 
-    [SerializeField] private ItemSO _nullItem;
+    [SerializeField] private ItemDataAndSO _nullItem;
 
-    public ItemSO[] Inventory = new ItemSO[3];
+    public ItemDataAndSO[] Inventory = new ItemDataAndSO[3];
 
     public int CurrentIdx = 0;
 
@@ -55,7 +54,7 @@ public class PlayerArm : MonoBehaviour,IGetCompoable,IAfterInitable
     {
         for (int i = 0; i < Inventory.Length; i++)
         {
-            if (Inventory[i] == needAmmo)
+            if (Inventory[i].ItemSO1 == needAmmo)
             {
                 Inventory[i] = _nullItem;
                 SetHoldingItem();
@@ -68,7 +67,7 @@ public class PlayerArm : MonoBehaviour,IGetCompoable,IAfterInitable
     {
         for (int i = 0; i < Inventory.Length; i++)
         {
-            if (Inventory[i] == needAmmo)
+            if (Inventory[i].ItemSO1 == needAmmo)
             {
                 return true;
             }
@@ -79,7 +78,7 @@ public class PlayerArm : MonoBehaviour,IGetCompoable,IAfterInitable
     private void SetHoldingItem()
     {
 
-        if(_itemComponents.TryGetValue(Inventory[CurrentIdx],out ItemUseableObject value))
+        if(_itemComponents.TryGetValue(Inventory[CurrentIdx].ItemSO1,out ItemUseableObject value))
         {
             CurrentItem?.gameObject.SetActive(false);
             CurrentItem = value;
@@ -164,9 +163,13 @@ public class PlayerArm : MonoBehaviour,IGetCompoable,IAfterInitable
         {
             if(CurrentItem.GetItemType().Prefab is not null)
             {
-                ItemObject itemObj = Instantiate(CurrentItem.GetItemType().Prefab,transform.position + transform.forward*1.5f,Quaternion.identity);
+                float distance = 1.6f;
+                if (Physics.Raycast(transform.position, transform.forward, out var hit, 1.6f, _whatIsInteractive))
+                    distance = hit.distance;
 
-                itemObj.Init(CurrentItem.GetItemType());
+                    ItemObject itemObj = Instantiate(CurrentItem.GetItemType().Prefab,transform.position + transform.forward*(distance-0.1f),Quaternion.identity);
+
+                itemObj.Init(CurrentItem.GetItemData());
 
                 Inventory[CurrentIdx] = _nullItem;
                 SetHoldingItem();

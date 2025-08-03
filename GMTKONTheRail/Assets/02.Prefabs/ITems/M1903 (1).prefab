@@ -76,9 +76,17 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 7d42eb06d4e638744a14f47ad217efbd, type: 2}
+    - target: {fileID: -516098083770646512, guid: f437f4e5d90bb0b488f3102737488dc4, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f437f4e5d90bb0b488f3102737488dc4, type: 3}
       propertyPath: m_Name
       value: M1903 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f437f4e5d90bb0b488f3102737488dc4, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f437f4e5d90bb0b488f3102737488dc4, type: 3}
       propertyPath: m_TagString
@@ -116,6 +124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemSO: {fileID: 11400000, guid: 06ec5799f8a4d6d479e96fbc8444b406, type: 2}
+  _collidewithTag: Cart
 --- !u!54 &3173419621389638625
 Rigidbody:
   m_ObjectHideFlags: 0

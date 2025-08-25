@@ -41,6 +41,37 @@ public class MartCart : MonoBehaviour
         //    AddForce(Vector3.right * 20);
     }
 
+    public void TP2Pos(Vector3 pos)
+    {
+        if (GameManager.Instance.PlayerInstance is not null)
+        {
+            //Vector3 plpos = transform.InverseTransformPoint(GameManager.Instance.PlayerInstance.transform.position);
+            //Quaternion plrot =  GameManager.Instance.PlayerInstance.transform.rotation * Quaternion.Inverse(transform.rotation);
+            //Matrix4x4 plmatrix = GameManager.Instance.PlayerInstance.transform.localToWorldMatrix * transform.worldToLocalMatrix;
+            Transform mom = GameManager.Instance.PlayerInstance.transform.parent;
+            GameManager.Instance.PlayerInstance.transform.parent = transform;
+
+        transform.position = pos;
+        MoveUpdate(0);
+
+            Invoke(nameof(NoMomPL),0.03f);
+            //GameManager.Instance.PlayerInstance.transform.parent = mom;
+
+            //plmatrix *= transform.localToWorldMatrix;
+            //GameManager.Instance.PlayerInstance.transform.SetPositionAndRotation(transform.TransformPoint(plpos),plrot * transform.rotation);
+        }
+        else
+        {
+            transform.position = pos;
+            MoveUpdate(0);
+        }
+    }
+
+    private void NoMomPL()
+    {
+        GameManager.Instance.PlayerInstance.transform.parent = null;
+    }
+
     public void FixedUpdate()
     {
         float frictionDelta = Mathf.Pow(1 - _friction, Time.fixedDeltaTime);
@@ -84,7 +115,7 @@ public class MartCart : MonoBehaviour
         _railManagement.GetPositionAndDirection(out var position, out var direction);
 
         float shakeRotation = 0;
-        ShakeDecoration(ref position, ref shakeRotation);
+        //ShakeDecoration(ref position, ref shakeRotation);
 
         transform.position = position;
 

@@ -6,7 +6,7 @@ public class CoinItemUseable : ItemUseableObject
     private LayerMask _whatIsInteractive;
     public void UseCoin()
     {
-        if (Physics.Raycast(transform.position, transform.forward, out var hit, 2.2f, _whatIsInteractive))
+        if (Physics.Raycast(transform.position, transform.forward, out var hit, 2.2f, _whatIsInteractive,QueryTriggerInteraction.Ignore))
         {
             if (hit.transform.gameObject.TryGetComponent<ICoinUseable>(out ICoinUseable a))
             {

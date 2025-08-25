@@ -19,7 +19,7 @@ public class ItemObject : MonoBehaviour
         _ri.isKinematic = false;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
         //foreach (string item in _noCollision)
         //    if (collision.gameObject.CompareTag(item))

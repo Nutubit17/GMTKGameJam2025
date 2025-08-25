@@ -29,6 +29,10 @@ public class GunItemUseable : ItemUseableObject
         {
             _animator.SetBool("Reload", false);
         }
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            _animator.SetTrigger("Drop");
+        }
     }
 
     public void AddAmmo()

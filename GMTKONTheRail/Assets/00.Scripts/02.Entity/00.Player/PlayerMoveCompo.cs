@@ -68,7 +68,8 @@ public class PlayerMoveCompo : MoveCompo,IGetCompoable
 
         Vector3 input = BashUtils.V2toV3(_player.PlayerInput.movement);
         //_movDir = BashUtils.V3X0Z(cameraRoot.TransformVector(input)).normalized;
-        input = (Quaternion.Euler(0, _mouseSum.x, 0) * input);
+        //input = (Quaternion.Euler(0, _mouseSum.x, 0) * input);
+        input = (Quaternion.Euler(0, cameraRoot.eulerAngles.y, 0) * input);
 
         //���� ��� ���� ������ �����ϱ� ���� ��� ����(Overlap)�� ������ ���� ����(SphereCast)�� ��������.
         if (Physics.OverlapSphereNonAlloc(transform.position-Vector3.up*_plHeight/2,_plRaius+0.1f,_groundCheckCols,_whatIsGround) > 0) //������ üũ(�γ��� ����)
@@ -169,10 +170,12 @@ public class PlayerMoveCompo : MoveCompo,IGetCompoable
     private void RotateCamera()
     {
         //_mouseTmp += RPlayerMana.Instance.playerInput.mouseMov*_mouseSpeed;
-        _mouseSum.x += Input.GetAxisRaw("Mouse X") * _mouseSpeed ;
+        cameraRoot.Rotate(0, Input.GetAxisRaw("Mouse X") * _mouseSpeed, 0);//_mouseSum.x += Input.GetAxisRaw("Mouse X") * _mouseSpeed ; //Mart Cart Issue: teleport can not touch rotation TT
+
+
         _mouseSum.y -= Input.GetAxisRaw("Mouse Y")  *_mouseSpeed;
         _mouseSum.y = Mathf.Clamp(_mouseSum.y, -89, 89);
 
-        cameraRoot.rotation = Quaternion.Euler(_mouseSum.y, _mouseSum.x, 0);
+        cameraRoot.rotation = Quaternion.Euler(_mouseSum.y, cameraRoot.eulerAngles.y, 0);//_mouseSum.x, 0);
     }
 }

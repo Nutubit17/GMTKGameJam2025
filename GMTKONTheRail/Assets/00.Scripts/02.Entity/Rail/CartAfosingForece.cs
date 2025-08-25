@@ -9,6 +9,7 @@ public class CartAfosingForece : MonoBehaviour
 
     private void Start()
     {
+        if(_martCart == null)
         _martCart = GetComponent<MartCart>();
     }
 

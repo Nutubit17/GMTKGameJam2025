@@ -11,7 +11,7 @@ public class LanternHeadBody : LightObject, ICoinUseable
 
     public void UseCoin()
     {
-        UseCoinRoutine();
+        StartCoroutine(UseCoinRoutine());
     }
 
     private IEnumerator UseCoinRoutine()

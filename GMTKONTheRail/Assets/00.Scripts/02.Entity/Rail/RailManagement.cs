@@ -5,12 +5,16 @@ using UnityEngine;
 using UnityEngine.Splines;
 
 [RequireComponent(typeof(SplineContainer))]
-public class RailManagement : MonoBehaviour
+public class RailManagement : MonoBehaviour,IGetCompoable
 {
     /* Component */
     [SerializeField] private SplineContainer _splineContainer;
     [SerializeField] private MartCart _martCart;
     
+    public MartCart GetMartCart()
+    {
+        return _martCart;
+    }
     /* Temp */
 
     private Vector3 _lastDirection = Vector3.zero;
@@ -230,4 +234,8 @@ public class RailManagement : MonoBehaviour
         //}
     }
 
+    public void Init(Entity agent)
+    {
+        //throw new NotImplementedException();
+    }
 }

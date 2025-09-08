@@ -102,8 +102,15 @@ public class EnemyBase : HealthCompo
         //_ragdoll.gameObject.SetActive(true);
         _animator.enabled = false;
         _ragdoll.AddForce(transform.forward * -20);
+        StopAllCoroutines();
 
-        Destroy(gameObject, 100f);
+        while(transform.childCount >0)
+        {
+            Transform a = transform.GetChild(0);
+            a.parent= null;
+            Destroy(a.gameObject, 5f);
+        }
+        Destroy(gameObject, 0.1f);
     }
 
     public IEnumerator StateOuterRoutine()
@@ -114,7 +121,7 @@ public class EnemyBase : HealthCompo
 
         while (true)
         {
-            if (!_hitCheckTimer.Check() && isActive) // 지금 막 hit 이라면
+            if (!_hitCheckTimer.Check() && isActive && !_isDie) // 지금 막 hit 이라면
             {
                 StopCoroutine(routine);
                 isActive = false;
@@ -122,7 +129,7 @@ public class EnemyBase : HealthCompo
                 PlayAnimation(_hitHash, _hitBlend);
                 _rigidbody.AddForce(-transform.forward * 50);
             }
-            else if (_hitCheckTimer.Check() && !isActive)
+            else if (_hitCheckTimer.Check() && !isActive && !_isDie)
             {
                 StartCoroutine(routine);
                 isActive = true;

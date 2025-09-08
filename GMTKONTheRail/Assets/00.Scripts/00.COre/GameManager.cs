@@ -8,7 +8,20 @@ public class GameManager : Entity
 
     public PlayerBash PlayerInstance;
 
-    public static GameManager Instance;
+    private static GameManager _instance;
+
+    public static GameManager Instance
+    {
+        get {
+            if(_instance == null)
+            {
+                _instance = new GameObject("GameManager").AddComponent<GameManager>();
+                return _instance;
+            }
+
+
+            return _instance; }
+    }   
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -18,7 +31,7 @@ public class GameManager : Entity
         Screen.fullScreen = true;
         
         base.Awake();
-        Instance = this;
+        _instance = this;
         SetHightPower();
     }
     [ContextMenu("SetFloat")]

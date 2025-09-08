@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerCameraManager : MonoBehaviour
 {
-    [SerializeField] private Camera _camera;
+    [SerializeField] private Transform _camera;
     [SerializeField] private PlayerMoveCompo PlayerMoveComp;
 
     [SerializeField] private float tiltAmount = 5f; // �ִ� ���� ����

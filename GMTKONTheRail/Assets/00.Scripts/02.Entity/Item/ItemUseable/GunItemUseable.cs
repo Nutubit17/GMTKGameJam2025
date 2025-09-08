@@ -13,11 +13,11 @@ public class GunItemUseable : ItemUseableObject
     protected int _maxAmmo = 5;
 
     [SerializeField]
-    protected float _seaGrapes = 0, _Bulletcnt = 1;
+    protected float _seaGrapes = 0.01f, _Bulletcnt = 1;
 
     public override void Update()
     {
-        _animator.SetFloat("Speed", _playerRi.linearVelocity.magnitude / _maxSpeed, 0.1f, 0.05f);
+        _animator.SetFloat("Speed", _playerRi.linearVelocity.magnitude / _maxSpeed, 0.2f, 0.02f);
         _animator.SetFloat("RunSpeed", Mathf.Lerp(0.5f, 1.4f, _playerRi.linearVelocity.magnitude / _maxSpeed), 0.1f, 0.05f);
         _animator.SetBool("Attack", Mom.PlayerInput.IsFire & _itemType.Ammo >0);
         _animator.SetBool("AltAttack", Mom.PlayerInput.IsAltFire);
@@ -38,7 +38,7 @@ public class GunItemUseable : ItemUseableObject
     public void AddAmmo()
     {
         _itemType.Ammo++;
-        Debug.Log(_itemType.Ammo);
+        //Debug.Log(_itemType.Ammo);
     }
 
     public void ShootBullet()

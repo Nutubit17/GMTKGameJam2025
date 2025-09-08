@@ -274,17 +274,6 @@ Rigidbody:
   m_CorrespondingSourceObject: {fileID: 7221095262694216355, guid: 35cf916212b89e7408e85dfbf1a70259, type: 3}
   m_PrefabInstance: {fileID: 7917463972359596057}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1306011096882882050 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9223259493748330011, guid: 35cf916212b89e7408e85dfbf1a70259, type: 3}
-  m_PrefabInstance: {fileID: 7917463972359596057}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f56c9b6610bdd574ea865643547e3965, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &2471636363787020501 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5741385449818341580, guid: 35cf916212b89e7408e85dfbf1a70259, type: 3}
@@ -304,6 +293,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0b6869a00678b1647a4a286dce25e025, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!54 &7099737522531658621 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 1109906556456043364, guid: 35cf916212b89e7408e85dfbf1a70259, type: 3}
+  m_PrefabInstance: {fileID: 7917463972359596057}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8306167723679056277 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2208193189721336204, guid: 35cf916212b89e7408e85dfbf1a70259, type: 3}
+  m_PrefabInstance: {fileID: 7917463972359596057}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f56c9b6610bdd574ea865643547e3965, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &8820588064553634731 stripped
@@ -333,8 +338,8 @@ MonoBehaviour:
   _animator: {fileID: 5756224619093544519}
   _rigidbody: {fileID: 708754443072928442}
   _visual: {fileID: 2471636363787020501}
-  _ragdoll: {fileID: 0}
-  _enemyAnimationTrigger: {fileID: 1306011096882882050}
+  _ragdoll: {fileID: 7099737522531658621}
+  _enemyAnimationTrigger: {fileID: 8306167723679056277}
   _freezeTimer:
     waitTime: 5
   _attackTimer:

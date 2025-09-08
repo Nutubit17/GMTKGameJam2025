@@ -1,4 +1,7 @@
+using System;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public class TransformTracer : MonoBehaviour
 {
@@ -8,4 +11,6 @@ public class TransformTracer : MonoBehaviour
     {
         _targetTransform.SetPositionAndRotation(transform.position, transform.rotation);
     }
+
+
 }

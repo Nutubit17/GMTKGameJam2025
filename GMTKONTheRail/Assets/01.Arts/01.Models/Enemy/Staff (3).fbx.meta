@@ -3,7 +3,17 @@ guid: 090c095f60bc0eb429a03280621e604e
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WhiteMetal64.png
+    second: {fileID: 2100000, guid: ccf4bc450f7ed1e45a2832596d6028c1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: YellowCheck64.png
+    second: {fileID: 2100000, guid: 8d4541919f5f8b34a8d8418ce68dc2df, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -17,7 +27,37 @@ ModelImporter:
     removeConstantScaleCurves: 0
     motionNodeName: 
     animationImportErrors: 
-    animationImportWarnings: 
+    animationImportWarnings: "\nClip 'Walk' has import animation warnings that might
+      lower retargeting quality:\nNote: Activate translation DOF on avatar to improve
+      retargeting quality.\n\t'Arms' is inbetween humanoid transforms and has rotation
+      animation that will be discarded.\n\nClip 'Walk_Spider' has import animation
+      warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'Waist' is inbetween humanoid
+      transforms and has rotation animation that will be discarded.\n\nClip 'Walk_Snake'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Waist'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\nClip
+      'Hit' has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Waist'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\nClip
+      'Hit_Snake' has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Waist'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\nClip
+      'Attack_Spider' has import animation warnings that might lower retargeting
+      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'Waist'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\nClip
+      'Attack1' has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Arms'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'Waist'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\nClip
+      'Attack2' has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Waist'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\nClip
+      'Attack_Snake' has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Arms'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'Waist'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'Legs'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -73,7 +113,7 @@ ModelImporter:
     tangentImportMode: 3
     normalCalculationMode: 4
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
-    blendShapeNormalImportMode: 1
+    blendShapeNormalImportMode: 0
     normalSmoothingSource: 0
   referencedClips: []
   importAnimation: 1

@@ -91,7 +91,7 @@ public class PlayerMoveCompo : MoveCompo,IGetCompoable
                 accelModify = _onAirAccel;
                 maxSpeedModify = _onAirSpeed;
 
-                rigidCompo.AddForce(Vector3.up*_gravity,ForceMode.Impulse);
+                //rigidCompo.AddForce(Vector3.up*_gravity,ForceMode.Impulse);
             }
         }
         else
@@ -143,7 +143,7 @@ public class PlayerMoveCompo : MoveCompo,IGetCompoable
         if (_isCanJump)
         {
             transform.position = transform.position + Vector3.up * 0.01f;
-            rigidCompo.AddForce(transform.up * (_jumpPower + _gravity), ForceMode.Impulse);
+            rigidCompo.AddForce(transform.up * (_jumpPower), ForceMode.Impulse);
         }
 
     }
@@ -170,11 +170,13 @@ public class PlayerMoveCompo : MoveCompo,IGetCompoable
     private void RotateCamera()
     {
         //_mouseTmp += RPlayerMana.Instance.playerInput.mouseMov*_mouseSpeed;
-        cameraRoot.Rotate(0, Input.GetAxisRaw("Mouse X") * _mouseSpeed, 0);//_mouseSum.x += Input.GetAxisRaw("Mouse X") * _mouseSpeed ; //Mart Cart Issue: teleport can not touch rotation TT
-
+        //cameraRoot.Rotate(0, Input.GetAxisRaw("Mouse X") * _mouseSpeed, 0);//_mouseSum.x += Input.GetAxisRaw("Mouse X") * _mouseSpeed ; //Mart Cart Issue: teleport can not touch rotation TT
+        //cameraRoot.Rotate(cameraRoot.up, Input.GetAxisRaw("Mouse X") * _mouseSpeed);
+        cameraRoot.localRotation = cameraRoot.localRotation * Quaternion.Inverse(cameraRoot.localRotation) 
+            * Quaternion.Euler(0, Input.GetAxisRaw("Mouse X") * _mouseSpeed, 0) * cameraRoot.localRotation;
 
         _mouseSum.y -= Input.GetAxisRaw("Mouse Y")  *_mouseSpeed;
-        _mouseSum.y = Mathf.Clamp(_mouseSum.y, -89, 89);
+        _mouseSum.y = Mathf.Clamp(_mouseSum.y, -80, 80);
 
         cameraRoot.rotation = Quaternion.Euler(_mouseSum.y, cameraRoot.eulerAngles.y, 0);//_mouseSum.x, 0);
     }

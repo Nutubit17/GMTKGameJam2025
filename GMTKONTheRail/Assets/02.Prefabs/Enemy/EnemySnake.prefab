@@ -188,6 +188,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.x
       value: -14.166668
       objectReference: {fileID: 0}
+    - target: {fileID: 7540212698978019858, guid: 35cf916212b89e7408e85dfbf1a70259, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.079
+      objectReference: {fileID: 0}
     - target: {fileID: 7722459892125553079, guid: 35cf916212b89e7408e85dfbf1a70259, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 31.25
@@ -332,7 +336,19 @@ MonoBehaviour:
   _hp: 0
   OnDeadEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8895548834383358445}
+        m_TargetAssemblyTypeName: ItemSpawner, Assembly-CSharp
+        m_MethodName: SpawnItem
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _enemyInfo: {fileID: 11400000, guid: c1bd784176b4df54394c8334573c790e, type: 2}
   _player: {fileID: 0}
   _animator: {fileID: 5756224619093544519}
@@ -351,3 +367,14 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2
   _rotateTransition: 0.75
+--- !u!114 &8895548834383358445 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1626693368601706996, guid: 35cf916212b89e7408e85dfbf1a70259, type: 3}
+  m_PrefabInstance: {fileID: 7917463972359596057}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d47a26140675254eaa5b35e975d1a65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

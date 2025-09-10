@@ -72,6 +72,10 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 116
       objectReference: {fileID: 0}
+    - target: {fileID: 7540212698978019858, guid: 35cf916212b89e7408e85dfbf1a70259, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3673232942221209336, guid: 35cf916212b89e7408e85dfbf1a70259, type: 3}
     m_RemovedGameObjects: []
@@ -105,6 +109,17 @@ Rigidbody:
   m_CorrespondingSourceObject: {fileID: 1109906556456043364, guid: 35cf916212b89e7408e85dfbf1a70259, type: 3}
   m_PrefabInstance: {fileID: 2333291133496055215}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3959419353067476059 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1626693368601706996, guid: 35cf916212b89e7408e85dfbf1a70259, type: 3}
+  m_PrefabInstance: {fileID: 2333291133496055215}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d47a26140675254eaa5b35e975d1a65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4028749661290280477 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1696024812305474482, guid: 35cf916212b89e7408e85dfbf1a70259, type: 3}
@@ -126,7 +141,19 @@ MonoBehaviour:
   _hp: 0
   OnDeadEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3959419353067476059}
+        m_TargetAssemblyTypeName: ItemSpawner, Assembly-CSharp
+        m_MethodName: SpawnItem
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _enemyInfo: {fileID: 11400000, guid: 99d13374a72e72945af6b8e47a3ba6fc, type: 2}
   _player: {fileID: 0}
   _animator: {fileID: 172209564241261553}

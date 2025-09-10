@@ -22,7 +22,7 @@ public class Projectile : MonoBehaviour
             if(_particleSystem != null)
             Instantiate(_particleSystem, hit.point, Quaternion.LookRotation(hit.normal)).Play();
 
-            Debug.Log(hit.collider.gameObject.name);
+            //Debug.Log(hit.collider.gameObject.name);
 
             Destroy(gameObject);
         }

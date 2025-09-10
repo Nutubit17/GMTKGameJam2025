@@ -17,7 +17,7 @@ public class PlayerSatus : MonoBehaviour, IGetCompoable,IAfterInitable
     }
     public void AfterInit()
     {
-        
+        PlHeatlhCOmpo = Mom.GetCompo<PlayerHEalth>();
     }
 
     private void Start()
@@ -33,12 +33,16 @@ public class PlayerSatus : MonoBehaviour, IGetCompoable,IAfterInitable
             {
                 if (CurrentStemina < MaxStemina)
                 {
-                    AddMaxStemina(Mathf.Min(Random.Range(-0.8f, 0.1f), 0));
+                    AddMaxStemina(Mathf.Min(Random.Range(-0.7f, 0.1f), 0));
                     AddStemina(Random.Range(0.5f, 2));
+                    if (Random.Range(0, 4) > 1)
+                        PlHeatlhCOmpo?.Damage(-0.1f);
                 }
                 else
                 {
                     AddMaxStemina(Mathf.Min(Random.Range(-0.15f, 0.6f), 0));
+                    if (Random.Range(0, 3) > 1)
+                        PlHeatlhCOmpo?.Damage(-0.05f);
                 }
 
             }
@@ -51,14 +55,15 @@ public class PlayerSatus : MonoBehaviour, IGetCompoable,IAfterInitable
     }
     public void AddStemina(float stemina)
     {
-        if(Random.Range(0,10) > 6)
-        PlHeatlhCOmpo?.Damage(-0.5f);
+        //if(Random.Range(0,10) > 6)
+        //PlHeatlhCOmpo?.Damage(-0.5f);
         CurrentStemina = Mathf.Clamp(CurrentStemina + stemina,0,MaxStemina);
     }
 
     public void AddMaxStemina(float stemina)
     {
-        PlHeatlhCOmpo?.Damage(-0.8f);
+        if(stemina >0)
+        PlHeatlhCOmpo?.Damage(-0.9f);
         MaxStemina = Mathf.Clamp(MaxStemina + stemina, 0, MaxMaxStemina);
         AddStemina(0);
     }

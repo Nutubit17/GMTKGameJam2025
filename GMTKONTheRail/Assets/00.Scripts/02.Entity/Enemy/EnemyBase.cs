@@ -104,6 +104,7 @@ public class EnemyBase : HealthCompo
         _ragdoll.AddForce(transform.forward * -20);
         StopAllCoroutines();
 
+        OnDeadEvent?.Invoke();
         while(transform.childCount >0)
         {
             Transform a = transform.GetChild(0);

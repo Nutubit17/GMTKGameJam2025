@@ -41,20 +41,22 @@ public class MartCart : MonoBehaviour
         //    AddForce(Vector3.right * 20);
     }
 
-    public void TP2Pos(Vector3 pos)
+    public void TP2Pos(Vector3 pos,bool cartOnly)
     {
         if (GameManager.Instance.PlayerInstance is not null)
         {
             //Vector3 plpos = transform.InverseTransformPoint(GameManager.Instance.PlayerInstance.transform.position);
             //Quaternion plrot =  GameManager.Instance.PlayerInstance.transform.rotation * Quaternion.Inverse(transform.rotation);
             //Matrix4x4 plmatrix = GameManager.Instance.PlayerInstance.transform.localToWorldMatrix * transform.worldToLocalMatrix;
-            Transform mom = GameManager.Instance.PlayerInstance.transform.parent;
-            GameManager.Instance.PlayerInstance.transform.parent = transform;
-
+            if (!cartOnly)
+            {
+                Transform mom = GameManager.Instance.PlayerInstance.transform.parent;
+                GameManager.Instance.PlayerInstance.transform.parent = transform;
+            }
         transform.position = pos;
         MoveUpdate(0);
-
-            Invoke(nameof(NoMomPL),0.03f);
+            if (!cartOnly)
+                Invoke(nameof(NoMomPL),0.03f);
             //GameManager.Instance.PlayerInstance.transform.parent = mom;
 
             //plmatrix *= transform.localToWorldMatrix;

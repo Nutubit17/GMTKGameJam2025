@@ -104,27 +104,27 @@ public class PlayerArm : MonoBehaviour,IGetCompoable,IAfterInitable
     {
         if(Physics.Raycast(transform.position,transform.forward,out var hit,2.2f,_whatIsInteractive))
         {
-            if(hit.transform.gameObject.TryGetComponent<ItemObject>(out ItemObject item))
+            if(hit.transform.gameObject.TryGetComponent<IInteractiveable>(out IInteractiveable interactiveable))
             {
-                if (Inventory[CurrentIdx].ItemSO1 == _nullItem.ItemSO1)
+                ItemDataAndSO item = interactiveable.Intreractive();
+                if (item != null)
                 {
-                    Inventory[CurrentIdx] = item.ItemSO;
-                    Destroy(hit.transform.gameObject);
-                }
-                else if (Inventory[0].ItemSO1 == _nullItem.ItemSO1)
-                {
-                    Inventory[0] = item.ItemSO;
-                    Destroy(hit.transform.gameObject);
-                }
-                else if (Inventory[1].ItemSO1 == _nullItem.ItemSO1)
-                {
-                    Inventory[1] = item.ItemSO;
-                    Destroy(hit.transform.gameObject);
-                }
-                else if (Inventory[2].ItemSO1 == _nullItem.ItemSO1)
-                {
-                    Inventory[2] = item.ItemSO;
-                    Destroy(hit.transform.gameObject);
+                    if (Inventory[CurrentIdx].ItemSO1 == _nullItem.ItemSO1)
+                    {
+                        Inventory[CurrentIdx] = item;
+                    }
+                    else if (Inventory[0].ItemSO1 == _nullItem.ItemSO1)
+                    {
+                        Inventory[0] = item;
+                    }
+                    else if (Inventory[1].ItemSO1 == _nullItem.ItemSO1)
+                    {
+                        Inventory[1] = item;
+                    }
+                    else if (Inventory[2].ItemSO1 == _nullItem.ItemSO1)
+                    {
+                        Inventory[2] = item;
+                    }
                 }
                 SetHoldingItem();
             }

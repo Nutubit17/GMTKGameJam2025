@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ItemObject : MonoBehaviour
+public class ItemObject : MonoBehaviour,IInteractiveable
 {
     public ItemDataAndSO ItemSO;
     //public  ItemDataAndSO;
@@ -13,6 +13,13 @@ public class ItemObject : MonoBehaviour
     {
         ItemSO = itemSO;
     }
+
+    public ItemDataAndSO Intreractive()
+    {
+        Destroy(gameObject,0.01f);
+        return ItemSO;
+    }
+
     private void OnEnable()
     {
         _ri = GetComponent<Rigidbody>();

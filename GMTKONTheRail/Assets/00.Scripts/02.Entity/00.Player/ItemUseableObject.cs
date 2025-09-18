@@ -25,6 +25,9 @@ public class ItemUseableObject : MonoBehaviour
     [SerializeField]
     protected float _maxSpeed =4.5f;
 
+    [SerializeField]
+    protected float _animSpeed = 1.0f;
+
     public virtual void Init(PlayerArm arm)
     {
         Mom = arm;
@@ -71,6 +74,7 @@ public class ItemUseableObject : MonoBehaviour
         if (!_animator) return;
         _animator.Rebind();
         _animator.Update(0f);
+        _animator.speed = _animSpeed;
     }
    protected virtual void OnDisable()
     {

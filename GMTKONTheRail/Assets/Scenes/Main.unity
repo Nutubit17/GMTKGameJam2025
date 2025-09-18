@@ -1145,7 +1145,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6470213752803437678, guid: 1b49b49992f2c144aa259a99f6744ee8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 13.916901
+      value: 35.3496
       objectReference: {fileID: 0}
     - target: {fileID: 6470213752803437678, guid: 1b49b49992f2c144aa259a99f6744ee8, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2877,7 +2877,7 @@ Transform:
   m_GameObject: {fileID: 920678739}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.086, y: 0.34, z: 0.857}
+  m_LocalPosition: {x: -0.086, y: 0.34, z: 1.077}
   m_LocalScale: {x: 1.1999998, y: 0.8, z: 1.1999998}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2896,7 +2896,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _martCart: {fileID: 1641401543}
-  _forceMultipier: -1
+  _forceMultipier: -2
 --- !u!65 &920678742
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24782,7 +24782,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3759004479383422071, guid: 35cf916212b89e7408e85dfbf1a70259, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 14.249065
+      value: 35.681763
       objectReference: {fileID: 0}
     - target: {fileID: 3759004479383422071, guid: 35cf916212b89e7408e85dfbf1a70259, type: 3}
       propertyPath: m_LocalRotation.w
@@ -25254,7 +25254,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1462307876572336600, guid: 06327daf3fc9f7441b15c33cabe70098, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 15.007299
+      value: 36.44
       objectReference: {fileID: 0}
     - target: {fileID: 1462307876572336600, guid: 06327daf3fc9f7441b15c33cabe70098, type: 3}
       propertyPath: m_LocalRotation.w
@@ -31196,7 +31196,7 @@ Transform:
   m_GameObject: {fileID: 1935444370}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.097, y: 0.34, z: -0.982}
+  m_LocalPosition: {x: 0.097, y: 0.34, z: -1.138}
   m_LocalScale: {x: 1.1999998, y: 0.8, z: 1.1999998}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -31215,7 +31215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _martCart: {fileID: 1641401543}
-  _forceMultipier: 1
+  _forceMultipier: 2
 --- !u!65 &1935444373
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -32258,7 +32258,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 178716776013613146, guid: ea2627d7984b1fb46b46b6ded927f52a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.624
+      value: -3.331
       objectReference: {fileID: 0}
     - target: {fileID: 178716776013613146, guid: ea2627d7984b1fb46b46b6ded927f52a, type: 3}
       propertyPath: m_LocalPosition.y
@@ -32432,9 +32432,37 @@ PrefabInstance:
       value: LEver
       objectReference: {fileID: 0}
     - target: {fileID: 2693732836223519770, guid: 6b22ea3bfddab434da7509f868c311fb, type: 3}
+      propertyPath: _interactiveEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2693732836223519770, guid: 6b22ea3bfddab434da7509f868c311fb, type: 3}
+      propertyPath: _interactiveEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2693732836223519770, guid: 6b22ea3bfddab434da7509f868c311fb, type: 3}
       propertyPath: _interactiveEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 919132148211245875}
+    - target: {fileID: 2693732836223519770, guid: 6b22ea3bfddab434da7509f868c311fb, type: 3}
+      propertyPath: _interactiveEvent.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2693732836223519770, guid: 6b22ea3bfddab434da7509f868c311fb, type: 3}
+      propertyPath: _interactiveEvent.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: PlayAnim
+      objectReference: {fileID: 0}
+    - target: {fileID: 2693732836223519770, guid: 6b22ea3bfddab434da7509f868c311fb, type: 3}
+      propertyPath: _interactiveEvent.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: BlockingBar, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2693732836223519770, guid: 6b22ea3bfddab434da7509f868c311fb, type: 3}
+      propertyPath: _interactiveEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
+      value: LeverOn
+      objectReference: {fileID: 0}
+    - target: {fileID: 2693732836223519770, guid: 6b22ea3bfddab434da7509f868c311fb, type: 3}
+      propertyPath: _interactiveEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7675931084671434650, guid: 6b22ea3bfddab434da7509f868c311fb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.686

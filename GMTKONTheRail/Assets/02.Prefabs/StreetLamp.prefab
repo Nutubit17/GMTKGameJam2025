@@ -1,5 +1,86 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &545176169786179885
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 595547751818378895}
+  - component: {fileID: 6966397981794103135}
+  - component: {fileID: 1908451730011907514}
+  m_Layer: 0
+  m_Name: Handle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &595547751818378895
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 545176169786179885}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7832782817109236551}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &6966397981794103135
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 545176169786179885}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.18290348, y: 1.3720633, z: 0.15786858}
+  m_Center: {x: 0.0052743913, y: 0.68402284, z: 0.017791891}
+--- !u!114 &1908451730011907514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 545176169786179885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b26917ca978309146ac14a635310642f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interactiveEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1708238087341803806}
+        m_TargetAssemblyTypeName: LightObject, Assembly-CSharp
+        m_MethodName: AddFuel
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 2
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &2818893275834639541
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26,15 +107,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5453043341808123890, guid: c66f8c6c2f322124ea644eb0cab6e061, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.08
+      value: 1.102
       objectReference: {fileID: 0}
     - target: {fileID: 5453043341808123890, guid: c66f8c6c2f322124ea644eb0cab6e061, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.20000005
       objectReference: {fileID: 0}
     - target: {fileID: 5453043341808123890, guid: c66f8c6c2f322124ea644eb0cab6e061, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.86
+      value: -31.2
       objectReference: {fileID: 0}
     - target: {fileID: 5453043341808123890, guid: c66f8c6c2f322124ea644eb0cab6e061, type: 3}
       propertyPath: m_LocalRotation.w
@@ -109,13 +190,16 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5453043341808123890, guid: c66f8c6c2f322124ea644eb0cab6e061, type: 3}
       insertIndex: 0
       addedObject: {fileID: 9137829325775773748}
+    - targetCorrespondingSourceObject: {fileID: 5453043341808123890, guid: c66f8c6c2f322124ea644eb0cab6e061, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 595547751818378895}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6423563414118979386, guid: c66f8c6c2f322124ea644eb0cab6e061, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1708238087341803806}
     - targetCorrespondingSourceObject: {fileID: 6423563414118979386, guid: c66f8c6c2f322124ea644eb0cab6e061, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1671385655459322224}
+      addedObject: {fileID: 3546493055710341153}
   m_SourcePrefab: {fileID: 100100000, guid: c66f8c6c2f322124ea644eb0cab6e061, type: 3}
 --- !u!108 &3475431974610904047 stripped
 Light:
@@ -153,8 +237,8 @@ MonoBehaviour:
   _lightActivePercentage: 0
   _transitionSmoothness: 0
   _frequency: 0
---- !u!65 &1671385655459322224
-BoxCollider:
+--- !u!135 &3546493055710341153
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -168,12 +252,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.18290348, y: 1.3720633, z: 0.15786858}
-  m_Center: {x: 0.0052743913, y: 0.68402284, z: 0.017791891}
+  m_Radius: 1.2
+  m_Center: {x: 0, y: 0.52, z: 0}
 --- !u!1001 &8744493108948781023
 PrefabInstance:
   m_ObjectHideFlags: 0

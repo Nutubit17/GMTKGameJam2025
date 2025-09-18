@@ -17,12 +17,12 @@ public class LanternHeadBody : LightObject, ICoinUseable
     private IEnumerator UseCoinRoutine()
     {
         _animator.SetBool(_beginHash, false);
-        yield return null;
+        yield return new WaitForEndOfFrame();
 
-        if (Time.time > _lastCoinEnterTime + 4)
+        //if (Time.time > _lastCoinEnterTime + 4)
         {
             _animator.SetBool(_beginHash, true);
-            _lastCoinEnterTime = Time.time;
+            //_lastCoinEnterTime = Time.time;
 
             AddFuel(_fuelPerCoin);
         }

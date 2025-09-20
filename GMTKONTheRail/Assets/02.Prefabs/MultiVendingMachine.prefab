@@ -990,8 +990,8 @@ Light:
   serializedVersion: 11
   m_Type: 2
   m_Color: {r: 1, g: 0.77937204, b: 0.6084906, a: 1}
-  m_Intensity: 8
-  m_Range: 88
+  m_Intensity: 5
+  m_Range: 45
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -1081,7 +1081,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_LensFlareData: {fileID: 11400000, guid: bd7eaf3bd49c39f4cb77bd809459aa72, type: 2}
   version: 0
-  intensity: 1
+  intensity: 0.4
   maxAttenuationDistance: 100
   maxAttenuationScale: 100
   distanceAttenuationCurve:

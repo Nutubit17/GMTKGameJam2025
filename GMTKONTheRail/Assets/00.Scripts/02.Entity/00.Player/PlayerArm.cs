@@ -84,6 +84,7 @@ public class PlayerArm : MonoBehaviour,IGetCompoable,IAfterInitable
             CurrentItem?.gameObject.SetActive(false);
             CurrentItem = value;
             CurrentItem?.gameObject.SetActive(true);
+            CurrentItem?.SetData(Inventory[CurrentIdx]);
         }
         else
         {

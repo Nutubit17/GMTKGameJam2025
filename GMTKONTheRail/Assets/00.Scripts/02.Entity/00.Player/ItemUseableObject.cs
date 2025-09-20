@@ -34,6 +34,11 @@ public class ItemUseableObject : MonoBehaviour
 
     }
 
+    public void SetData(ItemDataAndSO data)
+    {
+        _itemType = data;
+    }
+
     public void FuckDur()
     {
         _itemType.Durability--;

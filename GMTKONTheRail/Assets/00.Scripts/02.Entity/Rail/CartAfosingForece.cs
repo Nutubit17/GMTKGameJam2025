@@ -4,6 +4,7 @@ public class CartAfosingForece : MonoBehaviour
 {
     [SerializeField]
     private MartCart _martCart;
+    private Rigidbody _rigidbody;
     [SerializeField]
     private float _forceMultipier =1;
 
@@ -11,6 +12,8 @@ public class CartAfosingForece : MonoBehaviour
     {
         if(_martCart == null)
         _martCart = GetComponent<MartCart>();
+        if(_martCart != null)
+            _rigidbody = _martCart.GetComponent<Rigidbody>();
     }
 
     //private void OnCollisionEnter(Collision collision)
@@ -25,12 +28,15 @@ public class CartAfosingForece : MonoBehaviour
         if (collision.gameObject.CompareTag("Interactive"))
             return;
         _martCart.AddForce(-collision.impulse * _forceMultipier*Time.fixedDeltaTime);
+ 
         //_martCart.AddForce((transform.position - collision.collider.transform.position).normalized *_forceMultipier);
     }
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("Interactive"))
             return;
-        _martCart.AddForce(_forceMultipier*Time.fixedDeltaTime);
+        //_martCart.AddForce(_forceMultipier*Time.fixedDeltaTime);
+        if (_rigidbody != null)
+            _rigidbody.AddForce(_martCart.transform.forward * _forceMultipier,ForceMode.VelocityChange);
     }
 }

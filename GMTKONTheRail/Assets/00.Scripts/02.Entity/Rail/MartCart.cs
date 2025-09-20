@@ -121,10 +121,12 @@ public class MartCart : MonoBehaviour
 
         transform.position = position;
 
+       direction = _railManagement.GetCurrentSplineDirection();
+
         if (direction != Vector3.zero)
         {
-            transform.forward = direction * Mathf.Sign(step);
-            transform.rotation *= Quaternion.AngleAxis(shakeRotation, transform.forward);
+            transform.forward = direction;
+            //transform.rotation *= Quaternion.AngleAxis(shakeRotation, transform.forward);
         }
     }
 

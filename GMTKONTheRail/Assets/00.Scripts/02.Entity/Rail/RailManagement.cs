@@ -3,6 +3,7 @@ using SplineMeshTools.Core;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Splines;
+using UnityEngine.UIElements;
 
 [RequireComponent(typeof(SplineContainer))]
 public class RailManagement : MonoBehaviour,IGetCompoable
@@ -122,6 +123,18 @@ public class RailManagement : MonoBehaviour,IGetCompoable
         }
 
         return _position;
+    }
+
+    public Vector3 GetCurrentSplineDirection()
+    {
+        return GetSplineDirection(_currentPoint,GetCurrentPercent());
+    }
+
+    public Vector3 GetSplineDirection(int railidx, float percent)
+    {
+        Vector3 pos1 = _splineContainer.EvaluatePosition(railidx, percent);
+        Vector3 pos2 = _splineContainer.EvaluatePosition(railidx,percent*1.0001f);
+        return (pos2 - pos1).normalized;
     }
 
     public Vector3 GetCurrentDirection()

@@ -128,7 +128,7 @@ public class EnemyBase : HealthCompo
                 isActive = false;
 
                 PlayAnimation(_hitHash, _hitBlend);
-                _rigidbody.AddForce(-transform.forward * 50);
+                _rigidbody.AddForce(-transform.forward * 10,ForceMode.Impulse);
             }
             else if (_hitCheckTimer.Check() && !isActive && !_isDie)
             {

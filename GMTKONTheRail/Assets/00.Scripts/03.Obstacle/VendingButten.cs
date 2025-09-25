@@ -17,6 +17,8 @@ public class VendingButten : MonoBehaviour, IAltInteractiveable
     protected Image _pricePoints, _insertedPricePoints;
     [SerializeField]
     protected Vector2 _priceUISize = new (100f, 100f );
+    [SerializeField]
+    protected int _itemAmount = 1;
 
     public void Init(VendingMachine vendingMachineMom)
     {

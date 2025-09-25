@@ -23,7 +23,7 @@ public class VendingMachine : MonoBehaviour,ICoinUseable
 
     public Action InsertCoinAction;
 
-    public ItemSO[] aaa;
+    public ItemSO[] ItemSOs;
 
 
     public int GetInsertedCoin()
